@@ -164,6 +164,22 @@ php artisan migrate --force
 php artisan demo:reset         # load the snapshot
 ```
 
+#### On Vercel
+
+The live demo runs on Vercel with the community PHP runtime (`vercel.json`, `api/index.php`) and
+an external MySQL-compatible database (TiDB Cloud Starter). The disk is read-only except `/tmp`,
+so `api/index.php` moves storage and Laravel's caches there and copies the snapshot's files in on
+a cold start. Sessions live in the cookie, the cache in memory, mail in the log, and the queue runs
+inline.
+
+- Set in the project's environment: `APP_KEY`, `APP_URL`, `DB_*`, `DEMO_MODE=true`,
+  `MYSQL_ATTR_SSL_CA=/etc/pki/tls/certs/ca-bundle.crt` (TLS is required), `SESSION_DRIVER=cookie`,
+  `CACHE_STORE=array`, `LOG_CHANNEL=stderr`, `QUEUE_CONNECTION=sync`, `MAIL_MAILER=log`.
+- Fill the database once from your machine, pointing `.env` at it: `php artisan migrate --force`
+  then `php artisan demo:reset`.
+- There is no scheduler on Vercel: run `demo:reset` the same way to restore the data. Files a
+  visitor uploads last only while the instance stays warm.
+
 ### Next.js front end
 
 ```bash

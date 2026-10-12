@@ -1,0 +1,9 @@
+/frontend
+/tests
+/docs
+/node_modules
+/vendor
+/storage/logs/*
+/storage/framework/*
+/bootstrap/cache/*.php
+.env
