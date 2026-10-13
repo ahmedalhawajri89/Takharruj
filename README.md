@@ -2,215 +2,216 @@
   <img src="docs/cover.png" alt="تخرُّج — Takharruj" width="900">
 </p>
 
-# تخرُّج — Takharruj
+<h1 align="center">تخرُّج · Takharruj</h1>
 
-A platform that manages graduation projects from the first idea to the final grade — with three separate roles, each getting its own dashboard, its own permissions and its own workflow.
+<p align="center">
+  <strong>A platform that runs graduation projects from the first idea to the final grade.</strong><br>
+  Students, supervisors and the department — one place, three dashboards, one trail of record.
+</p>
+
+<p align="center">
+  <a href="https://takharruj.vercel.app"><strong>▶ Open the live demo</strong></a>
+  ·
+  <a href="README.ar.md">العربية</a>
+  ·
+  <a href="docs/DEPLOYMENT.md">Install &amp; deploy</a>
+  ·
+  <a href="DESIGN_SYSTEM.md">Design system</a>
+</p>
+
+<p align="center">
+  <img alt="Laravel 12" src="https://img.shields.io/badge/Laravel-12-FF2D20?logo=laravel&logoColor=white">
+  <img alt="PHP 8.2" src="https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white">
+  <img alt="MySQL" src="https://img.shields.io/badge/MySQL-8-4479A1?logo=mysql&logoColor=white">
+  <img alt="Next.js 14" src="https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs&logoColor=white">
+  <img alt="480 tests" src="https://img.shields.io/badge/tests-480-3FB950">
+  <img alt="Arabic + English" src="https://img.shields.io/badge/i18n-AR%20%2B%20EN-0EA5B7">
+  <img alt="MIT" src="https://img.shields.io/badge/license-MIT-black">
+</p>
+
+---
+
+## Try it in thirty seconds
+
+The demo needs **no account**. Open it and pick a role — you are signed straight in,
+and a bar at the top lets you switch between the three without signing out, so you can
+send a message as the student and read it as the supervisor.
+
+| | What you land in |
+|---|---|
+| **Try as a student** | A real project at 80%, its five milestones, the thread with the supervisor, and a defense already scheduled |
+| **Try as a supervisor** | Supervised groups, incoming requests, milestone review, and the committee you sit on |
+| **Try as an admin** | The semester, 500 students and 300 supervisors, the defense planner, and the audit log |
+
+> The data is curated and resets every night, so nothing you do there can break it.
+
+**▶ [takharruj.vercel.app](https://takharruj.vercel.app)**
 
 ---
 
 ## The problem it solves
 
-Graduation projects are usually run on spreadsheets, email threads and paper. Nobody has a single answer to "which groups have no supervisor yet", "which milestones are overdue" or "where is the latest version of that file". This system puts all of that in one place, and gives each role only the part that concerns them.
+Graduation projects are run on spreadsheets, WhatsApp groups and email threads. Nobody
+can answer *which groups still have no supervisor*, *which milestones are overdue*,
+*where is the latest version of that chapter*, or *who changed this grade and when*.
+
+Takharruj puts all of it in one place and gives each role only the part that concerns them.
 
 ---
 
-## The three roles
+## What each role sees
 
-**Admin** runs the semester. Adds and manages students, supervisors, specialisations and academic terms — including bulk import from Excel, which matters when a new intake is 300 rows. Forms project groups, assigns supervisors, and maintains the catalogue of proposed project topics per specialisation. The dashboard is backed by periodic stat snapshots rather than recalculating everything on every page load.
+### Student
 
-**Supervisor** reviews the project requests that come in, accepts or rejects them, then tracks each supervised project: its milestones, its submitted files, and the discussion around them. Comments on student work, records the final evaluation, and can look back at previous semesters through the archive.
+<img src="docs/screens/student-dashboard.png" alt="Student dashboard" width="100%">
 
-**Student** proposes a project, joins a group, follows the milestone timeline and its deadlines, uploads deliverables, and replies to supervisor comments — with a profile and notifications of their own.
+Your project, your progress, and what is expected of you next. The timeline runs from
+*request submitted* through *supervisor approval* and *milestones* to *defense* and
+*grade*. The defense card carries the date, the room, the committee and a calendar file,
+and the presentation is uploaded from the same card.
+
+### Supervisor
+
+<img src="docs/screens/supervisor-project.png" alt="Supervisor project view" width="100%">
+
+One screen per supervised project: what it needs now, completion, the milestone plan
+with its deadlines, the files submitted against each one, and the thread with the team.
+Requests are accepted or rejected from the dashboard; past semesters stay in the archive.
+
+### Admin
+
+<img src="docs/screens/admin-defenses.png" alt="Defense planner" width="100%">
+
+The semester, its people and its defenses. The planner proposes a slot, a room and an
+examiner for every completed project; drag a project onto a slot, or schedule the whole
+list in one click. Every change lands in an append-only audit log.
+
+<details>
+<summary><strong>More screens</strong></summary>
+
+| | |
+|---|---|
+| Public site | <img src="docs/screens/public-home.png" width="420"> |
+| One-click demo sign-in | <img src="docs/screens/public-login.png" width="420"> |
+| Student — discussion with the supervisor | <img src="docs/screens/student-discussion.png" width="420"> |
+| Student — team and roles | <img src="docs/screens/student-team.png" width="420"> |
+| Student — archive of completed projects | <img src="docs/screens/student-explore.png" width="420"> |
+| Supervisor — dashboard | <img src="docs/screens/supervisor-dashboard.png" width="420"> |
+| Supervisor — milestone plan | <img src="docs/screens/supervisor-plan.png" width="420"> |
+| Supervisor — my committees | <img src="docs/screens/supervisor-defenses.png" width="420"> |
+| Admin — dashboard | <img src="docs/screens/admin-dashboard.png" width="420"> |
+| Admin — groups | <img src="docs/screens/admin-groups.png" width="420"> |
+| Admin — audit log | <img src="docs/screens/admin-audit.png" width="420"> |
+
+On a phone, every dashboard is the same product, not a cut-down one:
+
+<p>
+  <img src="docs/screens/mobile-student.png" width="240">
+  <img src="docs/screens/mobile-discussion.png" width="240">
+</p>
+
+</details>
 
 ---
 
-## Features
+## What it does
 
-- Three role-scoped dashboards with separate route groups and permissions
-- Excel import for students and supervisors, plus data export
-- Group formation and supervisor assignment
-- Project proposal, review, acceptance and rejection flow
-- Milestone tracking with deadlines, and email reminders two days before and on the day
-- Email for what needs the student's action — changes requested, the grade — the rest stays in-app
-- File submissions per project, with a dedicated file controller
-- Threaded comments between student and supervisor
-- Final evaluation recorded against the project
-- Semester management with an active-term flag and an archive of past terms
-- Server-side data tables, so large lists stay fast
-- Contact messages from the public site
-- A separate Next.js marketing front end
+**Running a semester.** Students, supervisors, specialisations and terms, with bulk
+import from Excel — which matters when a new intake is 300 rows — and export back out.
+One term is active; the rest become the archive.
+
+**Forming teams.** Groups, roles inside a group, and supervisor assignment. A student
+proposes a project or picks from the department's catalogue of topics; the supervisor
+accepts, rejects or asks for changes.
+
+**Milestones.** A plan per project with deadlines, submissions against each milestone,
+and reminders by email two days before and on the day. The rest of the noise stays in
+the app, where it belongs.
+
+**Files and discussion.** Project files are stored privately and served only through an
+authorised download route — never from a public folder. Threads run between the team and
+the supervisor, and separately inside the team, with unread counts and live updates.
+
+**Defenses.** Rooms, committees and a scheduler. A committee is the supervisor plus up to
+three examiners, one of them chair. The planner suggests a slot inside working hours,
+sends the team and the committee a reminder with an `.ics` file, records the minutes, and
+computes the grade as the members' average — with a configurable weight for the supervisor.
+Once the grade is locked it cannot be quietly edited.
+
+**Accountability.** An append-only audit log with its own timeline view, so every status
+change, grade and deletion has a name and a timestamp against it.
+
+**Arabic and English.** The product is Arabic-first and right-to-left, with a full English
+locale — not a machine-translated afterthought.
 
 ---
 
-## Design system
+## Under the hood
 
-Every part of the product — the public site, the login screen and all three dashboards — is driven by a single documented token layer, written up in [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md). Colours, radii, shadows and motion are defined once in two stylesheets and never hard-coded inside a page. Changing the brand means editing two files, not forty.
+| | |
+|---|---|
+| Models | 22 |
+| Controllers | 37 |
+| Migrations | 41 |
+| Blade views | 115, over 16 shared components |
+| Automated tests | **480**, across 64 files |
+| Artisan commands | 8, including a deployment readiness check |
+
+The tests are not decoration: alongside the feature flows they cover SQL injection
+attempts, production configuration, import validation, timezones, translation keys,
+grade locking and demo-mode safety.
+
+**Design system.** The public site, the sign-in page and all three dashboards are driven
+by one documented token layer ([`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md)). Colours, radii,
+shadows and motion are declared once in two stylesheets and never hard-coded in a page —
+rebranding means editing two files, not forty.
 
 ---
 
-## Tech stack
+## Built with
 
-**Back end** — Laravel 12, PHP 8.2, MySQL, Laravel Sanctum
-**Tables and files** — Yajra DataTables (server-side), Maatwebsite/Excel (import and export)
+**Back end** — Laravel 12 · PHP 8.2 · MySQL · Laravel Sanctum
+**Tables and files** — Yajra DataTables (server-side, so large lists stay fast) · Maatwebsite/Excel
 **Views** — Blade, with a shared component layer (`page-header`, `kpi-card`, `status-badge`, `empty-state`, `attention-card`)
-**Marketing front end** — Next.js 14, React 18, Framer Motion, Lenis, Tailwind CSS
+**Marketing site** — Next.js 14 · React 18 · Tailwind CSS · Framer Motion · Lenis
 
 ---
 
-## Getting started
-
-**Requirements:** PHP 8.2+ with `gd`, `zip`, `xml`, `fileinfo`, `mbstring`, `pdo_mysql` · Composer · MySQL 8+ (or MariaDB 10.2+).
-The front-end assets are static files in `public/` — there is no build step for the Laravel app.
-
-### Local setup
+## Run it locally
 
 ```bash
 composer install
-cp .env.example .env
-php artisan key:generate
-```
-
-Set your database credentials in `.env`, then:
-
-```bash
+cp .env.example .env && php artisan key:generate
+# set DB_* in .env, then:
 php artisan migrate --seed
-php artisan serve             # http://localhost:8000
+php artisan serve                     # http://localhost:8000
 ```
 
-Outside production, `--seed` loads demo data: one admin (`admin@admin.com`), 300 supervisors
-and 500 students, **all with the password `adminadmin`**. It creates users only — no projects.
-Never run the demo seed on a server that real people use (see *Deployment*).
+Outside production `--seed` loads demo users (one admin, 300 supervisors, 500 students).
+There is no asset build step for the Laravel app.
 
-For local mail and queues, `MAIL_MAILER=log` and `QUEUE_CONNECTION=sync` in `.env` avoid needing
-a mail server or a worker: messages land in `storage/logs/laravel.log`.
-
-### Tests
-
-The tests run on a **separate copy** of your development database named `<DB_DATABASE>_testing`
-(set in `phpunit.xml`). They depend on realistic data, so the copy is taken from your dev database:
-
-```bash
-php artisan test:prepare            # creates graduation_clc_testing from graduation_clc
-php artisan test:prepare --force    # re-copy after new migrations or data changes
-vendor/bin/phpunit
-```
-
-`tests/TestCase.php` refuses to run against any database whose name does not end in `_testing`.
-
-### Deployment
-
-1. **Environment.** In `.env`: `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://your-domain`
-   (password-reset links are built from it), `LOG_LEVEL=warning`, `SESSION_SECURE_COOKIE=true`,
-   real SMTP credentials and a real `MAIL_FROM_ADDRESS`.
-2. **Schema and first admin.** `--seed` in production plants only semesters and specializations —
-   no accounts:
-   ```bash
-   php artisan migrate --force --seed
-   php artisan admin:create          # prompts for name, email and password
-   ```
-   Activate the current semester from *Admin › Semesters* before students log in.
-3. **Scheduler (required).** Mail is queued, teams are reminded of stage deadlines every morning
-   (`milestones:remind` at 09:00: two days before and on the day), teams and committees are reminded
-   of their defense (`defenses:remind` at 08:00: the day before and on the day — the email carries
-   an `.ics` calendar file), and a daily stats snapshot feeds the dashboard trend.
-   Add one cron entry:
-   ```
-   * * * * * cd /path/to/app && php artisan schedule:run >> /dev/null 2>&1
-   ```
-   It runs a queue worker that exits when the queue is empty. On a server with Supervisor or
-   systemd, run a permanent `php artisan queue:work` there instead and remove the `queue:work`
-   line from `app/Console/Kernel.php`.
-4. **Writable paths:** `storage/`, `bootstrap/cache/` and `public/uploads/` (avatars).
-   Project files are stored privately in `storage/app` and served only through an
-   authorized download route — `storage:link` is not needed.
-5. **PHP upload limits.** Project files accept up to 10 MB, defense presentations up to 20 MB and
-   Excel imports up to 5 MB: set `upload_max_filesize = 22M` and `post_max_size = 26M`.
-6. **Caches.** `php artisan config:cache && php artisan route:cache && php artisan view:cache`.
-7. **Defenses.** Add the defense rooms from *Admin › Defenses › Rooms*; the planner suggests a slot,
-   room and examiner for each completed project within the working hours in `config/defenses.php`
-   (Sunday–Thursday, 09:00–15:00 by default). Online and hybrid defenses take a meeting link (the
-   dialog has a *Create Google Meet* shortcut) — no Google API credentials are needed. A committee is
-   the supervisor plus up to three examiners, one of them its chair. The final grade is the members'
-   average; set `DEFENSE_SUPERVISOR_WEIGHT=40` (for example) to give the supervisor 40% and split the
-   rest evenly between the examiners.
-8. **Readiness check.** `php artisan deploy:check` verifies what can be checked automatically
-   (environment, security, mail, queue, migrations, first admin, active semester, writable paths,
-   upload limits, caches) and exits non-zero on anything critical. Run it after each deploy.
-
-### Live demo (demo mode)
-
-A public copy for a portfolio, where visitors try the platform without an account. It is off
-unless `DEMO_MODE=true` is set, and nothing below happens without it.
-
-- **One-click sign-in.** The sign-in page shows *Try as a student / supervisor / admin*. The
-  accounts are picked from the data (a team leader whose project reached its defense, that
-  project's supervisor, the first admin), or set them with `DEMO_STUDENT`, `DEMO_SUPERVISOR`,
-  `DEMO_ADMIN` (emails).
-- **Role switch.** A thin bar on every dashboard page switches between the three roles without
-  signing out, so a visitor can send a message as the student and read it as the supervisor.
-- **Protected.** Profile, password and avatar changes, password resets, deleting users, semesters
-  and specializations, imports and the demo accounts themselves are refused with a short notice.
-  Uploads are capped at `DEMO_UPLOAD_MB` (2). Mail goes to the log.
-- **Nightly reset.** `php artisan demo:snapshot` saves the current database and uploaded files to
-  `database/demo/` (run it once on the curated data and commit it). On the demo server,
-  `php artisan demo:reset` restores it — it refuses to run without `DEMO_MODE` — and shifts every
-  date by whole weeks since the snapshot, so the showcased defense stays upcoming and on a working
-  day. The scheduler runs it daily at `DEMO_RESET_AT` (03:00).
-
-```bash
-# on the demo server, after deploying
-DEMO_MODE=true                 # in .env
-php artisan migrate --force
-php artisan demo:reset         # load the snapshot
-```
-
-#### On Vercel
-
-The live demo runs on Vercel with the community PHP runtime (`vercel.json`, `api/`) and
-an external MySQL-compatible database (TiDB Cloud Starter). The disk is read-only except `/tmp`,
-so `api/_runtime.php` moves storage and Laravel's caches there and copies the snapshot's files in on
-a cold start. Sessions live in the cookie, the cache in memory, mail in the log, and the queue runs
-inline.
-
-- Set in the project's environment: `APP_KEY`, `APP_URL`, `DB_*`, `DEMO_MODE=true`,
-  `MYSQL_ATTR_SSL_CA=/etc/pki/tls/certs/ca-bundle.crt` (TLS is required), `SESSION_DRIVER=cookie`,
-  `CACHE_STORE=array`, `LOG_CHANNEL=stderr`, `QUEUE_CONNECTION=sync`, `MAIL_MAILER=log`.
-- Fill the database once from your machine, pointing `.env` at it: `php artisan migrate --force`
-  then `php artisan demo:reset`.
-- The nightly reset is a Vercel Cron Job (`vercel.json` › `crons`, 01:00 UTC) calling
-  `api/demo-reset.php`, which runs `demo:reset`. Set `CRON_SECRET` in the project: Vercel sends it
-  and the endpoint refuses any request without it. Files a visitor uploads last only while the
-  instance stays warm.
-
-### Next.js front end
-
-```bash
-cd frontend
-npm install
-cp .env.local.example .env.local
-npm run dev                   # http://localhost:3000
-```
+Running the tests, deploying to a server, the scheduler, demo mode and the Vercel setup
+are all in **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**.
 
 ---
 
 ## Project structure
 
 ```
-app/Models/                        Project, Group, Student, Supervisor, Semester,
-                                   Specialize, ProjectMilestone, ProjectFile,
-                                   ProjectComment, StatSnapshot, Admin, Contact
+app/Models/                        Project · Group · Student · Supervisor · Semester
+                                   Defense · DefenseMember · DefenseRoom · AuditLog
+                                   ProjectMilestone · ProjectFile · ProjectComment …
 app/Http/Controllers/Admin/        students, supervisors, groups, semesters,
-                                   specialisations, project catalogue, contacts
-app/Http/Controllers/Supervisor/   dashboard, project management, profile
-app/Http/Controllers/Student/      dashboard, files, comments, profile
-app/Http/Controllers/FileController.php   uploads and downloads
-resources/views/dashboard/         role-scoped dashboards
+                                   specialisations, project catalogue, defenses, audit
+app/Http/Controllers/Supervisor/   dashboard, project management, plan, committees
+app/Http/Controllers/Student/      dashboard, team, files, discussion, profile
+app/Console/Commands/              reminders, stats snapshot, demo reset, deploy check
 resources/views/components/        shared Blade UI components
-resources/views/layouts/admin/     shell, header, sidebars per role
+resources/lang/{ar,en}/            both locales
 public/assets/css/premium.css      design tokens — public site
 public/css/dashboard.css           design tokens — dashboards
 frontend/                          Next.js marketing site
-DESIGN_SYSTEM.md                   the single source of visual truth
+tests/                             480 tests
 ```
 
 ---
@@ -221,23 +222,3 @@ DESIGN_SYSTEM.md                   the single source of visual truth
 [GitHub](https://github.com/ahmedalhawajri89) · [LinkedIn](https://www.linkedin.com/in/ahmedalhawajri)
 
 Licensed under the MIT License.
-
----
-
-<div dir="rtl">
-
-## نبذة بالعربية
-
-**تخرُّج** منصة لإدارة مشاريع التخرّج من أول فكرة حتى الدرجة النهائية، مبنية على **ثلاثة أدوار منفصلة** لكل واحد منها لوحة تحكم وصلاحيات ومسار عمل خاص.
-
-**الأدمن** يدير الفصل الدراسي: الطلاب والمشرفون والتخصصات والفصول، مع استيراد جماعي من Excel، وتكوين المجموعات وإسناد المشرفين، وإدارة قائمة المواضيع المقترحة.
-
-**المشرف** يراجع طلبات المشاريع ويقبلها أو يرفضها، ثم يتابع المراحل والملفات المسلَّمة، ويعلّق على عمل الطلاب ويسجّل التقييم النهائي، مع أرشيف للفصول السابقة.
-
-**الطالب** يقدّم مقترح مشروعه، ينضم لمجموعة، يتابع المراحل ومواعيدها، يرفع التسليمات، ويرد على تعليقات المشرف.
-
-**ملاحظة على التصميم:** الموقع العام وصفحة الدخول واللوحات الثلاث كلها مبنية على طبقة توكنز واحدة موثّقة في `DESIGN_SYSTEM.md` — الألوان والزوايا والظلال والحركة معرّفة مرة واحدة في ملفين، وممنوع كتابتها يدوياً داخل الصفحات. تغيير الهوية البصرية يعني تعديل ملفين لا أربعين.
-
-**التقنيات:** Laravel 12 و PHP 8.2 و MySQL و Sanctum، مع Yajra DataTables و Maatwebsite Excel، وواجهة تعريفية منفصلة بـ Next.js 14.
-
-</div>
