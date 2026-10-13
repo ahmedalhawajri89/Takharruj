@@ -4,11 +4,19 @@
     "api/index.php": {
       "runtime": "vercel-php@0.7.4",
       "maxDuration": 30
+    },
+    "api/demo-reset.php": {
+      "runtime": "vercel-php@0.7.4",
+      "maxDuration": 60
     }
   },
+  "crons": [
+    { "path": "/api/demo-reset", "schedule": "0 1 * * *" }
+  ],
   "routes": [
     { "src": "/(assets|css|js|fonts|uploads|vendor|text_editor)/(.*)", "dest": "/public/$1/$2" },
     { "src": "/(favicon\\.ico|robots\\.txt|example\\.xlsx)", "dest": "/public/$1" },
+    { "src": "/api/demo-reset", "dest": "/api/demo-reset.php" },
     { "src": "/(.*)", "dest": "/api/index.php" }
   ]
 }
