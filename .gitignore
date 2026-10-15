@@ -6,6 +6,11 @@
 # الصور الشخصية التي يرفعها المستخدمون — بيانات لا شيفرة
 /public/uploads/*
 !/public/uploads/.gitkeep
+# The avatars disk opens on this folder; a deploy without it (git keeps no
+# empty folders) fails on a read-only disk. Keep the folder, not its files.
+!/public/uploads/avatars/
+/public/uploads/avatars/*
+!/public/uploads/avatars/.gitkeep
 /storage/*.key
 /vendor
 .env

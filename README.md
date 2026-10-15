@@ -24,7 +24,7 @@
   <img alt="PHP 8.2" src="https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white">
   <img alt="MySQL" src="https://img.shields.io/badge/MySQL-8-4479A1?logo=mysql&logoColor=white">
   <img alt="Next.js 14" src="https://img.shields.io/badge/Next.js-14-000000?logo=nextdotjs&logoColor=white">
-  <img alt="480 tests" src="https://img.shields.io/badge/tests-480-3FB950">
+  <img alt="481 tests" src="https://img.shields.io/badge/tests-481-3FB950">
   <img alt="Arabic + English" src="https://img.shields.io/badge/i18n-AR%20%2B%20EN-0EA5B7">
   <img alt="MIT" src="https://img.shields.io/badge/license-MIT-black">
 </p>
@@ -154,7 +154,7 @@ locale — not a machine-translated afterthought.
 | Controllers | 37 |
 | Migrations | 41 |
 | Blade views | 115, over 16 shared components |
-| Automated tests | **480**, across 64 files |
+| Automated tests | **481**, across 65 files |
 | Artisan commands | 8, including a deployment readiness check |
 
 The tests are not decoration: alongside the feature flows they cover SQL injection
@@ -211,7 +211,7 @@ resources/lang/{ar,en}/            both locales
 public/assets/css/premium.css      design tokens — public site
 public/css/dashboard.css           design tokens — dashboards
 frontend/                          Next.js marketing site
-tests/                             480 tests
+tests/                             481 tests
 ```
 
 ---

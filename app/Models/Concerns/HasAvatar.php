@@ -23,12 +23,20 @@ trait HasAvatar
             return null;
         }
 
-        // الملف قد يكون حُذف من القرص يدوياً بينما بقي الاسم في الصفّ
-        if (! Storage::disk(static::$avatarDisk)->exists($this->avatar)) {
+        try {
+            $disk = Storage::disk(static::$avatarDisk);
+
+            // الملف قد يكون حُذف من القرص يدوياً بينما بقي الاسم في الصفّ
+            if (! $disk->exists($this->avatar)) {
+                return null;
+            }
+
+            return $disk->url($this->avatar);
+        } catch (\Throwable) {
+            // القرص غير متاح (للقراءة فقط، أو مجلده مفقود وتعذّر إنشاؤه):
+            // الأحرف الأولى تكفي، ولا تسقط الصفحة كلها بسبب صورة اختيارية
             return null;
         }
-
-        return Storage::disk(static::$avatarDisk)->url($this->avatar);
     }
 
     /** الأحرف الأولى: «د.» و«أ.د.» بادئة على أغلب أسماء المشرفين فلا تميّز أحداً */
