@@ -11,7 +11,7 @@
 <div class="stat-strip is-3 mb-4">
     <div class="stat-cell">
         <span class="stat-label">{{ __('نسبة الإنجاز') }}</span>
-        <span class="stat-value">{{ is_null($project->progress) ? '—' : $project->progress . '%' }}</span>
+        <span class="stat-value">{{ is_null($project->progress) ? __('لا يوجد') : $project->progress . '%' }}</span>
         @if ($project->milestones->count())
             <span class="stat-sub">
                 {{ __(':done من :total مراحل', ['done' => $project->milestones->where('is_done', true)->count(), 'total' => $project->milestones->count()]) }}

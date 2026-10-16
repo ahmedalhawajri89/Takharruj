@@ -64,7 +64,7 @@
     @if ($locked)
         <p class="hint-bar m-3">
             <i class="ti ti-archive" aria-hidden="true"></i>
-            <span>{{ __('أُغلق الرفع والحذف بعد رصد التقييم — الملفات أدناه للتنزيل فقط.') }}</span>
+            <span>{{ __('أُغلق الرفع والحذف بعد رصد التقييم، الملفات أدناه للتنزيل فقط.') }}</span>
         </p>
     @else
         <form action="{{ route($role . '.files.store', ['project' => $project->id]) }}" method="POST"
@@ -87,7 +87,7 @@
                         <span class="file-chip is-zip">ZIP</span>
                         <span class="file-chip is-img">{{ __('صور') }}</span>
                     </span>
-                    <small>{{ __('حتى 10MB للملف —') }}
+                    <small>{{ __('حتى 10MB للملف') }}
                         {{ $role === 'supervisor' ? __('يراه الفريق كلّه') : __('المقترح والتقارير والعرض النهائي، ويراها المشرف') }}</small>
                 </span>
 
@@ -218,7 +218,7 @@
                                 @unless ($note->isOpen())
                                     <span class="file-note-done">
                                         <i class="ti ti-circle-check" aria-hidden="true"></i>
-                                        {{ __('عولجت') }}{{ $note->resolver ? ' — ' . ($note->resolver->is($me) ? __('أنت') : $note->resolver->name) : '' }}
+                                        {{ __('عولجت') }}{{ $note->resolver ? ' · ' . ($note->resolver->is($me) ? __('أنت') : $note->resolver->name) : '' }}
                                         · {{ $note->resolved_at->diffForHumans() }}
                                     </span>
                                 @endunless
@@ -342,7 +342,7 @@
                 document.getElementById('picked-name').textContent = f.name;
                 document.getElementById('picked-size').textContent = humanSize(f.size);
 
-                // العنوان من اسم الملف بلا امتداده — ما لم يكتب الطالب عنواناً بنفسه
+                // العنوان من اسم الملف بلا امتداده، ما لم يكتب الطالب عنواناً بنفسه
                 var base = (dot > 0 ? f.name.slice(0, dot) : f.name).replace(/[_\-]+/g, ' ').trim();
                 if (title.value === '' || title.value === autoTitle) {
                     title.value = base.slice(0, 120);
@@ -363,7 +363,7 @@
                 });
             });
 
-            // البطاقة كلّها تستقبل السحب — لا حاجة للنقر على «رفع ملف» أولاً.
+            // البطاقة كلّها تستقبل السحب، لا حاجة للنقر على «رفع ملف» أولاً.
             // عدّاد لأن dragleave يُطلق عند المرور فوق كل عنصر داخلي
             var depth = 0;
             card.addEventListener('dragenter', function (e) {
@@ -395,7 +395,7 @@
 
 @push('js')
     <script>
-        // ملاحظات الملف: لوحة تنفتح تحته — ومن رابط إشعار (#file-<id>) تنفتح مباشرة
+        // ملاحظات الملف: لوحة تنفتح تحته، ومن رابط إشعار (#file-<id>) تنفتح مباشرة
         (function () {
             function toggle(id, force) {
                 var panel = document.getElementById('notes-' + id);

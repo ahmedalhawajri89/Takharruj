@@ -9,7 +9,7 @@
 @section('content')
 
     @php
-        $fmt = fn ($g) => is_null($g) ? '—' : rtrim(rtrim(number_format((float) $g, 2, '.', ''), '0'), '.');
+        $fmt = fn ($g) => is_null($g) ? __('لا يوجد') : rtrim(rtrim(number_format((float) $g, 2, '.', ''), '0'), '.');
         $isOwn = (int) $project->supervisor_id === (int) auth('supervisor')->id();
         $msLabel = ['open' => __('مفتوحة'), 'submitted' => __('سُلّمت'), 'revision' => __('مطلوب تعديل'), 'approved' => __('اعتُمدت')];
         $done = $defense->status === 'done';
@@ -41,7 +41,7 @@
             <a href="{{ route('defenses.ics', $defense->id) }}" class="btn btn-outline-secondary" title="{{ __('Outlook وتقويم الجوال') }}">
                 <i class="ti ti-calendar-down me-1" aria-hidden="true"></i>{{ __('ملف التقويم') }}
             </a>
-            <a href="{{ route('defenses.minutes', $defense->id) }}" class="btn btn-outline-secondary" title="{{ $done ? __('المحضر المكتمل — طباعة أو PDF') : __('مسودة المحضر — تُطبع للتوقيع يوم المناقشة') }}">
+            <a href="{{ route('defenses.minutes', $defense->id) }}" class="btn btn-outline-secondary" title="{{ $done ? __('المحضر المكتمل، طباعة أو PDF') : __('مسودة المحضر، تُطبع للتوقيع يوم المناقشة') }}">
                 <i class="ti ti-file-certificate me-1" aria-hidden="true"></i>{{ __('المحضر') }}
             </a>
             @if ($isOwn)
@@ -68,7 +68,7 @@
                     <span class="dsv-slides-icon" aria-hidden="true"><i class="ti ti-presentation"></i></span>
                     <span class="dsv-slides-body">
                         <b>{{ __('العرض التقديمي') }}</b>
-                        <small>{{ __('لم يرفعه الفريق بعد — يصلك إشعار حين يُرفع.') }}</small>
+                        <small>{{ __('لم يرفعه الفريق بعد، يصلك إشعار حين يُرفع.') }}</small>
                     </span>
                 </div>
             @endif
@@ -84,8 +84,8 @@
                     <div class="dsv-final">
                         <b>{{ $fmt($project->grade) }}</b>
                         <span>
-                            <strong>{{ __('الدرجة النهائية') }} — {{ $weighted ? __('بأوزان أعضاء اللجنة') : __('متوسط درجات اللجنة') }}</strong>
-                            <em>{{ $project->grade_label }} · {{ $project->isGradeLocked() ? __('معتمدة') : __('لم تُعتمد بعد') . ' — ' . ($isOwn ? __('اعتمدها من صفحة المشروع') : __('يعتمدها المشرف')) }}</em>
+                            <strong>{{ __('الدرجة النهائية') }}، {{ $weighted ? __('بأوزان أعضاء اللجنة') : __('متوسط درجات اللجنة') }}</strong>
+                            <em>{{ $project->grade_label }} · {{ $project->isGradeLocked() ? __('معتمدة') : __('لم تُعتمد بعد') . __('، ') . ($isOwn ? __('اعتمدها من صفحة المشروع') : __('يعتمدها المشرف')) }}</em>
                         </span>
                     </div>
                 @endif
@@ -132,7 +132,7 @@
                         <div class="dsv-form-foot">
                             <span class="text-secondary small">
                                 <i class="ti ti-eye-off" aria-hidden="true"></i>
-                                {{ __('تقييم مستقلّ — لا ترى درجات بقية اللجنة قبل أن ترصد درجتك.') }} {{ $weighted ? __('النهائية بأوزان الأعضاء.') : __('النهائية متوسط درجات الأعضاء.') }}
+                                {{ __('تقييم مستقلّ، لا ترى درجات بقية اللجنة قبل أن ترصد درجتك.') }} {{ $weighted ? __('النهائية بأوزان الأعضاء.') : __('النهائية متوسط درجات الأعضاء.') }}
                             </span>
                             <button type="submit" class="btn btn-primary">
                                 <i class="ti ti-device-floppy me-1" aria-hidden="true"></i>{{ is_null($mine->grade) ? __('رصد درجتي') : __('تحديث درجتي') }}
@@ -187,7 +187,7 @@
                 <header class="dsv-card-head"><span><i class="ti ti-calendar-event" aria-hidden="true"></i> {{ __('الموعد') }}</span></header>
                 <dl class="dsv-facts">
                     <div><dt>{{ __('التاريخ') }}</dt><dd>{{ $defense->starts_at->translatedFormat('l j F Y') }}</dd></div>
-                    <div><dt>{{ __('الوقت') }}</dt><dd dir="ltr">{{ $defense->starts_at->format('H:i') }}–{{ $defense->endsAt()->format('H:i') }}</dd></div>
+                    <div><dt>{{ __('الوقت') }}</dt><dd dir="ltr">{{ $defense->starts_at->format('H:i') }}، {{ $defense->endsAt()->format('H:i') }}</dd></div>
                     <div><dt>{{ __('المكان') }}</dt><dd><i class="ti {{ $defense->mode_icon }}" aria-hidden="true"></i> {{ $defense->place_label }}</dd></div>
                     @if ($defense->room?->location)
                         <div><dt>{{ __('القاعة') }}</dt><dd>{{ $defense->room->location }}</dd></div>

@@ -54,14 +54,14 @@ class AdminController extends Controller
             ->editColumn('phone', function ($row) {
                 return $row->phone
                     ? '<span class="cell-num" dir="ltr">' . e($row->phone) . '</span>'
-                    : '<span class="text-secondary small">—</span>';
+                    : '<span class="text-secondary small">' . e(__('لا يوجد')) . '</span>';
             })
 
             // \u200Ecreated_at\u200E موجود في الجدول منذ البداية ولا يُعرض في أي
             // مكان — وهو ما يميّز الحساب المؤسِّس من حساب أُضيف أمس
             ->editColumn('created_at', function ($row) {
                 if (! $row->created_at) {
-                    return '<span class="text-secondary small">—</span>';
+                    return '<span class="text-secondary small">' . e(__('لا يوجد')) . '</span>';
                 }
 
                 return '<span class="cell-when" title="' . e($row->created_at->format('Y-m-d H:i')) . '">'
@@ -162,7 +162,7 @@ class AdminController extends Controller
             // لا استرجاع ولا «نسيت كلمة المرور» لحساب لم يعد موجوداً
             if (Admin::count() <= 1) {
                 return redirect()->back()->with('fail',
-                    __('هذا آخر حساب مسؤول — حذفه يقفل لوحة التحكم على الجميع بلا رجعة.'));
+                    __('هذا آخر حساب مسؤول، حذفه يقفل لوحة التحكم على الجميع بلا رجعة.'));
             }
 
             // قبل الحذف: بعده يفقد الحساب اسمه ومفتاحه

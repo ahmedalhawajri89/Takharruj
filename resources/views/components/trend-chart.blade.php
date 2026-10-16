@@ -1,6 +1,6 @@
 @props([
     'series' => null,   // مجموعة StatSnapshot مرتّبة تصاعدياً بالتاريخ
-    'min' => 7,         // أقلّ عدد نقاط يستحق خطاً — دونه يبقى القسم مخفياً
+    'min' => 7,         // أقلّ عدد نقاط يستحق خطاً، دونه يبقى القسم مخفياً
     'id' => 'trend',
 ])
 
@@ -162,7 +162,7 @@
                             backgroundColor: function (c) {
                                 return c.chart.chartArea ? fillFor(c.chart.ctx, c.chart.chartArea) : 'transparent';
                             },
-                            // نقطة النهاية وحدها — «أين نحن الآن» — بحلقة من لون السطح
+                            // نقطة النهاية وحدها، «أين نحن الآن»، بحلقة من لون السطح
                             pointRadius: function (c) { return c.dataIndex === c.dataset.data.length - 1 ? 4 : 0; },
                             pointBackgroundColor: brand,
                             pointBorderColor: surface,
@@ -276,6 +276,6 @@
 @else
     {{-- لا يُرسم خط من نقطتين. اللقطات تُلتقط ليلياً فيطول الخط تلقائياً. --}}
     <p class="dist-empty">
-        {{ __('يحتاج الرسم :min أيام من البيانات على الأقل — تُلتقط لقطة كل ليلة، والمتوفّر الآن :count.', ['min' => $min, 'count' => $rows->count()]) }}
+        {{ __('يحتاج الرسم :min أيام من البيانات على الأقل، تُلتقط لقطة كل ليلة، والمتوفّر الآن :count.', ['min' => $min, 'count' => $rows->count()]) }}
     </p>
 @endif

@@ -18,7 +18,7 @@ class CreateAdmin extends Command
     protected $signature = 'admin:create
         {--name= : الاسم}
         {--email= : البريد}
-        {--password= : كلمة السر (يُسأل عنها إن غابت — الأفضل ألّا تُكتب في سطر الأوامر)}';
+        {--password= : كلمة السر (يُسأل عنها إن غابت، الأفضل ألّا تُكتب في سطر الأوامر)}';
 
     protected $description = 'ينشئ حساب أدمن';
 

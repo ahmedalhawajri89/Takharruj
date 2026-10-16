@@ -25,7 +25,7 @@ class RemindDefenses extends Command
     public function handle(): int
     {
         if (! DefenseScheduler::enabled()) {
-            $this->warn('جداول المناقشات غير موجودة — شغّل الترحيل أولاً.');
+            $this->warn('جداول المناقشات غير موجودة، شغّل الترحيل أولاً.');
 
             return self::SUCCESS;
         }

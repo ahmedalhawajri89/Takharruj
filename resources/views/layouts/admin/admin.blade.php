@@ -22,7 +22,7 @@
                     $demoNow = auth('admin')->check() ? 'admin' : (auth('supervisor')->check() ? 'supervisor' : 'student');
                 @endphp
                 <div class="demo-bar" role="region" aria-label="{{ __('النسخة التجريبية') }}">
-                    <span class="demo-bar-note"><i class="ti ti-flask" aria-hidden="true"></i> {{ __('نسخة تجريبية — جرّب بحرّية، البيانات تُعاد كل ليلة') }}</span>
+                    <span class="demo-bar-note"><i class="ti ti-flask" aria-hidden="true"></i> {{ __('نسخة تجريبية، جرّب بحرّية، البيانات تُعاد كل ليلة') }}</span>
                     <span class="demo-bar-roles">
                         <small>{{ __('شاهد كـ') }}</small>
                         @foreach (['student' => __('طالب'), 'supervisor' => __('مشرف'), 'admin' => __('مسؤول')] as $role => $label)
@@ -161,7 +161,7 @@
         document.addEventListener('submit', function (e) {
             var form = e.target;
             if (form.tagName !== 'FORM') return;
-            if (e.defaultPrevented) return; // أُلغي الإرسال (مثلاً برسالة تأكيد) — لا تعطّل الزر
+            if (e.defaultPrevented) return; // أُلغي الإرسال (مثلاً برسالة تأكيد)، لا تعطّل الزر
             var btn = form.querySelector('button[type="submit"]');
             if (!btn || btn.dataset.loading === '1') return;
             btn.dataset.loading = '1';

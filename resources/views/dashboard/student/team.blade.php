@@ -68,7 +68,7 @@
     <x-page-header :title="__('الفريق والأدوار')" subtitle="{{ $project->title }}" />
 
     @if ($project->is_locked)
-        <p class="hint-bar mb-3"><i class="ti ti-lock" aria-hidden="true"></i><span>{{ __('المشروع مؤرشف بعد التقييم — التوزيع سجلّ لا يُعدَّل.') }}</span></p>
+        <p class="hint-bar mb-3"><i class="ti ti-lock" aria-hidden="true"></i><span>{{ __('المشروع مؤرشف بعد التقييم، التوزيع سجلّ لا يُعدَّل.') }}</span></p>
     @elseif (! $isLeader)
         <p class="hint-bar mb-3"><i class="ti ti-info-circle" aria-hidden="true"></i><span>{{ __('القائد يوزّع الأدوار. لتغيير دورك، كلّمه أو اكتب في') }} <a href="{{ route('student.discussion') }}">{{ __('النقاش') }}</a>.</span></p>
     @endif
@@ -157,7 +157,7 @@
                         <span class="role-card-icon" aria-hidden="true"><i class="ti ti-circle-plus"></i></span>
                         <span class="role-card-title">
                             <b>{{ __('دور جديد') }}</b>
-                            <small>{{ __('خارج المقترحات — يُحفظ حين تسنده لعضو') }}</small>
+                            <small>{{ __('خارج المقترحات، يُحفظ حين تسنده لعضو') }}</small>
                         </span>
                     </header>
 
@@ -463,7 +463,7 @@
                 var addBtn = form.querySelector('[data-new-role-add]');
                 addBtn.addEventListener('click', function (e) { e.stopPropagation(); addRole(); });
                 newInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addRole(); } });
-                // الزرّ يضيء حين يوجد ما يُضاف — لا زرّ نشط لحقل فارغ
+                // الزرّ يضيء حين يوجد ما يُضاف، لا زرّ نشط لحقل فارغ
                 newInput.addEventListener('input', function () { addBtn.disabled = !newInput.value.trim(); });
 
                 // اقتراح بنقرة: يُضاف دوراً ويُفتح إسناده، ويختفي من الاقتراحات
@@ -476,7 +476,7 @@
                     });
                 });
 
-                // ===== اقتراح توزيع: الشاغر للأقلّ حملاً، بالتناوب — اقتراح يُراجَع لا حفظ =====
+                // ===== اقتراح توزيع: الشاغر للأقلّ حملاً، بالتناوب، اقتراح يُراجَع لا حفظ =====
                 form.querySelector('[data-suggest]').addEventListener('click', function () {
                     var vacant = roles.filter(function (r) { return !holders(r.key).length; });
                     if (!vacant.length) {

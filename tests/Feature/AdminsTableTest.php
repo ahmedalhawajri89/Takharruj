@@ -140,7 +140,7 @@ class AdminsTableTest extends TestCase
     public function test_the_last_admin_account_cannot_be_deleted(): void
     {
         if (Admin::count() > 1) {
-            $this->markTestSkipped('يوجد أكثر من حساب — الحارس الآخر (ليس أنت) يغطّي الحالة.');
+            $this->markTestSkipped('يوجد أكثر من حساب، الحارس الآخر (ليس أنت) يغطّي الحالة.');
         }
 
         $admin = $this->admin();

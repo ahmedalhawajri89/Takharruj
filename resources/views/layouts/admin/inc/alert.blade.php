@@ -26,7 +26,7 @@
     if ($hasErrors) {
         $toasts[] = ['warning', 'ti-alert-triangle', __('راجع البيانات'), $errorCount === 1
             ? $errors->first()
-            : __('تعذّر الحفظ — :n حقول تحتاج مراجعة، وهي معلَّمة بالأحمر.', ['n' => $errorCount]), 7000];
+            : __('تعذّر الحفظ، :n حقول تحتاج مراجعة، وهي معلَّمة بالأحمر.', ['n' => $errorCount]), 7000];
     }
 @endphp
 

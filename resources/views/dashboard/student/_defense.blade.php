@@ -13,7 +13,7 @@
     $ended = $defense->endsAt()->isPast();
     $live = ! $ended && $defense->starts_at->isPast();
     $state = match (true) {
-        $ended => ['is-done', __('نوقش المشروع — بانتظار درجة اللجنة')],
+        $ended => ['is-done', __('نوقش المشروع، بانتظار درجة اللجنة')],
         $live => ['is-live', __('المناقشة جارية الآن')],
         $defense->starts_at->isToday() => ['is-today', __('اليوم')],
         $defense->starts_at->isTomorrow() => ['is-soon', __('غداً')],
@@ -43,7 +43,7 @@
             </div>
             <div class="sdf-when-body">
                 <strong>{{ $defense->starts_at->translatedFormat('l j F Y') }}</strong>
-                <span dir="ltr" class="sdf-range">{{ $defense->starts_at->format('H:i') }}–{{ $defense->endsAt()->format('H:i') }}</span>
+                <span dir="ltr" class="sdf-range">{{ $defense->starts_at->format('H:i') }}, {{ $defense->endsAt()->format('H:i') }}</span>
                 <span class="sdf-dur">{{ __(':n دقيقة', ['n' => $defense->duration_minutes]) }}</span>
                 @unless ($ended || $live)
                     <span class="sdf-countdown" data-countdown="{{ $defense->starts_at->toIso8601String() }}" aria-live="polite"></span>
@@ -94,10 +94,10 @@
                 @if ($slides)
                     <small>
                         {{ strtoupper(pathinfo($slides->path, PATHINFO_EXTENSION)) }} · {{ $slides->human_size }} ·
-                        {{ __('رُفع :when — تراه اللجنة', ['when' => $slides->created_at?->diffForHumans()]) }}
+                        {{ __('رُفع :when، تراه اللجنة', ['when' => $slides->created_at?->diffForHumans()]) }}
                     </small>
                 @else
-                    <small>{{ $canUpload ? __('ارفعه قبل الموعد لتطّلع عليه اللجنة — PDF أو PowerPoint حتى 20 ميغابايت.') : __('لم يُرفع بعد — يرفعه قائد الفريق قبل الموعد.') }}</small>
+                    <small>{{ $canUpload ? __('ارفعه قبل الموعد لتطّلع عليه اللجنة، PDF أو PowerPoint حتى 20 ميغابايت.') : __('لم يُرفع بعد، يرفعه قائد الفريق قبل الموعد.') }}</small>
                 @endif
                 @error('presentation')<small class="text-danger d-block">{{ $message }}</small>@enderror
             </div>
@@ -131,7 +131,7 @@
                 <li class="{{ $project->files->count() ? 'is-ok' : '' }}">
                     <i class="ti {{ $project->files->count() ? 'ti-circle-check' : 'ti-circle-dashed' }}" aria-hidden="true"></i>
                     @php $nf = $project->files->count(); @endphp
-                    {{ match (true) { $nf === 0 => __('لا ملفات — اللجنة تحضّر من ملفاتكم'), $nf === 1 => __('ملف واحد مرفوع تراه اللجنة'), $nf === 2 => __('ملفان مرفوعان تراهما اللجنة'), $nf <= 10 => __(':n ملفات مرفوعة تراها اللجنة', ['n' => $nf]), default => __(':n ملفاً مرفوعاً تراها اللجنة', ['n' => $nf]) } }}
+                    {{ match (true) { $nf === 0 => __('لا ملفات، اللجنة تحضّر من ملفاتكم'), $nf === 1 => __('ملف واحد مرفوع تراه اللجنة'), $nf === 2 => __('ملفان مرفوعان تراهما اللجنة'), $nf <= 10 => __(':n ملفات مرفوعة تراها اللجنة', ['n' => $nf]), default => __(':n ملفاً مرفوعاً تراها اللجنة', ['n' => $nf]) } }}
                 </li>
             </ul>
             <div class="sdf-cal">
@@ -148,7 +148,7 @@
 
 @push('js')
     <script>
-        // العدّ التنازلي: «بعد 3 أيام و4 ساعات» — يُحدَّث كل دقيقة
+        // العدّ التنازلي: «بعد 3 أيام و4 ساعات»، يُحدَّث كل دقيقة
         (function () {
             var el = document.querySelector('[data-countdown]');
             if (!el) return;

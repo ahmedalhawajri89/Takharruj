@@ -54,7 +54,7 @@
                 <span class="sp-sum-n">{{ $summary['ready'] }}<small>/{{ $countActive }}</small></span>
                 <span class="sp-sum-l">
                     <i class="ti {{ $summary['ready'] < $countActive ? 'ti-alert-triangle' : 'ti-circle-check' }}" aria-hidden="true"></i>
-                    {{ $summary['ready'] < $countActive ? __('جاهزة — والباقي ينقصه ما يلزم') : __('جاهزة لتسجيل المشاريع') }}
+                    {{ $summary['ready'] < $countActive ? __('جاهزة، والباقي ينقصه ما يلزم') : __('جاهزة لتسجيل المشاريع') }}
                 </span>
             </div>
         </section>
@@ -218,14 +218,14 @@
                                 <span class="sp-type-name">{{ $type->name }}</span>
                                 <span class="sp-type-size" title="{{ __('حجم الفريق') }}">
                                     <i class="ti ti-users" aria-hidden="true"></i>
-                                    {{ $type->min }}–{{ $type->max }}
+                                    {{ $type->min }}, {{ $type->max }}
                                 </span>
                                 <span class="sp-type-count">{{ __(':n مشروع', ['n' => $type->current_count]) }}</span>
                             </div>
                         @empty
                             <a href="{{ route('admin.specialize.projects.index', $spec->id) }}#add" class="sp-type-empty">
                                 <i class="ti ti-plus" aria-hidden="true"></i>
-                                {{ __('أضف أول نوع مشروع — بدونه لا يسجّل طلابه مشاريعهم') }}
+                                {{ __('أضف أول نوع مشروع، بدونه لا يسجّل طلابه مشاريعهم') }}
                             </a>
                         @endforelse
                     </div>
@@ -239,7 +239,7 @@
                         <div class="sp-warn">
                             <i class="ti ti-alert-triangle" aria-hidden="true"></i>
                             <div>
-                                {{ __(':missing — طلابه لا يستطيعون تسجيل مشروع.', ['missing' => implode(__(' و'), $missing)]) }}
+                                {{ __(':missing، طلابه لا يستطيعون تسجيل مشروع.', ['missing' => implode(__(' و'), $missing)]) }}
                                 <span class="sp-warn-fix">
                                     @if ($spec->projects_count === 0)
                                         <a href="{{ route('admin.specialize.projects.index', $spec->id) }}#add">{{ __('أضف نوع مشروع') }}</a>

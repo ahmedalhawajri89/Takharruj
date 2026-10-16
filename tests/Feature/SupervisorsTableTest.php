@@ -80,7 +80,7 @@ class SupervisorsTableTest extends TestCase
         $this->assertSame(
             Supervisor::count(),
             $this->loadCount('free') + $this->loadCount('full') + $this->loadCount('over'),
-            'مشرف خارج الدلاء الثلاثة — أو محسوب مرتين.'
+            'مشرف خارج الدلاء الثلاثة، أو محسوب مرتين.'
         );
     }
 

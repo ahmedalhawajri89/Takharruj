@@ -58,10 +58,10 @@ class AuditLogExport implements FromCollection, WithHeadings, WithMapping, Shoul
     {
         return [
             $log->created_at?->format('Y-m-d H:i'),
-            $log->actor_name ?: '—',
+            $log->actor_name ?: '',
             $log->role_label,
             $log->action_label,
-            $log->subject_label ?: '—',
+            $log->subject_label ?: '',
             $this->details($log),
         ];
     }
@@ -87,6 +87,6 @@ class AuditLogExport implements FromCollection, WithHeadings, WithMapping, Shoul
             $parts[] = __('السبب: :reason', ['reason' => $changes['reason']]);
         }
 
-        return $parts ? implode(' · ', $parts) : '—';
+        return $parts ? implode(' · ', $parts) : '';
     }
 }

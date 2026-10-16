@@ -62,11 +62,11 @@ class Semester extends Model
             return ['term' => $tr($name), 'year' => null];
         }
 
-        $term = trim(preg_replace('/\s+/u', ' ', str_replace([$m[0], 'الدراسي'], '', $name)), " \t-–·");
+        $term = trim(preg_replace('/\s+/u', ' ', str_replace([$m[0], 'الدراسي'], '', $name)), " \t-, ·");
 
         return [
             'term' => $tr($term !== '' ? $term : $name),
-            'year' => $m[1] . '–' . substr($m[2], -2),
+            'year' => $m[1] . '-' . substr($m[2], -2),
         ];
     }
 }

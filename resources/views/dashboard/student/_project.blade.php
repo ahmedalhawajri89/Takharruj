@@ -97,7 +97,7 @@
                     <span class="celebrate-label">{{ $project->grade_label }}</span>
                 @endif
             </div>
-            <p class="celebrate-text">{{ __('رحلة «:title» اكتملت — من الفكرة حتى الدرجة.', ['title' => $project->title]) }}</p>
+            <p class="celebrate-text">{{ __('رحلة «:title» اكتملت، من الفكرة حتى الدرجة.', ['title' => $project->title]) }}</p>
             <button type="button" class="btn btn-primary celebrate-ok" data-celebrate-close>{{ __('عرض التفاصيل') }}</button>
         </div>
     </dialog>

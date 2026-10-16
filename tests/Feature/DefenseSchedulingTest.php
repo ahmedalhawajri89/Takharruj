@@ -31,7 +31,7 @@ class DefenseSchedulingTest extends TestCase
         parent::setUp();
 
         if (! DefenseScheduler::enabled()) {
-            $this->markTestSkipped('جداول المناقشات غير موجودة في قاعدة الاختبار — شغّل migrate ثم test:prepare.');
+            $this->markTestSkipped('جداول المناقشات غير موجودة في قاعدة الاختبار، شغّل migrate ثم test:prepare.');
         }
 
         Notification::fake();
@@ -222,7 +222,7 @@ class DefenseSchedulingTest extends TestCase
     private function needChairColumn(): void
     {
         if (! \App\Models\DefenseMember::chairSupported()) {
-            $this->markTestSkipped('عمود is_chair غير موجود — شغّل الترحيل ثم test:prepare --force.');
+            $this->markTestSkipped('عمود is_chair غير موجود، شغّل الترحيل ثم test:prepare --force.');
         }
     }
 

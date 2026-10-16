@@ -35,7 +35,7 @@
             @if ($create)
                 <span class="ed-hint m-0">{{ __('يُبلَّغ بها صاحب الحساب ليدخل بها أول مرة') }}</span>
             @else
-                <button type="button" class="ed-link" data-ed-password-close>{{ __('إلغاء — إبقاء الحالية') }}</button>
+                <button type="button" class="ed-link" data-ed-password-close>{{ __('إلغاء، إبقاء الحالية') }}</button>
             @endif
         </div>
         <div class="ed-password-input">

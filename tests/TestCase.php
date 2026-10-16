@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
 
         if (! str_ends_with((string) $database, '_testing')) {
             throw new \RuntimeException(
-                "الاختبارات ترفض العمل على «{$database}» — قاعدة الاختبار يجب أن ينتهي اسمها بـ _testing. "
+                "الاختبارات ترفض العمل على «{$database}»، قاعدة الاختبار يجب أن ينتهي اسمها بـ _testing. "
                 . 'راجع DB_DATABASE في phpunit.xml ثم شغّل: php artisan test:prepare'
             );
         }
@@ -27,7 +27,7 @@ abstract class TestCase extends BaseTestCase
         try {
             DB::connection()->getPdo();
         } catch (\PDOException $e) {
-            throw new \RuntimeException("قاعدة الاختبار «{$database}» غير موجودة — أنشئها بـ: php artisan test:prepare", 0, $e);
+            throw new \RuntimeException("قاعدة الاختبار «{$database}» غير موجودة، أنشئها بـ: php artisan test:prepare", 0, $e);
         }
     }
 }

@@ -181,7 +181,7 @@ class PasswordResetTest extends TestCase
             $this->assertSame("password_reset_{$broker}", $table);
             $this->assertTrue(
                 Schema::hasTable($table),
-                "الجدول {$table} غير موجود — شغّل php artisan migrate."
+                "الجدول {$table} غير موجود، شغّل php artisan migrate."
             );
         }
 

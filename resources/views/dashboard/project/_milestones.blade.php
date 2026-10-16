@@ -47,7 +47,7 @@
             @csrf
             <input type="text" name="title" required maxlength="150"
                 class="form-control @error('title') is-invalid @enderror"
-                placeholder="{{ __('مرحلة جديدة — مثال: تسليم فصل التحليل') }}" aria-label="{{ __('عنوان المرحلة') }}"
+                placeholder="{{ __('مرحلة جديدة، مثال: تسليم فصل التحليل') }}" aria-label="{{ __('عنوان المرحلة') }}"
                 value="{{ old('title') }}">
             <input type="date" name="due_date" class="form-control" aria-label="{{ __('تاريخ الاستحقاق') }}"
                 value="{{ old('due_date') }}">
@@ -61,7 +61,7 @@
     @if ($project->milestones->count() === 0)
         <x-empty-state icon="ti-list-details" :title="__('لم تُضَف مراحل بعد')"
             :text="$editable
-                ? __('قسّم المشروع إلى مراحل بمواعيد — يراها الفريق فور إضافتها، ومنها تُحسب نسبة الإنجاز.')
+                ? __('قسّم المشروع إلى مراحل بمواعيد، يراها الفريق فور إضافتها، ومنها تُحسب نسبة الإنجاز.')
                 : __('يضع المشرف مراحل المشروع ومواعيدها، وستظهر هنا فور إضافتها.')"
             class="is-inline" />
     @else
@@ -255,9 +255,9 @@
                                     placeholder="{{ $milestone->needsRevision() ? __('ما الذي عدّلتموه؟') : __('ما الذي أنجزتموه في هذه المرحلة؟') }}">{{ $failedFor === $milestone->id ? old('note') : '' }}</textarea>
                                 <label class="ms-file">
                                     <i class="ti ti-paperclip" aria-hidden="true"></i>
-                                    <span>{{ __('إرفاق ملف (اختياري — حتى 10MB)') }}</span>
+                                    <span>{{ __('إرفاق ملف (اختياري، حتى 10MB)') }}</span>
                                     <input type="file" data-max-mb="10" name="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip,.rar,.png,.jpg,.jpeg"
-                                        onchange="this.previousElementSibling.textContent = this.files[0] ? this.files[0].name : {{ Js::from(__('إرفاق ملف (اختياري — حتى 10MB)')) }}">
+                                        onchange="this.previousElementSibling.textContent = this.files[0] ? this.files[0].name : {{ Js::from(__('إرفاق ملف (اختياري، حتى 10MB)')) }}">
                                 </label>
                                 @if ($failedFor === $milestone->id)
                                     @foreach (['note', 'file'] as $field)

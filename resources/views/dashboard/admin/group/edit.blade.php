@@ -55,7 +55,7 @@
                                     <span class="ctx-tag">{{ __('قائد') }}</span>
                                 @endif
                             </span>
-                            <span class="ctx-person-meta" dir="ltr">{{ $group->student?->university_id ?? '—' }}</span>
+                            <span class="ctx-person-meta" dir="ltr">{{ $group->student?->university_id ?? __('لا يوجد') }}</span>
                         </span>
 
                         <span class="ctx-person-actions">
@@ -83,7 +83,7 @@
                                 {{-- القائد يُنقل قبل أن يُزال: فريق بلا
                                      قائد لا مُخاطَب له --}}
                                 <span class="btn-action is-disabled"
-                                    title="{{ __('قائد الفريق — عيّن قائداً آخر أولاً لتتمكّن من إزالته') }}"
+                                    title="{{ __('قائد الفريق، عيّن قائداً آخر أولاً لتتمكّن من إزالته') }}"
                                     aria-disabled="true">
                                     <i class="ti ti-user-minus" aria-hidden="true"></i>
                                 </span>
@@ -114,7 +114,7 @@
                     <x-avatar :user="$sv" class="ctx-avatar" />
                     <span class="ctx-person-body">
                         <span class="ctx-person-name">{{ $sv->name ?: __('بلا مشرف') }}</span>
-                        <span class="ctx-person-meta">{{ $sv->specialize->name ?? '—' }}</span>
+                        <span class="ctx-person-meta">{{ $sv->specialize->name ?? __('لا يوجد') }}</span>
                     </span>
                 </div>
 
@@ -140,7 +140,7 @@
                         @if ($sv->email)
                             <a href="mailto:{{ $sv->email }}" dir="ltr">{{ $sv->email }}</a>
                         @else
-                            —
+
                         @endif
                     </dd>
                     <dt>{{ __('الجوال') }}</dt>
@@ -148,7 +148,7 @@
                         @if ($sv->phone)
                             <a href="tel:{{ $sv->phone }}" dir="ltr">{{ $sv->phone }}</a>
                         @else
-                            —
+
                         @endif
                     </dd>
                 </dl>
@@ -180,7 +180,7 @@
                             @if ($isOver)
                                 {{ __('أزِل :n من الأعضاء من اللوح المجاور، أو اتركه استثناءً إدارياً.', ['n' => $currentCount - $typeMax]) }}
                             @elseif ($overLimit)
-                                {{ __('الفريق مكتمل — أي إضافة تتجاوز الحد، وهي مسموحة إدارياً للحالات الاستثنائية.') }}
+                                {{ __('الفريق مكتمل، أي إضافة تتجاوز الحد، وهي مسموحة إدارياً للحالات الاستثنائية.') }}
                             @endif
                         </span>
                     </div>
@@ -196,7 +196,7 @@
                         {{-- كان خياراً فارغاً بلا تسمية، والمشرف الحالي غير محدَّد،
                              فلا يُعرف معنى ترك الحقل فارغاً --}}
                         <select class="form-select" name="supervisor_id" id="supervisor_id">
-                            <option value="">— {{ __('إبقاء المشرف الحالي (:name)', ['name' => $project->supervisor->name ?: __('بلا مشرف')]) }} —</option>
+                            <option value="">، {{ __('إبقاء المشرف الحالي (:name)', ['name' => $project->supervisor->name ?: __('بلا مشرف')]) }}</option>
                             {{-- كانت أسماء مجرّدة: تنقل مجموعة إلى مشرف
                                  بلا أن تعرف إن كان يحمل واحدة أو ستّاً،
                                  أو إن كان قد تجاوز حدّه أصلاً --}}
@@ -205,13 +205,13 @@
                                     $svUsed = (int) ($supervisor->projects_count ?? 0);
                                     $svMax = (int) $supervisor->max_group;
                                     $svNote = match (true) {
-                                        $svMax > 0 && $svUsed > $svMax => ' — ' . __('تجاوز حدّه'),
-                                        $svMax > 0 && $svUsed === $svMax => ' — ' . __('مكتمل'),
+                                        $svMax > 0 && $svUsed > $svMax => ' · ' . __('تجاوز حدّه'),
+                                        $svMax > 0 && $svUsed === $svMax => ' · ' . __('مكتمل'),
                                         default => '',
                                     };
                                 @endphp
                                 <option value="{{ $supervisor->id }}" @selected(old('supervisor_id') == $supervisor->id)>
-                                    {{ $supervisor->name }} — {{ $svUsed }}/{{ $svMax }}{{ $svNote }}
+                                    {{ $supervisor->name }}, {{ $svUsed }}/{{ $svMax }}{{ $svNote }}
                                 </option>
                             @endforeach
                         </select>

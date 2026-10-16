@@ -101,7 +101,7 @@ class DefenseMinutesTest extends TestCase
 
         $this->actingAs(Admin::first(), 'admin')->get($url)
             ->assertSee('رئيس اللجنة')
-            ->assertSee('رئيس لجنة المناقشة — ' . $this->supervisor->name)
+            ->assertSee('رئيس لجنة المناقشة، ' . $this->supervisor->name)
             ->assertDontSee('<th>الوزن</th>', false);
 
         config(['defenses.supervisor_weight' => 40]);

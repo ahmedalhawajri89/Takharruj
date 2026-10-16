@@ -26,11 +26,11 @@
         : null;
 
     $deadline = match (true) {
-        $defense && $defense->endsAt()->isPast() => ['is-done', 'ti-presentation', __('نوقش المشروع — بانتظار درجة اللجنة')],
+        $defense && $defense->endsAt()->isPast() => ['is-done', 'ti-presentation', __('نوقش المشروع، بانتظار درجة اللجنة')],
         (bool) $defense => [$defense->starts_at->isToday() ? 'is-warn' : '', 'ti-presentation',
             __('مناقشتك :when', ['when' => $defense->starts_at->isToday() ? __('اليوم') : ($defense->starts_at->isTomorrow() ? __('غداً') : $defense->starts_at->translatedFormat('l j F'))])
             . ' · ' . $defense->starts_at->format('H:i') . ' · ' . $defense->place_label],
-        $project->status === 'complete' && is_null($project->grade) => ['is-done', 'ti-rosette-discount-check', __('اكتمل المشروع — بانتظار موعد المناقشة')],
+        $project->status === 'complete' && is_null($project->grade) => ['is-done', 'ti-rosette-discount-check', __('اكتمل المشروع، بانتظار موعد المناقشة')],
         $project->status === 'complete' => ['is-done', 'ti-rosette-discount-check', __('اكتمل المشروع')],
         $project->status === 'request' => ['', 'ti-hourglass', __('بانتظار ردّ المشرف')],
         is_null($daysLeft) => ['', 'ti-calendar', __('لا موعد نهائي بعد')],

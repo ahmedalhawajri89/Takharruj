@@ -198,7 +198,7 @@ class TeamPickerTest extends TestCase
 
             $this->assertFalse(
                 $available->contains($uid),
-                'طالب في مشروع محذوف ظهر متاحاً — يمكن ضمّه لفريق ثانٍ.'
+                'طالب في مشروع محذوف ظهر متاحاً، يمكن ضمّه لفريق ثانٍ.'
             );
         } finally {
             Project::withTrashed()->where('id', $project->id)->update(['deleted_at' => null]);
@@ -259,7 +259,7 @@ class TeamPickerTest extends TestCase
         $candidate = $project->group->firstWhere('type', '!=', 'leader');
 
         if (! $candidate) {
-            $this->markTestSkipped('كل الأعضاء قادة — حالة غير متوقّعة.');
+            $this->markTestSkipped('كل الأعضاء قادة، حالة غير متوقّعة.');
         }
 
         try {

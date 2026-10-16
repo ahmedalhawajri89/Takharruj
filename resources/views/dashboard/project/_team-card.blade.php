@@ -64,7 +64,7 @@
             <span class="team-invite-icon" aria-hidden="true"><i class="ti ti-id-badge-2"></i></span>
             <span>
                 <b>{{ __('وزّع الأدوار على الفريق') }}</b>
-                <small>{{ __('مَن على الواجهات، ومَن على الخادم، ومَن يكتب التوثيق — يراه الفريق والمشرف.') }}</small>
+                <small>{{ __('مَن على الواجهات، ومَن على الخادم، ومَن يكتب التوثيق، يراه الفريق والمشرف.') }}</small>
             </span>
             <i class="ti ti-chevron-left" aria-hidden="true"></i>
         </a>

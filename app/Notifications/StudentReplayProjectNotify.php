@@ -49,11 +49,11 @@ class StudentReplayProjectNotify extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('ردّ المشرف على مشروعك — تخرُّج')
+            ->subject('ردّ المشرف على مشروعك | تخرُّج')
             ->greeting('مرحباً ' . $notifiable->name)
             ->line('**' . ($this->data['project'] ?? 'مشروعك') . '**')
             ->line($this->data['msg'] ?? 'ردّ المشرف على طلبكم.')
-            ->line('المشرف: ' . ($this->data['supervisor_name'] ?? '—'))
+            ->line('المشرف: ' . ($this->data['supervisor_name'] ?? 'لا يوجد'))
             ->action('فتح لوحتي', route('student.dashboard'))
             ->salutation('فريق تخرُّج');
     }

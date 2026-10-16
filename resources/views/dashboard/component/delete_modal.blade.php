@@ -45,7 +45,7 @@
             var modal = $('#deleteModal');
             modal.find('#delete-id').val(button.data('id'));
             // \u200E.text()\u200E لا \u200E.html()\u200E: المتصفّح يفكّ ترميز السمة، و\u200E.html()\u200E كان يعيد
-            // النصّ HTML حيّاً — فعنوان رسالة تواصل من زائر مجهول ينفّذ سكربتاً
+            // النصّ HTML حيّاً، فعنوان رسالة تواصل من زائر مجهول ينفّذ سكربتاً
             // في جلسة الأدمن حين يضغط «حذف»
             modal.find('#delete-name').text(button.data('name'));
             modal.find('.modal-footer').show();

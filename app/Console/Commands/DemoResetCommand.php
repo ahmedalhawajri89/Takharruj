@@ -20,14 +20,14 @@ class DemoResetCommand extends Command
     public function handle(): int
     {
         if (! config('demo.enabled')) {
-            $this->error('demo:reset يعمل في النسخة التجريبية وحدها (DEMO_MODE=true) — لا يمسح قاعدة حقيقية.');
+            $this->error('demo:reset يعمل في النسخة التجريبية وحدها (DEMO_MODE=true)، لا يمسح قاعدة حقيقية.');
 
             return self::FAILURE;
         }
 
         $snapshot = DemoSnapshot::default();
         if (! $snapshot->exists()) {
-            $this->error('لا لقطة في database/demo — أنشئها أولاً: php artisan demo:snapshot');
+            $this->error('لا لقطة في database/demo، أنشئها أولاً: php artisan demo:snapshot');
 
             return self::FAILURE;
         }

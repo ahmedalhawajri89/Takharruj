@@ -137,7 +137,7 @@ class SupervisorDashboardTest extends TestCase
             'body' => 'جديد',
         ]);
 
-        $this->dashboard()->assertSee('في النقاش — افتحه');
+        $this->dashboard()->assertSee('في النقاش، افتحه');
     }
 
     /** الاستعلامات لا تتضاعف بعدد المجموعات */

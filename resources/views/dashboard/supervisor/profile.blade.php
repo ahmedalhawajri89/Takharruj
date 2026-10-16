@@ -13,7 +13,7 @@
         :avatar-destroy="route('supervisor.profile.avatar.destroy')"
         :facts="[
             __('الرقم الجامعي') => $supervisor->university_id,
-            __('التخصص') => $supervisor->specialize->name ?: '—',
+            __('التخصص') => $supervisor->specialize->name ?: __('لا يوجد'),
             __('الحد الأقصى للمجموعات') => $supervisor->max_group,
             __('الجنس') => __('site.' . $supervisor->gender),
         ]" />

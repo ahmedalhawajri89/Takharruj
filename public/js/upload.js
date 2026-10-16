@@ -89,7 +89,7 @@
             var max = parseFloat(files[i].input.getAttribute('data-max-mb') || '0');
             if (max && files[i].file.size > max * 1048576) {
                 e.preventDefault();
-                message(form, tr('الملف «:name» حجمه :size — الحدّ :max ميغابايت.', {
+                message(form, tr('الملف «:name» حجمه :size، الحدّ :max ميغابايت.', {
                     name: files[i].file.name, size: humanSize(files[i].file.size), max: max,
                 }));
                 return;
@@ -149,9 +149,9 @@
             if (xhr.status === 413) { message(form, tr('الملف أكبر مما يقبله الخادم.')); return; }
             // ردّ غير متوقّع (صفحة كاملة): نعرضه كما لو أُرسل النموذج عادياً
             if (xhr.status >= 200 && xhr.status < 300 && xhr.responseURL) { window.location.href = xhr.responseURL; return; }
-            message(form, tr('تعذّر الرفع — حاول مرة أخرى.'));
+            message(form, tr('تعذّر الرفع، حاول مرة أخرى.'));
         };
-        xhr.onerror = function () { done(); message(form, tr('انقطع الاتصال أثناء الرفع — الملف ما زال مختاراً، أعد المحاولة.')); };
+        xhr.onerror = function () { done(); message(form, tr('انقطع الاتصال أثناء الرفع، الملف ما زال مختاراً، أعد المحاولة.')); };
         xhr.onabort = function () { done(); p.hidden = true; };
         cancel.onclick = function () { xhr.abort(); };
 

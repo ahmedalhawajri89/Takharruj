@@ -69,7 +69,7 @@ class DefenseScheduler
         $others = fn () => Defense::overlapping($from, $to)->when($ignore, fn ($q) => $q->whereKeyNot($ignore->id));
 
         if (! self::isReady($project)) {
-            $errors['project'] = __('المشروع ليس جاهزاً للمناقشة — يجب أن يكون مكتملاً ولم يُقيَّم بعد.');
+            $errors['project'] = __('المشروع ليس جاهزاً للمناقشة، يجب أن يكون مكتملاً ولم يُقيَّم بعد.');
         }
 
         if ($from->isPast()) {
@@ -79,7 +79,7 @@ class DefenseScheduler
         // اقتراح planAll يحمل ممتحناً واحداً (examiner_id)، والنافذة قائمة
         $examinerIds = array_map('intval', $d['examiner_ids'] ?? [$d['examiner_id']]);
         if (in_array((int) $project->supervisor_id, $examinerIds, true)) {
-            $errors['examiner_id'] = __('مشرف المشروع عضو في اللجنة أصلاً — اختر ممتحناً غيره.');
+            $errors['examiner_id'] = __('مشرف المشروع عضو في اللجنة أصلاً، اختر ممتحناً غيره.');
         } elseif (count($examinerIds) !== count(array_unique($examinerIds))) {
             $errors['examiner_id'] = __('الممتحن نفسه مكرّر في اللجنة.');
         }
@@ -96,7 +96,7 @@ class DefenseScheduler
             } elseif ($clash = $others()->where('room_id', $room->id)->with('project')->first()) {
                 $errors['room_id'] = __('القاعة محجوزة في هذا الوقت لمناقشة «:title» (:range).', [
                     'title' => $clash->project?->title,
-                    'range' => $clash->starts_at->format('H:i') . '–' . $clash->endsAt()->format('H:i'),
+                    'range' => $clash->starts_at->format('H:i') . '-' . $clash->endsAt()->format('H:i'),
                 ]);
             }
         }
@@ -106,7 +106,7 @@ class DefenseScheduler
         $span = fn (string $who, $clash) => __(':who في لجنة مناقشة «:title» في هذا الوقت (:range).', [
             'who' => $who,
             'title' => $clash->project?->title,
-            'range' => $clash->starts_at->format('H:i') . '–' . $clash->endsAt()->format('H:i'),
+            'range' => $clash->starts_at->format('H:i') . '-' . $clash->endsAt()->format('H:i'),
         ]);
 
         if ($project->supervisor_id && ($clash = $busy($project->supervisor_id))) {

@@ -23,7 +23,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ __('محضر مناقشة — :title', ['title' => $project->title]) }}</title>
+    <title>{{ __('محضر مناقشة، :title', ['title' => $project->title]) }}</title>
     <link rel="icon" href="{{ asset('assets/img/takharruj-logo.svg') }}">
     <link href="{{ asset('assets/fonts/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/tabler-icons/tabler-icons.min.css') }}" rel="stylesheet">
@@ -113,7 +113,7 @@
 <body>
     <div class="mn-bar">
         <a href="{{ $back }}"><i class="ti {{ app()->getLocale() === 'ar' ? 'ti-arrow-right' : 'ti-arrow-left' }}" aria-hidden="true"></i>{{ __('رجوع') }}</a>
-        <small>{{ $draft ? __('مسودة — تكتمل حين ترصد اللجنة كل الدرجات') : __('محضر مكتمل') }}</small>
+        <small>{{ $draft ? __('مسودة، تكتمل حين ترصد اللجنة كل الدرجات') : __('محضر مكتمل') }}</small>
         <button type="button" onclick="window.print()"><i class="ti ti-printer" aria-hidden="true"></i>{{ __('طباعة') }}<span class="mn-bar-long"> / {{ __('حفظ PDF') }}</span></button>
     </div>
 
@@ -145,8 +145,8 @@
             <h2><i class="ti ti-file-description" aria-hidden="true"></i> {{ __('المشروع') }}</h2>
             <dl class="mn-grid">
                 <div class="is-wide"><dt>{{ __('العنوان') }}</dt><dd>{{ $project->title }}</dd></div>
-                <div><dt>{{ __('النوع') }}</dt><dd>{{ $project->project_type->name ?? '—' }}</dd></div>
-                <div><dt>{{ __('التخصص') }}</dt><dd>{{ $project->project_type?->specialize?->name ?? '—' }}</dd></div>
+                <div><dt>{{ __('النوع') }}</dt><dd>{{ $project->project_type->name ?? __('لا يوجد') }}</dd></div>
+                <div><dt>{{ __('التخصص') }}</dt><dd>{{ $project->project_type?->specialize?->name ?? __('لا يوجد') }}</dd></div>
                 <div class="is-wide"><dt>{{ __('الفريق') }}</dt><dd>
                     @foreach ($team as $g)<span>{{ $g->student?->name }}@if ($g->type === 'leader')<span class="mn-lead">{{ __('القائد') }}</span>@endif</span>{{ $loop->last ? '' : __('، ') }}@endforeach
                 </dd></div>
@@ -157,8 +157,8 @@
             <h2><i class="ti ti-calendar-event" aria-hidden="true"></i> {{ __('المناقشة') }}</h2>
             <dl class="mn-grid">
                 <div><dt>{{ __('التاريخ') }}</dt><dd>{{ $defense->starts_at->translatedFormat('l j F Y') }}</dd></div>
-                <div><dt>{{ __('الوقت') }}</dt><dd>{{ $isolate($defense->starts_at->format('H:i') . '–' . $defense->endsAt()->format('H:i')) }} <em>· {{ __(':n دقيقة', ['n' => $defense->duration_minutes]) }}</em></dd></div>
-                <div class="is-wide"><dt>{{ __('المكان') }}</dt><dd>{{ $defense->mode_label }} · {{ $defense->place_label }}@if ($defense->room?->location) <em>— {{ $defense->room->location }}</em>@endif</dd></div>
+                <div><dt>{{ __('الوقت') }}</dt><dd>{{ $isolate($defense->starts_at->format('H:i') . '-' . $defense->endsAt()->format('H:i')) }} <em>· {{ __(':n دقيقة', ['n' => $defense->duration_minutes]) }}</em></dd></div>
+                <div class="is-wide"><dt>{{ __('المكان') }}</dt><dd>{{ $defense->mode_label }} · {{ $defense->place_label }}@if ($defense->room?->location) <em>، {{ $defense->room->location }}</em>@endif</dd></div>
             </dl>
         </section>
 
@@ -184,9 +184,9 @@
             </div>
 
             <div class="mn-result {{ $draft ? 'is-draft' : '' }}">
-                <b>{{ $draft ? '—' : $fmt($project->grade) }}</b>
+                <b>{{ $draft ? __('لا يوجد') : $fmt($project->grade) }}</b>
                 <span>
-                    <strong>{{ __('الدرجة النهائية') }} — {{ $weighted ? __('بأوزان أعضاء اللجنة') : __('متوسط درجات اللجنة') }}</strong>
+                    <strong>{{ __('الدرجة النهائية') }}، {{ $weighted ? __('بأوزان أعضاء اللجنة') : __('متوسط درجات اللجنة') }}</strong>
                     @if ($draft)
                         <em>{{ __('تُحسب حين يرصد كل الأعضاء درجاتهم.') }}</em>
                     @else
@@ -198,12 +198,12 @@
         </section>
 
         <div class="mn-signs">
-            <div>{{ __('رئيس لجنة المناقشة') }}@if ($chair) — {{ $chair->supervisor->name }}@endif</div>
+            <div>{{ __('رئيس لجنة المناقشة') }}@if ($chair)، {{ $chair->supervisor->name }}@endif</div>
             <div>{{ __('رئيس القسم والختم') }}</div>
         </div>
 
         <footer class="mn-foot">
-            <span>{{ __('أُصدر من منصّة تخرُّج — :time', ['time' => $isolate(now()->format('Y-m-d H:i'))]) }}</span>
+            <span>{{ __('أُصدر من منصّة تخرُّج، :time', ['time' => $isolate(now()->format('Y-m-d H:i'))]) }}</span>
             <span dir="ltr">DEF-{{ str_pad($defense->id, 4, '0', STR_PAD_LEFT) }}</span>
         </footer>
     </main>

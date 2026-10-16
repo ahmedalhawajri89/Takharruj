@@ -52,7 +52,7 @@ class ResetPasswordNotify extends Notification implements ShouldQueue
         ], false);
 
         return (new MailMessage)
-            ->subject('استرجاع كلمة المرور — منصّة تخرُّج')
+            ->subject('استرجاع كلمة المرور، منصّة تخرُّج')
             ->greeting('مرحباً ' . $notifiable->name)
             ->line('وصلنا طلب لإعادة تعيين كلمة المرور لحسابك في منصّة تخرُّج.')
             ->action('إعادة تعيين كلمة المرور', $url)

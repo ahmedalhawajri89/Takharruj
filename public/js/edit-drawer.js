@@ -188,7 +188,7 @@
             if (v.length < 8) level = v.length ? 1 : 0;
             pw.strength.dataset.level = level;
             pw.label.textContent = !v.length ? t('8 أحرف على الأقل')
-                : v.length < 8 ? t('قصيرة — 8 أحرف على الأقل')
+                : v.length < 8 ? t('قصيرة، 8 أحرف على الأقل')
                 : ['', t('ضعيفة'), t('مقبولة'), t('جيدة'), t('قوية')][level];
             if (pw.confirm) pw.confirm.value = v;
         }

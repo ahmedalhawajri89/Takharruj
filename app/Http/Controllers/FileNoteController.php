@@ -49,7 +49,7 @@ class FileNoteController extends Controller
             return __('تُكتب الملاحظات بعد قبول المشروع.');
         }
 
-        return $project->is_locked ? __('المشروع مؤرشف بعد التقييم — لا ملاحظات جديدة.') : null;
+        return $project->is_locked ? __('المشروع مؤرشف بعد التقييم، لا ملاحظات جديدة.') : null;
     }
 
     private function back(ProjectFile $file)

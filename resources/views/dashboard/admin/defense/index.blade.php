@@ -61,7 +61,7 @@
         ];
     @endphp
 
-    <x-page-header title="{{ __('المناقشات') }}" subtitle="{{ __('لجنة وموعد لكل مشروع مكتمل — حضورياً أو عن بُعد') }}">
+    <x-page-header title="{{ __('المناقشات') }}" subtitle="{{ __('لجنة وموعد لكل مشروع مكتمل، حضورياً أو عن بُعد') }}">
         <x-slot:actions>
             <a href="{{ route('admin.defenses.export') }}" class="btn btn-outline-primary">
                 <i class="ti ti-file-spreadsheet me-1" aria-hidden="true"></i>
@@ -101,7 +101,7 @@
     @if (! $activeRooms->count())
         <div class="df-note">
             <i class="ti ti-info-circle" aria-hidden="true"></i>
-            {{ __('لا قاعات بعد — الاقتراح التلقائي يحتاج قاعة، والمناقشات عن بُعد متاحة يدوياً.') }}
+            {{ __('لا قاعات بعد، الاقتراح التلقائي يحتاج قاعة، والمناقشات عن بُعد متاحة يدوياً.') }}
             <button type="button" class="btn btn-link p-0 align-baseline" data-bs-toggle="modal" data-bs-target="#roomsModal">{{ __('أضف قاعة') }}</button>.
         </div>
     @endif
@@ -152,7 +152,7 @@
                             <i class="ti ti-grip-vertical df-grip" aria-hidden="true"></i>
                             <div>
                                 <a href="{{ route('admin.groups.show', $p->id) }}" class="df-title" draggable="false">{{ $p->title }}</a>
-                                <span class="df-sub">{{ $p->project_type->name ?? '—' }}<span class="df-sub-sup"> · {{ $p->supervisor->name }}</span></span>
+                                <span class="df-sub">{{ $p->project_type->name ?? __('لا يوجد') }}<span class="df-sub-sup"> · {{ $p->supervisor->name }}</span></span>
                             </div>
                             @if ($awaiting->count() > 4)
                                 <button type="button" class="df-expand" data-expand aria-expanded="false" aria-label="{{ __('تفاصيل :title', ['title' => $p->title]) }}">
@@ -250,12 +250,12 @@
                         <button type="button" role="tab" id="df-tab-{{ $key }}" data-day="{{ $key }}" aria-controls="df-day-{{ $key }}"
                             class="df-daytab {{ $key === $activeDay ? 'is-active' : '' }} {{ $day->isToday() ? 'is-today' : '' }} {{ $n ? '' : 'is-empty' }}"
                             aria-selected="{{ $key === $activeDay ? 'true' : 'false' }}"
-                            title="{{ $n ? __(':n في هذا اليوم — مجدولة ومقترحة', ['n' => $n]) : __('لا مناقشات في هذا اليوم') }}">
+                            title="{{ $n ? __(':n في هذا اليوم، مجدولة ومقترحة', ['n' => $n]) : __('لا مناقشات في هذا اليوم') }}">
                             <span class="df-daytab-date">
                                 <small>{{ $day->isToday() ? __('اليوم') : $day->translatedFormat('l') }}</small>
                                 <b>{{ $day->format('j') }}</b>
                             </span>
-                            <span class="df-daytab-n">{{ $n ?: '—' }}</span>
+                            <span class="df-daytab-n">{{ $n ?: 0 }}</span>
                         </button>
                     @endforeach
                 </div>
@@ -279,11 +279,11 @@
                                             @php $editable = $d->status === Defense::SCHEDULED && ! $d->members->whereNotNull('grade')->count(); @endphp
                                             <button type="button" class="df-block is-{{ $d->mode }} {{ $d->status === Defense::DONE ? 'is-done' : '' }}"
                                                 @if ($editable) data-schedule='@json($meta($d->project))' data-defense='@json($defenseMeta($d))' @else disabled @endif
-                                                title="{{ $d->project->title }} — {{ $d->members->map(fn ($m) => $m->supervisor->name)->implode(__('، ')) }}">
+                                                title="{{ $d->project->title }}، {{ $d->members->map(fn ($m) => $m->supervisor->name)->implode(__('، ')) }}">
                                                 <span class="df-block-body">
                                                     <b>{{ $d->project->title }}</b>
                                                     <small>
-                                                        <span><i class="ti ti-clock" aria-hidden="true"></i><bdi dir="ltr">{{ $d->starts_at->format('H:i') }}–{{ $d->endsAt()->format('H:i') }}</bdi></span>
+                                                        <span><i class="ti ti-clock" aria-hidden="true"></i><bdi dir="ltr">{{ $d->starts_at->format('H:i') }}, {{ $d->endsAt()->format('H:i') }}</bdi></span>
                                                         <span><i class="ti ti-map-pin" aria-hidden="true"></i>{{ $d->place_label }}</span>
                                                         @if ($d->project->presentation)
                                                             <span class="df-slides-mark" title="{{ __('رفع الفريق العرض التقديمي') }}"><i class="ti ti-presentation-analytics" aria-hidden="true"></i>{{ __('العرض جاهز') }}</span>
@@ -296,7 +296,7 @@
                                         @foreach ($ghost as $pid => $g)
                                             <button type="button" class="df-block is-ghost" data-project="{{ $pid }}"
                                                 data-schedule='@json($projectsMeta[$pid])' data-defense='@json($suggestionMeta($g))'
-                                                title="{{ __('اقتراح — انقر للمراجعة والجدولة') }}">
+                                                title="{{ __('اقتراح، انقر للمراجعة والجدولة') }}">
                                                 <span class="df-block-body">
                                                     <b>{{ $projectsMeta[$pid]['title'] }}</b>
                                                     <small>
@@ -365,10 +365,10 @@
                                     <a href="{{ $d->googleCalendarUrl() }}" target="_blank" rel="noopener" class="btn-action" title="{{ __('أضف إلى تقويم Google') }}" aria-label="{{ __('أضف إلى تقويم Google') }}">
                                         <i class="ti ti-brand-google" aria-hidden="true"></i>
                                     </a>
-                                    <a href="{{ route('defenses.minutes', $d->id) }}" class="btn-action" title="{{ __('مسودة المحضر — تُطبع للتوقيع يوم المناقشة') }}" aria-label="{{ __('محضر مناقشة :title', ['title' => $d->project->title]) }}">
+                                    <a href="{{ route('defenses.minutes', $d->id) }}" class="btn-action" title="{{ __('مسودة المحضر، تُطبع للتوقيع يوم المناقشة') }}" aria-label="{{ __('محضر مناقشة :title', ['title' => $d->project->title]) }}">
                                         <i class="ti ti-file-certificate" aria-hidden="true"></i>
                                     </a>
-                                    <a href="{{ route('defenses.ics', $d->id) }}" class="btn-action" title="{{ __('ملف التقويم (.ics) — Outlook وتقويم الجوال') }}" aria-label="{{ __('تنزيل ملف التقويم') }}">
+                                    <a href="{{ route('defenses.ics', $d->id) }}" class="btn-action" title="{{ __('ملف التقويم (.ics)، Outlook وتقويم الجوال') }}" aria-label="{{ __('تنزيل ملف التقويم') }}">
                                         <i class="ti ti-calendar-down" aria-hidden="true"></i>
                                     </a>
                                     <button type="button" class="btn-action" title="{{ __('تعديل الموعد') }}" aria-label="{{ __('تعديل موعد :title', ['title' => $d->project->title]) }}"
@@ -412,7 +412,7 @@
                         <span class="df-sub">{{ $d->place_label }} · {{ $d->members->map(fn ($m) => $m->supervisor->name)->implode(__('، ')) }}</span>
                         <span class="df-status {{ $tone }}">{{ $label }}</span>
                         @if ($d->status !== Defense::CANCELLED)
-                            <a href="{{ route('defenses.minutes', $d->id) }}" class="btn-action df-past-minutes" title="{{ __('محضر المناقشة — طباعة أو PDF') }}" aria-label="{{ __('محضر مناقشة :title', ['title' => $d->project->title]) }}">
+                            <a href="{{ route('defenses.minutes', $d->id) }}" class="btn-action df-past-minutes" title="{{ __('محضر المناقشة، طباعة أو PDF') }}" aria-label="{{ __('محضر مناقشة :title', ['title' => $d->project->title]) }}">
                                 <i class="ti ti-file-certificate" aria-hidden="true"></i>
                             </a>
                         @else
@@ -508,13 +508,13 @@
                                 <option value="">{{ __('اختر قاعة…') }}</option>
                                 @foreach ($activeRooms as $r)
                                     <option value="{{ $r->id }}" @selected((int) old('room_id') === $r->id)>
-                                        {{ $r->name }}{{ $r->location ? ' — ' . $r->location : '' }}{{ $r->capacity ? ' · ' . __(':n مقعداً', ['n' => $r->capacity]) : '' }}
+                                        {{ $r->name }}{{ $r->location ? ' · ' . $r->location : '' }}{{ $r->capacity ? ' · ' . __(':n مقعداً', ['n' => $r->capacity]) : '' }}
                                     </option>
                                 @endforeach
                             </select>
                             @error('room_id')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
                             @if (! $activeRooms->count())
-                                <div class="form-hint">{{ __('لا قاعات بعد — أضفها من زر «القاعات» أعلى الصفحة.') }}</div>
+                                <div class="form-hint">{{ __('لا قاعات بعد، أضفها من زر «القاعات» أعلى الصفحة.') }}</div>
                             @endif
                         </div>
 
@@ -534,7 +534,7 @@
                                 <svg class="dm-meet-logo" viewBox="0 0 87.5 72" aria-hidden="true"><path fill="#00832d" d="M49.5 36l8.53 9.75 11.47 7.33 2-17.02-2-16.64-11.69 6.44z"/><path fill="#0066da" d="M0 51.5V66c0 3.315 2.685 6 6 6h14.5l3-10.96-3-9.54-9.95-3z"/><path fill="#e94235" d="M20.5 0L0 20.5l10.55 3 9.95-3 2.95-9.41z"/><path fill="#2684fc" d="M20.5 20.5H0v31h20.5z"/><path fill="#00ac47" d="M82.6 8.68L69.5 19.42v33.66l13.16 10.79c1.97 1.54 4.85.135 4.85-2.37V11c0-2.535-2.945-3.925-4.91-2.32zM49.5 36v15.5h-29V72h43c3.315 0 6-2.685 6-6V53.08z"/><path fill="#ffba00" d="M63.5 0h-43v20.5h29V36l20-16.57V6c0-3.315-2.685-6-6-6z"/></svg>
                                 <span>
                                     <b>{{ __('إنشاء Google Meet') }}</b>
-                                    <small>{{ __('يُفتح في تبويب جديد — انسخ رابط الاجتماع والصقه هنا. روابط Zoom وTeams مقبولة أيضاً.') }}</small>
+                                    <small>{{ __('يُفتح في تبويب جديد، انسخ رابط الاجتماع والصقه هنا. روابط Zoom وTeams مقبولة أيضاً.') }}</small>
                                 </span>
                                 <i class="ti ti-external-link" aria-hidden="true"></i>
                             </a>
@@ -547,7 +547,7 @@
                         <div class="dm-committee">
                             <div class="dm-member">
                                 <span class="dm-member-av" data-f="sup-av" aria-hidden="true"></span>
-                                <span><small>{{ __('المشرف') }}</small><b data-f="supervisor">—</b></span>
+                                <span><small>{{ __('المشرف') }}</small><b data-f="supervisor">{{ __('لا يوجد') }}</b></span>
                                 @if ($chairs)
                                     <label class="dm-chair" title="{{ __('رئيس اللجنة: يدير الجلسة ويوقّع المحضر أولاً') }}">
                                         <input type="radio" name="chair_id" value="" data-f="chair-sup" checked><span><i class="ti ti-crown" aria-hidden="true"></i>{{ __('رئيس') }}</span>
@@ -579,7 +579,7 @@
                     {{-- الملخّص الحيّ: ما سيُرسل للفريق واللجنة بعد الضغط --}}
                     <div class="dm-summary" aria-live="polite">
                         <i class="ti ti-bell" aria-hidden="true"></i>
-                        <span><small>{{ __('سيُشعَر الفريق واللجنة بـ') }}</small><b data-f="summary">—</b></span>
+                        <span><small>{{ __('سيُشعَر الفريق واللجنة بـ') }}</small><b data-f="summary">{{ __('لا يوجد') }}</b></span>
                     </div>
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{{ __('إلغاء') }}</button>
                     <button type="submit" class="btn btn-primary" data-f="submit">
@@ -616,7 +616,7 @@
                                                 <input type="hidden" name="items[{{ $pid }}][{{ $k }}]" value="{{ $v }}">
                                             @endforeach
                                         </td>
-                                        <td>{{ $x['starts_at']->translatedFormat('l j F') }}<small dir="ltr">{{ $x['starts_at']->format('H:i') }}–{{ $x['starts_at']->copy()->addMinutes($x['duration_minutes'])->format('H:i') }}</small></td>
+                                        <td>{{ $x['starts_at']->translatedFormat('l j F') }}<small dir="ltr">{{ $x['starts_at']->format('H:i') }}, {{ $x['starts_at']->copy()->addMinutes($x['duration_minutes'])->format('H:i') }}</small></td>
                                         <td>{{ $x['room'] }}</td>
                                         <td>{{ $x['examiner'] }}@if ($x['same_specialize'])<small>{{ __('من تخصص المشروع') }}</small>@endif</td>
                                     </tr>
@@ -624,7 +624,7 @@
                             </tbody>
                         </table>
                         @if ($planned->count() < $awaiting->count())
-                            <p class="df-plan-left"><i class="ti ti-info-circle" aria-hidden="true"></i> {{ __(':n مشاريع بلا خانة متاحة ضمن أوقات الدوام — جدولها يدوياً.', ['n' => $awaiting->count() - $planned->count()]) }}</p>
+                            <p class="df-plan-left"><i class="ti ti-info-circle" aria-hidden="true"></i> {{ __(':n مشاريع بلا خانة متاحة ضمن أوقات الدوام، جدولها يدوياً.', ['n' => $awaiting->count() - $planned->count()]) }}</p>
                         @endif
                     </div>
                     <div class="modal-footer">
@@ -667,7 +667,7 @@
                     <span class="dm-head-icon is-teal" aria-hidden="true"><i class="ti ti-door"></i></span>
                     <div class="dm-head-body">
                         <h2 class="modal-title" id="roomsModalTitle">{{ __('قاعات المناقشة') }}</h2>
-                        <div class="df-form-project">{{ __(':active متاحة من :total — منها يختار الاقتراح التلقائي', ['active' => $activeRooms->count(), 'total' => $rooms->count()]) }}</div>
+                        <div class="df-form-project">{{ __(':active متاحة من :total، منها يختار الاقتراح التلقائي', ['active' => $activeRooms->count(), 'total' => $rooms->count()]) }}</div>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ __('إغلاق') }}"></button>
                 </div>
@@ -685,7 +685,7 @@
                             </div>
                             <div>
                                 <label class="form-label" for="dr-location">{{ __('المبنى والطابق') }}</label>
-                                <input type="text" id="dr-location" name="location" class="form-control" placeholder="{{ __('مبنى الهندسة — الطابق الثاني') }}" value="{{ old('location') }}" maxlength="120">
+                                <input type="text" id="dr-location" name="location" class="form-control" placeholder="{{ __('مبنى الهندسة، الطابق الثاني') }}" value="{{ old('location') }}" maxlength="120">
                             </div>
                             <div>
                                 <label class="form-label" for="dr-capacity">{{ __('السعة') }}</label>
@@ -714,7 +714,7 @@
                                 <form method="post" action="{{ route('admin.defenses.rooms.toggle', $r->id) }}" class="dr-switch-form">
                                     @csrf
                                     <button type="submit" class="dr-switch {{ $r->is_active ? 'is-on' : '' }}" role="switch" aria-checked="{{ $r->is_active ? 'true' : 'false' }}"
-                                        aria-label="{{ $r->is_active ? __('تعطيل :name', ['name' => $r->name]) : __('تفعيل :name', ['name' => $r->name]) }}" title="{{ $r->is_active ? __('متاحة — انقر للتعطيل') : __('معطّلة — انقر للتفعيل') }}">
+                                        aria-label="{{ $r->is_active ? __('تعطيل :name', ['name' => $r->name]) : __('تفعيل :name', ['name' => $r->name]) }}" title="{{ $r->is_active ? __('متاحة، انقر للتعطيل') : __('معطّلة، انقر للتفعيل') }}">
                                         <span></span>
                                     </button>
                                     <small>{{ $r->is_active ? __('متاحة') : __('معطّلة') }}</small>
@@ -761,9 +761,9 @@
             'scheduleTitle' => __('جدولة المناقشة'),
             'saveEdit' => __('حفظ التعديل'),
             'schedule' => __('جدولة'),
-            'linkIncomplete' => __('الرابط غير مكتمل — الصقه كاملاً بدايةً من https://'),
-            'providerLink' => __('رابط :provider — سيظهر للفريق واللجنة زر «انضم» قبل الموعد بربع ساعة'),
-            'meetingLinkHint' => __('رابط اجتماع — سيظهر للفريق واللجنة زر «انضم» قبل الموعد'),
+            'linkIncomplete' => __('الرابط غير مكتمل، الصقه كاملاً بدايةً من https://'),
+            'providerLink' => __('رابط :provider، سيظهر للفريق واللجنة زر «انضم» قبل الموعد بربع ساعة'),
+            'meetingLinkHint' => __('رابط اجتماع، سيظهر للفريق واللجنة زر «انضم» قبل الموعد'),
             'meetingLink' => __('رابط اجتماع'),
             'online' => __('عن بُعد'),
             'examinersList' => __('الممتحنون :names'),
@@ -776,6 +776,7 @@
             'weighted' => __('الدرجة بأوزان الأعضاء'),
             'average' => __('الدرجة متوسط درجاتهم'),
             'shownOf' => __(':shown من :total'),
+            'none' => __('لا يوجد'),
         ];
     @endphp
     <script>
@@ -904,7 +905,7 @@
                     g[1].forEach(function (e) {
                         var o = document.createElement('option');
                         o.value = e.id;
-                        o.textContent = e.name + ' — ' + (!e.load ? T.noLoad
+                        o.textContent = e.name + ' · ' + (!e.load ? T.noLoad
                             : (e.load === 1 && document.documentElement.lang === 'en' ? T.loadOne : L('load', { n: e.load })));
                         og.appendChild(o);
                     });
@@ -921,7 +922,7 @@
                 modalEl.querySelector('.modal-title').textContent = edit ? T.editTitle : T.scheduleTitle;
                 f('submit').lastChild.textContent = ' ' + (edit ? T.saveEdit : T.schedule);
                 f('project').textContent = p.title + (p.team ? ' · ' + p.team : '');
-                f('supervisor').textContent = p.supervisor || '—';
+                f('supervisor').textContent = p.supervisor || T.none;
                 f('sup-av').textContent = (p.supervisor || '').replace(/^(أ\.د\.|د\.|أ\.)\s*/, '').slice(0, 2);
 
                 if (!keepOld) {
@@ -980,7 +981,7 @@
                 });
             }
 
-            // ---- الملخّص الحيّ: «الأحد 4 أكتوبر · 09:45–10:30 · قاعة 204 · الممتحن …» ----
+            // ---- الملخّص الحيّ: «الأحد 4 أكتوبر · 09:45-10:30 · قاعة 204 · الممتحن …» ----
             var dayFmt = new Intl.DateTimeFormat(T.locale, { weekday: 'long', day: 'numeric', month: 'long' });
             function refresh() {
                 var provider = linkState();
@@ -995,10 +996,10 @@
                     var t = time.split(':'), end = new Date(2000, 0, 1, +t[0], +t[1] + dur);
                     var pad = function (n) { return (n < 10 ? '0' : '') + n; };
                     // LRI…PDI: المدى لا ينقلب داخل النص العربي
-                    parts.push('\u2066' + time + '–' + pad(end.getHours()) + ':' + pad(end.getMinutes()) + '\u2069');
+                    parts.push('\u2066' + time + '-' + pad(end.getHours()) + ':' + pad(end.getMinutes()) + '\u2069');
                 }
                 var room = field('room_id'), place = [];
-                if (mode !== 'online' && room.value) place.push(room.options[room.selectedIndex].text.split(' — ')[0].trim());
+                if (mode !== 'online' && room.value) place.push(room.options[room.selectedIndex].text.split(' · ')[0].trim());
                 if (mode !== 'in_person') place.push(provider || T.online);
                 if (place.length) parts.push(place.join(' + '));
                 syncExaminers();
@@ -1006,21 +1007,21 @@
                 var opt = opts[0];
                 var sameOf = function (o) { return o.parentNode && o.parentNode.label === T.sameSpec; };
                 if (opts.length) {
-                    var names = opts.map(function (o) { return o.textContent.split(' — ')[0]; }).join(T.sep);
+                    var names = opts.map(function (o) { return o.textContent.split(' · ')[0]; }).join(T.sep);
                     parts.push(opts.length > 1 ? L('examinersList', { names: names }) : L('examinerOne', { name: names }));
                 }
                 var chair = form.querySelector('input[name="chair_id"]:checked');
                 if (chair && opts.length) {
                     var chairRow = chair.closest('.dm-member'), chairSel = chairRow.querySelector('select');
-                    var chairName = chairSel ? chairSel.options[chairSel.selectedIndex].textContent.split(' — ')[0] : f('supervisor').textContent;
+                    var chairName = chairSel ? chairSel.options[chairSel.selectedIndex].textContent.split(' · ')[0] : f('supervisor').textContent;
                     parts.push(L('chairName', { name: chairName }));
                 }
-                f('summary').textContent = parts.length ? parts.join(' · ') : '—';
+                f('summary').textContent = parts.length ? parts.join(' · ') : T.none;
 
                 var hint = f('examiner-hint');
                 if (hint && opts.length === 1) {
                     var same = sameOf(opt);
-                    hint.textContent = (same ? T.sameSpec : T.otherSpec) + ' · ' + (opt.textContent.split(' — ')[1] || '');
+                    hint.textContent = (same ? T.sameSpec : T.otherSpec) + ' · ' + (opt.textContent.split(' · ')[1] || '');
                     hint.classList.toggle('is-same', same);
                 } else if (hint && opts.length > 1) {
                     var n = opts.filter(sameOf).length;

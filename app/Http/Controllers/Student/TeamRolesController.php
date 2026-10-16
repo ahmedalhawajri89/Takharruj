@@ -62,11 +62,11 @@ class TeamRolesController extends Controller
         );
 
         if ($project->status === 'reject') {
-            return back()->with('fail', __('المشروع مرفوض — لا توزيع أدوار له.'));
+            return back()->with('fail', __('المشروع مرفوض، لا توزيع أدوار له.'));
         }
 
         if ($project->is_locked) {
-            return back()->with('fail', __('المشروع مؤرشف بعد التقييم — الأدوار سجلّ لا يُعدَّل.'));
+            return back()->with('fail', __('المشروع مؤرشف بعد التقييم، الأدوار سجلّ لا يُعدَّل.'));
         }
 
         $max = TeamRoles::max();

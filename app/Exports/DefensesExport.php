@@ -50,7 +50,7 @@ class DefensesExport implements FromCollection, WithHeadings, WithMapping, Shoul
             $member('supervisor'),
             $member('examiner'),
             $d->chair()?->supervisor?->name,
-            $d->place_label . ($d->room?->location ? ' — ' . $d->room->location : ''),
+            $d->place_label . ($d->room?->location ? ' · ' . $d->room->location : ''),
             $d->needsLink() ? $d->meeting_url : '',
             match (true) {
                 $d->status === Defense::DONE => __('منتهية'),

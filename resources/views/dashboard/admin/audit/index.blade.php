@@ -83,7 +83,7 @@
                     {{ __('الأنشط هذا الأسبوع · :n أحداث', ['n' => $summary['topActor']->total]) }}
                 </span>
             @else
-                <span class="at-stat-n">—</span>
+                <span class="at-stat-n">{{ __('لا يوجد') }}</span>
                 <span class="at-stat-l">{{ __('لا نشاط هذا الأسبوع') }}</span>
             @endif
         </div>
@@ -209,7 +209,7 @@
                     else range.querySelector('input').focus();
                 });
             });
-            // المدى المخفي لا يُرسل — وإلا عُدّ «مخصّصاً» بتاريخين فارغين
+            // المدى المخفي لا يُرسل، وإلا عُدّ «مخصّصاً» بتاريخين فارغين
             if (range.hidden) range.querySelectorAll('input').forEach(function (i) { i.disabled = true; });
         })();
     </script>

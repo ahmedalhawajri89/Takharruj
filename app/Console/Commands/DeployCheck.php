@@ -46,7 +46,7 @@ class DeployCheck extends Command
             return self::FAILURE;
         }
 
-        $this->info('جاهز للإطلاق' . ($warn ? " — مع {$warn} تنبيه يُستحسن مراجعته." : '.'));
+        $this->info('جاهز للإطلاق' . ($warn ? "، مع {$warn} تنبيه يُستحسن مراجعته." : '.'));
 
         return self::SUCCESS;
     }
@@ -61,11 +61,11 @@ class DeployCheck extends Command
     {
         $env = (string) config('app.env');
         $this->row($env === 'production', 'البيئة', 'APP_ENV=production', $env);
-        $this->row(! config('app.debug'), 'البيئة', 'APP_DEBUG=false', config('app.debug') ? 'مفعّل — صفحة الخطأ تكشف تتبّع الكود' : 'معطّل');
+        $this->row(! config('app.debug'), 'البيئة', 'APP_DEBUG=false', config('app.debug') ? 'مفعّل، صفحة الخطأ تكشف تتبّع الكود' : 'معطّل');
         $this->row(filled(config('app.key')), 'البيئة', 'APP_KEY', filled(config('app.key')) ? 'موجود' : 'شغّل php artisan key:generate');
 
         $url = (string) config('app.url');
-        $this->row(str_starts_with($url, 'https://') ? true : 'warn', 'البيئة', 'APP_URL بـ https', $url ?: 'فارغ — روابط البريد تُبنى منه');
+        $this->row(str_starts_with($url, 'https://') ? true : 'warn', 'البيئة', 'APP_URL بـ https', $url ?: 'فارغ، روابط البريد تُبنى منه');
     }
 
     private function security(): void
@@ -79,7 +79,7 @@ class DeployCheck extends Command
     private function mail(): void
     {
         $mailer = (string) config('mail.default');
-        $this->row(! in_array($mailer, ['log', 'array'], true), 'البريد', 'MAIL_MAILER حقيقي', $mailer . (in_array($mailer, ['log', 'array'], true) ? ' — لا يُرسل شيء' : ''));
+        $this->row(! in_array($mailer, ['log', 'array'], true), 'البريد', 'MAIL_MAILER حقيقي', $mailer . (in_array($mailer, ['log', 'array'], true) ? '، لا يُرسل شيء' : ''));
 
         $from = (string) config('mail.from.address');
         // نطاقات لا بريد لها: الرسائل تُرفض أو تذهب إلى البريد المزعج
@@ -90,8 +90,8 @@ class DeployCheck extends Command
     private function queue(): void
     {
         $queue = (string) config('queue.default');
-        $this->row($queue !== 'sync' ? true : 'warn', 'الطابور', 'QUEUE_CONNECTION ليس sync', $queue . ($queue === 'sync' ? ' — البريد يُرسل أثناء الطلب فيبطئه' : ''));
-        $this->row('warn', 'الطابور', 'cron: schedule:run كل دقيقة', 'لا يُفحص آلياً — تحقّق من crontab (التذكيرات 08:00 و09:00 واللقطة 23:55)');
+        $this->row($queue !== 'sync' ? true : 'warn', 'الطابور', 'QUEUE_CONNECTION ليس sync', $queue . ($queue === 'sync' ? '، البريد يُرسل أثناء الطلب فيبطئه' : ''));
+        $this->row('warn', 'الطابور', 'cron: schedule:run كل دقيقة', 'لا يُفحص آلياً، تحقّق من crontab (التذكيرات 08:00 و09:00 واللقطة 23:55)');
     }
 
     private function data(): void

@@ -11,7 +11,7 @@
         <div class="plan-invite">
             <span class="plan-invite-icon" aria-hidden="true"><i class="ti ti-route"></i></span>
             <h3>{{ __('ارسم خطة الفصل مرّة واحدة') }}</h3>
-            <p>{{ __('كل مرحلة بموعدها وقالبها تصل مجموعاتك كلها — ومن تقبله لاحقاً.') }}</p>
+            <p>{{ __('كل مرحلة بموعدها وقالبها تصل مجموعاتك كلها، ومن تقبله لاحقاً.') }}</p>
             <a href="{{ route('supervisor.plan', ['new' => 1]) }}#stage-new" class="btn btn-primary btn-sm">
                 <i class="ti ti-plus me-1" aria-hidden="true"></i>
                 {{ __('أول مرحلة') }}

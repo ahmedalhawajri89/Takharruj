@@ -43,7 +43,7 @@ class PrepareTestDatabase extends Command
         $exists = DB::select('SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = ?', [$target]);
 
         if ($exists && ! $this->option('force')) {
-            $this->info("قاعدة الاختبار موجودة: {$target} — استعمل --force لإعادة نسخها.");
+            $this->info("قاعدة الاختبار موجودة: {$target}، استعمل --force لإعادة نسخها.");
 
             return self::SUCCESS;
         }

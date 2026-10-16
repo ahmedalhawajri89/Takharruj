@@ -18,8 +18,8 @@
 
     <x-page-header title="{{ __('خطة المراحل') }}"
         subtitle="{{ $semester->label }} · {{ $activeCount === 1
-            ? __('المرحلة تُعرَّف مرّة فتصل إلى :n مجموعة جارية — وكل مجموعة تقبلها لاحقاً', ['n' => 1])
-            : __('المرحلة تُعرَّف مرّة فتصل إلى :n مجموعات جارية — وكل مجموعة تقبلها لاحقاً', ['n' => $activeCount]) }}">
+            ? __('المرحلة تُعرَّف مرّة فتصل إلى :n مجموعة جارية، وكل مجموعة تقبلها لاحقاً', ['n' => 1])
+            : __('المرحلة تُعرَّف مرّة فتصل إلى :n مجموعات جارية، وكل مجموعة تقبلها لاحقاً', ['n' => $activeCount]) }}">
         @if ($stages->isNotEmpty())
             <x-slot:actions>
                 <button type="button" class="btn btn-primary" data-plan-add aria-controls="stage-new">
@@ -38,7 +38,7 @@
                 <div>
                     <h2>{{ __('ارسم مسار مجموعاتك مرّة واحدة') }}</h2>
                     <p>
-                        {{ __('كل مرحلة تضيفها هنا — بموعدها وتعليماتها وقالبها — تظهر في كل مجموعاتك، وتصل كل مجموعة تقبلها لاحقاً. وتعديلها يسري على الجميع، وما أُنجز يبقى كما هو.') }}
+                        {{ __('كل مرحلة تضيفها هنا، بموعدها وتعليماتها وقالبها، تظهر في كل مجموعاتك، وتصل كل مجموعة تقبلها لاحقاً. وتعديلها يسري على الجميع، وما أُنجز يبقى كما هو.') }}
                     </p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <label class="form-label" for="new-title">{{ __('عنوان المرحلة') }}</label>
                     <input type="text" id="new-title" name="title" required maxlength="150"
                         class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}"
-                        placeholder="{{ __('مثال: الفصل الأول — المقدمة ومشكلة البحث') }}">
+                        placeholder="{{ __('مثال: الفصل الأول، المقدمة ومشكلة البحث') }}">
                     <div class="stage-suggest" aria-label="{{ __('اقتراحات') }}">
                         @foreach ($suggestions as $s)
                             <button type="button" class="stage-suggest-chip" data-suggest="{{ $s }}">{{ $s }}</button>
@@ -71,14 +71,14 @@
                         placeholder="{{ __('ما المطلوب في هذه المرحلة، وكيف يُسلَّم') }}">{{ old('instructions') }}</textarea>
                 </div>
                 <div class="stage-field is-wide">
-                    <span class="form-label">{{ __('القالب') }} <small>{{ __('(اختياري — يراه الطلاب داخل المرحلة)') }}</small></span>
+                    <span class="form-label">{{ __('القالب') }} <small>{{ __('(اختياري، يراه الطلاب داخل المرحلة)') }}</small></span>
                     <label class="file-drop is-compact" for="new-template" data-template-drop>
                         <input type="file" data-max-mb="10" name="template" id="new-template" class="file-drop-input"
                             accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip,.rar,.png,.jpg,.jpeg">
                         <span class="file-drop-idle" data-idle>
                             <span class="file-drop-icon" aria-hidden="true"><i class="ti ti-file-upload"></i></span>
                             <b>{!! __('أفلت القالب هنا أو :link', ['link' => '<u>' . e(__('اختره')) . '</u>']) !!}</b>
-                            <small>{{ __('Word أو PDF أو PowerPoint — حتى 10MB') }}</small>
+                            <small>{{ __('Word أو PDF أو PowerPoint، حتى 10MB') }}</small>
                         </span>
                         <span class="file-drop-picked d-none" data-picked>
                             <span class="file-type" data-picked-type aria-hidden="true"></span>
@@ -202,7 +202,7 @@
                                                 $teamName = $leader ? __('فريق :name', ['name' => implode(' ', array_slice(preg_split('/\s+/u', trim($leader)), 0, 2))]) : \Illuminate\Support\Str::limit($project->title, 22);
                                             @endphp
                                             <a href="{{ route('supervisor.projects.show', $project->id) }}#milestones"
-                                                class="stage-pill is-{{ $state }}" title="{{ $project->title }} — {{ $label }}">
+                                                class="stage-pill is-{{ $state }}" title="{{ $project->title }}, {{ $label }}">
                                                 <i class="ti {{ ['done' => 'ti-check', 'submitted' => 'ti-inbox', 'revision' => 'ti-pencil', 'late' => 'ti-alert-triangle', 'open' => 'ti-clock', 'missing' => 'ti-minus'][$state] }}" aria-hidden="true"></i>
                                                 <span>{{ $teamName }}</span>
                                             </a>
@@ -238,7 +238,7 @@
                                         <input type="file" data-max-mb="10" name="template" id="f-{{ $stage->id }}" class="file-drop-input"
                                             accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip,.rar,.png,.jpg,.jpeg">
                                         <span class="file-drop-idle" data-idle>
-                                            <b>{{ $stage->hasTemplate() ? __('استبدل «:name»', ['name' => $stage->template_name]) : __('أضف قالباً') }} — <u>{{ __('اختر ملفاً') }}</u></b>
+                                            <b>{{ $stage->hasTemplate() ? __('استبدل «:name»', ['name' => $stage->template_name]) : __('أضف قالباً') }}<u>{{ __('اختر ملفاً') }}</u></b>
                                         </span>
                                         <span class="file-drop-picked d-none" data-picked>
                                             <span class="file-type" data-picked-type aria-hidden="true"></span>
@@ -287,7 +287,7 @@
                 });
             });
 
-            // الاقتراحات تملأ العنوان — تُعدَّل ولا تُكتب من الصفر
+            // الاقتراحات تملأ العنوان، تُعدَّل ولا تُكتب من الصفر
             document.querySelectorAll('[data-suggest]').forEach(function (chip) {
                 chip.addEventListener('click', function () {
                     var input = document.getElementById('new-title');

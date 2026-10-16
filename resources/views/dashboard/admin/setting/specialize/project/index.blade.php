@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-@section('title', __('أنواع المشاريع — :name', ['name' => $specialize->name]))
+@section('title', __('أنواع المشاريع، :name', ['name' => $specialize->name]))
 
 @section('crumbs')
     <x-crumb :href="route('admin.specialize.index')">{{ __('التخصصات') }}</x-crumb>
@@ -68,7 +68,7 @@
     <details class="pt-help mb-3">
         <summary><i class="ti ti-info-circle" aria-hidden="true"></i> {{ __('كيف تعمل حدود الفريق؟') }}</summary>
         <p>
-            {{ __('حدّا الفريق يُطبَّقان لحظة تسجيل الطالب لمشروعه: فريق خارج المدى يُرفض. وتعديلهما لا يمسّ الفرق المسجَّلة سابقاً — فإن صارت خارجهما تظهر هنا بالبرتقالي، ولا تُرفض.') }}
+            {{ __('حدّا الفريق يُطبَّقان لحظة تسجيل الطالب لمشروعه: فريق خارج المدى يُرفض. وتعديلهما لا يمسّ الفرق المسجَّلة سابقاً، فإن صارت خارجهما تظهر هنا بالبرتقالي، ولا تُرفض.') }}
         </p>
     </details>
 
@@ -90,9 +90,9 @@
                         $top = array_search(max($type->sizes), $type->sizes);
                         $pct = (int) round($type->sizes[$top] / $teams * 100);
                         if (count($type->sizes) === 1 && $top === (int) $type->max && $type->min < $type->max) {
-                            $insight = ['ti-arrow-bar-to-up', __('كل الفرق بالحدّ الأعلى — قد يستحقّ رفعه')];
+                            $insight = ['ti-arrow-bar-to-up', __('كل الفرق بالحدّ الأعلى، قد يستحقّ رفعه')];
                         } else {
-                            $text = __('الأكثر شيوعاً: فريق من :size — :pct من الفرق', ['size' => $top, 'pct' => "\u{2066}" . $pct . '%' . "\u{2069}"]);
+                            $text = __('الأكثر شيوعاً: فريق من :size، :pct من الفرق', ['size' => $top, 'pct' => "\u{2066}" . $pct . '%' . "\u{2069}"]);
                             if ($type->min < $type->max && empty($type->sizes[$type->min])) {
                                 $text .= ' · ' . __('لا فريق بالحدّ الأدنى');
                             }
@@ -120,8 +120,8 @@
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <span class="dropdown-item disabled"
-                                        title="{{ __('يستعمله :n مشروعاً — ستفقد نوعها وحدود فريقها', ['n' => $type->projects_count]) }}">
-                                        <i class="ti ti-lock me-2" aria-hidden="true"></i> {{ __('لا يُحذف — مستعمَل') }}
+                                        title="{{ __('يستعمله :n مشروعاً، ستفقد نوعها وحدود فريقها', ['n' => $type->projects_count]) }}">
+                                        <i class="ti ti-lock me-2" aria-hidden="true"></i> {{ __('لا يُحذف، مستعمَل') }}
                                     </span>
                                 @else
                                     <div class="dropdown-divider"></div>
@@ -138,7 +138,7 @@
                         <span class="pt-limit" title="{{ __('حدّا الفريق') }}">
                             <i class="ti ti-users" aria-hidden="true"></i>
                             {{-- معزولة LTR: داخل نصّ عربي ينقلب «1–4» إلى «4–1» --}}
-                            <bdi dir="ltr">{{ $type->min === $type->max ? $type->min : $type->min . '–' . $type->max }}</bdi>
+                            <bdi dir="ltr">{{ $type->min === $type->max ? $type->min : $type->min . '-' . $type->max }}</bdi>
                             {{ $type->max == 2 ? __('عضوين') : ($type->max > 2 ? __('أعضاء') : __('عضو')) }}
                         </span>
                         {{ $teamsLabel($teams) }}@if ($type->current_count) · {{ __(':n جارٍ هذا الفصل', ['n' => $type->current_count]) }}@endif
@@ -154,7 +154,7 @@
                                 $allowed = $i >= $type->min && $i <= $type->max;
                             @endphp
                             <span class="pt-c {{ $allowed ? 'is-allowed' : '' }} {{ $allowed && $i === (int) $type->min ? 'is-first' : '' }} {{ $allowed && $i === (int) $type->max ? 'is-last' : '' }} {{ $n && ! $allowed ? 'is-out' : '' }} {{ $n ? '' : 'is-empty' }}"
-                                title="{{ __(':teams بحجم :size', ['teams' => $teamsLabel($n), 'size' => $i]) }}{{ $allowed ? '' : __(' — خارج المسموح') }}">
+                                title="{{ __(':teams بحجم :size', ['teams' => $teamsLabel($n), 'size' => $i]) }}{{ $allowed ? '' : __('، خارج المسموح') }}">
                                 <span class="pt-c-n">{{ $n ?: '' }}</span>
                                 <span class="pt-c-bar" style="height: {{ $n ? max(10, round($n / $peak * 100)) : 0 }}%"></span>
                             </span>
@@ -174,7 +174,7 @@
                     @if ($type->outside_count)
                         <p class="pt-insight is-warn">
                             <i class="ti ti-alert-triangle" aria-hidden="true"></i>
-                            {{ __(':teams خارج الحدود الحالية —', ['teams' => $teamsLabel($type->outside_count)]) }}
+                            {{ __(':teams خارج الحدود الحالية', ['teams' => $teamsLabel($type->outside_count)]) }}
                             {{ $type->outside_count <= 2 ? __('سُجّل قبل تعديلها، ولا يُرفض الآن.') : __('سُجّلت قبل تعديلها، ولا تُرفض الآن.') }}
                         </p>
                     @elseif ($insight)
@@ -196,7 +196,7 @@
                                 <i class="ti ti-chevron-left" aria-hidden="true"></i>
                             </a>
                         @else
-                            <span>{{ __('لم يُستعمل بعد — يمكن حذفه') }}</span>
+                            <span>{{ __('لم يُستعمل بعد، يمكن حذفه') }}</span>
                         @endif
                     </footer>
                 </article>
@@ -240,7 +240,7 @@
 
 @push('js')
     <script>
-        // إعادة فتح النافذة عند فشل التحقّق — كانت تأتي ضمن تضمين
+        // إعادة فتح النافذة عند فشل التحقّق، كانت تأتي ضمن تضمين
         // \u200Edatatables_style_script\u200E وقد زال مع الجدول
         @if ($errors->any() && old('submit') == 'create')
             new bootstrap.Modal(document.getElementById('createModal')).show();
@@ -250,7 +250,7 @@
         @endif
 
         // حدّا الفريق في النافذتين: عدّاد − / +، ونقاط تتحدّث حيّاً، وفي التعديل
-        // عدد الفرق القائمة التي ستصير خارج الحدود الجديدة — يُقال قبل الحفظ
+        // عدد الفرق القائمة التي ستصير خارج الحدود الجديدة، يُقال قبل الحفظ
         (function () {
             var SCALE = {{ $scale }};
             document.querySelectorAll('[data-range-form]').forEach(function (form) {
@@ -282,8 +282,8 @@
                         warn.hidden = !out || bad;
                         warn.querySelector('b').textContent = out === 1 ? @json(__('فريق قائم واحد')) : out === 2 ? @json(__('فريقان قائمان')) : @json(__(':n فرق قائمة')).replace(':n', out);
                         warn.querySelector('[data-range-warn-text]').textContent = out <= 2
-                            ? @json(__('سيصير خارج الحدود الجديدة. لن يُرفض — التحقّق عند التسجيل وحده.'))
-                            : @json(__('ستصير خارج الحدود الجديدة. لن تُرفض — التحقّق عند التسجيل وحده.'));
+                            ? @json(__('سيصير خارج الحدود الجديدة. لن يُرفض، التحقّق عند التسجيل وحده.'))
+                            : @json(__('ستصير خارج الحدود الجديدة. لن تُرفض، التحقّق عند التسجيل وحده.'));
                     }
                 }
 
@@ -299,7 +299,7 @@
                 render();
             });
 
-            // زرّ التعديل يحمل أحجام فرق نوعه — تُمرَّر للتحذير
+            // زرّ التعديل يحمل أحجام فرق نوعه، تُمرَّر للتحذير
             $('body').on('click', '.btn-edit', function () {
                 var form = document.querySelector('#editModal [data-range-form]');
                 form.dataset.sizes = JSON.stringify($(this).data('sizes') || {});

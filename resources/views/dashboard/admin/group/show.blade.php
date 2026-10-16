@@ -49,7 +49,7 @@
             $rejected => [__('رفضه المشرف'), 'is-danger'],
             $project->status === 'request' => [__('بانتظار ردّ المشرف'), ''],
             $project->status === 'complete' && $graded => [__('اكتمل وقُيّم :date', ['date' => $project->evaluated_at?->format('Y-m-d')]), 'is-success'],
-            $project->status === 'complete' => [__('اكتمل — بانتظار التقييم'), ''],
+            $project->status === 'complete' => [__('اكتمل، بانتظار التقييم'), ''],
             is_null($daysLeft) => [__('لم يُحدَّد موعد نهائي'), ''],
             $daysLeft < 0 => [__('تأخّر :n يوماً عن الموعد', ['n' => abs($daysLeft)]), 'is-danger'],
             $daysLeft === 0 => [__('الموعد النهائي اليوم'), 'is-warn'],
@@ -126,7 +126,7 @@
                     <div>
                         <b>{{ $rejected ? __('المشروع مرفوض') : __('المشروع بانتظار رد المشرف') }}</b>
                         <p>
-                            {{ __('المراحل والملفات والنقاش تبدأ بعد اعتماد المشرف للمشروع — ولهذا لا يوجد منها شيء الآن.') }}
+                            {{ __('المراحل والملفات والنقاش تبدأ بعد اعتماد المشرف للمشروع، ولهذا لا يوجد منها شيء الآن.') }}
                         </p>
                     </div>
                 </section>
@@ -252,7 +252,7 @@
                     <div class="pg-progress">
                         <span class="pct-ring is-xl {{ is_null($progress) ? 'is-empty' : '' }}" style="--p: {{ $progress ?? 0 }}">
                             <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" /><circle cx="20" cy="20" r="17" pathLength="100" /></svg>
-                            <b>{{ is_null($progress) ? '—' : $progress . '%' }}</b>
+                            <b>{{ is_null($progress) ? __('لا يوجد') : $progress . '%' }}</b>
                         </span>
                         <div>
                             <span class="pg-progress-title">{{ __('نسبة الإنجاز') }}</span>
@@ -342,8 +342,8 @@
                                     @endif
                                 </span>
                                 <span class="pg-member-meta">
-                                    <bdi dir="ltr">{{ $group->student?->university_id ?? '—' }}</bdi>
-                                    · {{ $group->student?->specialize->name ?? '—' }}
+                                    <bdi dir="ltr">{{ $group->student?->university_id ?? __('لا يوجد') }}</bdi>
+                                    · {{ $group->student?->specialize->name ?? __('لا يوجد') }}
                                 </span>
                                 @if ($started)
                                     {{-- غياب الدور يُذكر هادئاً في مشروع جارٍ، ولا يُذكر في المؤرشف --}}
@@ -372,7 +372,7 @@
                 <dl class="pg-dl">
                     <dt>{{ __('المشرف') }}</dt>
                     <dd>
-                        {{ $project->supervisor->name ?: '—' }}
+                        {{ $project->supervisor->name ?: __('لا يوجد') }}
                         @if ($project->supervisor->specialize->name ?? null)
                             <small>{{ $project->supervisor->specialize->name }}</small>
                         @endif
@@ -453,7 +453,7 @@
 
 @push('js')
     <script>
-        // إعادة فتح نافذة فكّ الاعتماد عند فشل التحقّق — وإلا عاد
+        // إعادة فتح نافذة فكّ الاعتماد عند فشل التحقّق، وإلا عاد
         // الأدمن إلى صفحة تبدو كأن شيئاً لم يحدث ورسالة الخطأ مخفيّة
         @if ($errors->has('reason'))
             new bootstrap.Modal(document.getElementById('unlockGradeModal')).show();
@@ -501,7 +501,7 @@
                 var hash = location.hash.replace('#', '');
                 show(hash.indexOf('tab-') === 0 ? hash.slice(4) : 'milestones');
             }
-            // الرجوع في المتصفّح يغيّر الرابط بلا تحميل — التبويب يتبعه
+            // الرجوع في المتصفّح يغيّر الرابط بلا تحميل، التبويب يتبعه
             window.addEventListener('hashchange', fromHash);
             fromHash();
         })();

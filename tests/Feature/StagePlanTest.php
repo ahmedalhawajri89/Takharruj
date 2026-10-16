@@ -52,7 +52,7 @@ class StagePlanTest extends TestCase
     {
         return $this->actingAs($this->supervisor, 'supervisor')
             ->post(route('supervisor.plan.store'), array_merge([
-                'title' => 'الفصل الأول — المقدمة',
+                'title' => 'الفصل الأول، المقدمة',
                 'due_date' => now()->addWeeks(3)->toDateString(),
                 'instructions' => 'اتبعوا القالب المرفق.',
                 'template' => UploadedFile::fake()->create('قالب الفصل الأول.docx', 40),

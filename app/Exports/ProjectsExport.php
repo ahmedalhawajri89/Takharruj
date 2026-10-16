@@ -53,12 +53,12 @@ class ProjectsExport implements FromCollection, WithHeadings, WithMapping, Shoul
             $project->project_type->name,
             $project->supervisor->name,
             __('site.' . $project->status),
-            is_null($project->progress) ? '—' : $project->progress . '%',
-            is_null($project->grade) ? '—' : (float) $project->grade,
-            $project->grade_label ?? '—',
+            is_null($project->progress) ? '' : $project->progress . '%',
+            is_null($project->grade) ? '' : (float) $project->grade,
+            $project->grade_label ?? '',
             $project->group->pluck('student.name')->implode(__('، ')),
             $project->group->pluck('student.university_id')->implode(__('، ')),
-            $project->date_line ? $project->date_line->format('Y-m-d') : '—',
+            $project->date_line ? $project->date_line->format('Y-m-d') : '',
             $project->created_at->format('Y-m-d'),
         ];
     }

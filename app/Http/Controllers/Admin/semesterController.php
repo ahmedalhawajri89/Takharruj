@@ -76,7 +76,7 @@ class semesterController extends Controller
             }
 
             return redirect()->route('admin.semesters.index')
-                ->with('success', __('تم إضافة الفصل بنجاح — لن ينتقل النظام إليه حتى تضغط "تفعيل"'));
+                ->with('success', __('تم إضافة الفصل بنجاح، لن ينتقل النظام إليه حتى تضغط "تفعيل"'));
 
         } catch (\Exception$ex) {
 
@@ -106,7 +106,7 @@ class semesterController extends Controller
                 'semester' => ['from' => $previous, 'to' => $semester->name],
             ]);
 
-            return redirect()->back()->with('success', __('تم التفعيل — النظام الآن يعمل على: :name', ['name' => $semester->name]));
+            return redirect()->back()->with('success', __('تم التفعيل، النظام الآن يعمل على: :name', ['name' => $semester->name]));
 
         } catch (\Exception$ex) {
             return back()->with('fail', __('حدث خطأ .. الرجاء المحاولة مرة أخرى'));
@@ -149,13 +149,13 @@ class semesterController extends Controller
             // للاسترجاع، وحذف فصله يُرجعه بلا فصل.
             if (Project::withTrashed()->where('semester_id', $semester->id)->exists()) {
                 return redirect()->back()->with('fail',
-                    __('لا يمكن حذف هذا الفصل — يحتوي مشاريع مسجلة، وحذفه يدمر أرشيف النتائج.'));
+                    __('لا يمكن حذف هذا الفصل، يحتوي مشاريع مسجلة، وحذفه يدمر أرشيف النتائج.'));
             }
 
             // لا حذف للفصل النشط — فعّل فصلاً آخر أولاً
             if ($semester->is_active) {
                 return redirect()->back()->with('fail',
-                    __('لا يمكن حذف الفصل النشط — فعّل فصلاً آخر أولاً ثم احذف هذا.'));
+                    __('لا يمكن حذف الفصل النشط، فعّل فصلاً آخر أولاً ثم احذف هذا.'));
             }
 
             $semester->delete();

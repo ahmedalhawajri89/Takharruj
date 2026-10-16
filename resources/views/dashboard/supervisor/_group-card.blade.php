@@ -39,7 +39,7 @@
             <span class="pct-ring {{ is_null($progress) ? 'is-empty' : '' }}" style="--p: {{ $progress ?? 0 }}"
                 title="{{ is_null($progress) ? __('لا مراحل بعد') : __('الإنجاز :pct%', ['pct' => $progress]) }}">
                 <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" /><circle cx="20" cy="20" r="17" pathLength="100" /></svg>
-                <b>{{ is_null($progress) ? '—' : $progress . '%' }}</b>
+                <b>{{ is_null($progress) ? __('لا يوجد') : $progress . '%' }}</b>
             </span>
         @endif
     </header>

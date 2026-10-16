@@ -11,7 +11,7 @@
     @php $fmtGrade = fn ($g) => rtrim(rtrim(number_format($g, 2), '0'), '.'); @endphp
 
     <x-page-header title="{{ __('أرشيف مشاريعي') }}"
-        subtitle="{{ __('ما أشرفت عليه في الفصول السابقة — مجموعات هذا الفصل في لوحتك.') }}" />
+        subtitle="{{ __('ما أشرفت عليه في الفصول السابقة، مجموعات هذا الفصل في لوحتك.') }}" />
 
     {{-- البحث وحده: التجميع بالفصل يغني عن قائمة الفصول --}}
     <form method="GET" action="{{ route('supervisor.projects.archive') }}" class="filter-bar mb-4">

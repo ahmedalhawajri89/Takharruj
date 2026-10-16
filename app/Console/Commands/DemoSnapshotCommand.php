@@ -18,13 +18,13 @@ class DemoSnapshotCommand extends Command
     public function handle(): int
     {
         if (app()->environment('production') && ! config('demo.enabled')) {
-            $this->error('لا لقطة من خادم إنتاج حقيقي — بياناته ليست بيانات عرض.');
+            $this->error('لا لقطة من خادم إنتاج حقيقي، بياناته ليست بيانات عرض.');
 
             return self::FAILURE;
         }
 
         $r = DemoSnapshot::default()->capture(null, ! $this->option('no-files'));
-        $this->info("حُفظت اللقطة: {$r['tables']} جدولاً، {$r['rows']} صفاً، {$r['files']} ملفاً — في database/demo.");
+        $this->info("حُفظت اللقطة: {$r['tables']} جدولاً، {$r['rows']} صفاً، {$r['files']} ملفاً، في database/demo.");
 
         return self::SUCCESS;
     }

@@ -79,7 +79,7 @@ class DefenseController extends Controller
         $result = DefenseGrading::record($mine, (float) $data['grade'], $data['comments'] ?? null);
 
         return back()->with('success', $result['final']
-            ? __('رُصدت درجتك واكتملت درجات اللجنة — الدرجة النهائية :grade. أُشعر الفريق.', [
+            ? __('رُصدت درجتك واكتملت درجات اللجنة، الدرجة النهائية :grade. أُشعر الفريق.', [
                 'grade' => rtrim(rtrim(number_format($result['grade'], 2, '.', ''), '0'), '.'),
             ])
             : __('رُصدت درجتك. تكتمل درجة المشروع حين يرصد بقية أعضاء اللجنة درجاتهم.'));

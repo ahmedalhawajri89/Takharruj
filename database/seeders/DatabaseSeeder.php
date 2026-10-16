@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(self::seedersFor(app()->environment()));
 
         if (app()->environment('production')) {
-            $this->command?->warn('لم يُزرع أي حساب — أنشئ الأدمن الأول بـ: php artisan admin:create');
+            $this->command?->warn('لم يُزرع أي حساب، أنشئ الأدمن الأول بـ: php artisan admin:create');
         }
     }
 

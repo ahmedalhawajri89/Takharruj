@@ -669,41 +669,31 @@ section[id], [id] { scroll-margin-top: calc(var(--header-h) + 18px); }
 .section-divider { display: none; }
 
 /* رأس القسم ----------------------------------------------------------
-   كان سطراً رمادياً باهتاً. صار طبقتين: رقم ضخم شبحي يسند العنوان من
-   خلفه — نفس أسلوب الاسم الضخم في الفوتر — وفوقه بطاقة صغيرة مؤطَّرة.
-   الرقم يأتي من خاصية data-num فلا يتكرر في الـ markup كنص. */
-.section-head { position: relative; padding-bottom: 60px; }
-
-.section-head::before {
-  content: attr(data-num);
-  position: absolute;
-  inset-inline-start: -.06em; top: -.34em;
-  z-index: 0;
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 15vw, 12rem);
-  font-weight: 800; line-height: 1;
-  color: var(--paper-sunk);
-  letter-spacing: -.04em;
-  user-select: none; pointer-events: none;
-}
+   اسم القسم علامة واضحة بلون المنصة فوق العنوان، بلا رقم ضخم خلفه:
+   الرقم كان زينة لا يقرؤها أحد، ويزاحم العنوان على الشاشات الصغيرة.
+   خاصية data-num باقية في الـ markup ولا تُعرض. */
+.section-head { position: relative; padding-bottom: 52px; }
 
 .section-index {
   position: relative; z-index: 1;
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 18px;
+  margin-bottom: 28px;
 }
-/* البطاقة: إطار وخلفية ورقية لتقرأ كعلامة لا كنص سائب */
+/* العلامة: أرضية زرقاء خفيفة ونص بلون المنصة، فتُقرأ اسماً للقسم لا نصاً سائباً */
 .section-index > span {
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 7px 14px;
-  border: 1px solid var(--rule); border-radius: 999px;
-  background: var(--paper-raised);
-  font-size: 12.5px; font-weight: 700; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 16px 8px 18px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  font-size: 13.5px; font-weight: 700; color: var(--accent-deep);
+  letter-spacing: .01em;
 }
-/* نقطة اللون: الإشارة الوحيدة الملوّنة في رأس القسم */
+/* نقطة اللون بهالة خفيفة */
 .section-index > span::before {
-  content: ""; width: 5px; height: 5px; border-radius: 50%;
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
   background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 /* الخط يتلاشى بدل أن ينقطع فجأة عند حافة الصفحة */
 .section-index::after {
@@ -1345,7 +1335,7 @@ section[id], [id] { scroll-margin-top: calc(var(--header-h) + 18px); }
 /* الأرقام: مسافة ثابتة حتى لا ترقص عند تغيّر القيمة، وتقارب سالب خفيف */
 [dir="ltr"] .figure-num,
 [dir="ltr"] .fact-num,
-.figure-num, .fact-num, .cell-index, .pillar-num, .lc-num, .section-head::before {
+.figure-num, .fact-num, .cell-index, .pillar-num, .lc-num {
   font-variant-numeric: tabular-nums;
   letter-spacing: -.02em;
 }

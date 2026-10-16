@@ -37,7 +37,7 @@
                 <div class="filter-search-box">
                     <i class="ti ti-search filter-search-icon" aria-hidden="true"></i>
                     <input type="search" id="explore-q" name="q" value="{{ request('q') }}" class="form-control"
-                        placeholder="{{ __('كلمة من فكرتك — مثال: التسرّب، الاحتيال، التوصية…') }}">
+                        placeholder="{{ __('كلمة من فكرتك، مثال: التسرّب، الاحتيال، التوصية…') }}">
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
     <p class="dist-head-note mb-3">
         {{ $countLabel }}
         {{ $own ? __('في تخصصك') : ($specializeId ? '' : __('في كل التخصصات')) }}
-        — {{ __('المكتملة وحدها؛ مشاريع زملائك الجارية لا تُعرض.') }}
+{{ __('المكتملة وحدها؛ مشاريع زملائك الجارية لا تُعرض.') }}
     </p>
 
     @if ($projects->isEmpty())
@@ -95,7 +95,7 @@
                 </x-empty-state>
             @else
                 <x-empty-state icon="ti-search-off" :title="__('لا مشاريع مطابقة')"
-                    :text="$hasFilters ? __('فكرتك لم تُنفَّذ بهذه الكلمات — جيّد. جرّب كلمة أخرى للتأكّد.') : __('لا مشاريع منجزة بعد.')"
+                    :text="$hasFilters ? __('فكرتك لم تُنفَّذ بهذه الكلمات، جيّد. جرّب كلمة أخرى للتأكّد.') : __('لا مشاريع منجزة بعد.')"
                     class="py-6">
                     @if ($own)
                         <x-slot:action>
@@ -124,11 +124,11 @@
                     <div class="group-card-facts">
                         <span class="group-fact">
                             <i class="ti ti-user-star" aria-hidden="true"></i>
-                            {{ $project->supervisor->name ?? '—' }}
+                            {{ $project->supervisor->name ?? __('لا يوجد') }}
                         </span>
                         <span class="group-fact">
                             <i class="ti ti-calendar" aria-hidden="true"></i>
-                            {{ $project->semester->label ?? '—' }}
+                            {{ $project->semester->label ?? __('لا يوجد') }}
                         </span>
                         <span class="group-fact">
                             <i class="ti ti-users" aria-hidden="true"></i>

@@ -15,8 +15,8 @@ class SemesterPartsTest extends TestCase
 
     public function test_it_splits_the_term_and_the_year(): void
     {
-        $this->assertSame(['term' => 'الفصل الأول', 'year' => '2022–23'], $this->parts('الفصل الدراسي الأول 2022\2023'));
-        $this->assertSame(['term' => 'الفصل الصيفي', 'year' => '2024–25'], $this->parts('الفصل الصيفي 2024/2025'));
+        $this->assertSame(['term' => 'الفصل الأول', 'year' => '2022-23'], $this->parts('الفصل الدراسي الأول 2022\2023'));
+        $this->assertSame(['term' => 'الفصل الصيفي', 'year' => '2024-25'], $this->parts('الفصل الصيفي 2024/2025'));
     }
 
     /** اسم بلا سنة يبقى كما كتبه الأدمن */

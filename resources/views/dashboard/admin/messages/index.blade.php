@@ -63,7 +63,7 @@
                 <span><b class="cx-stat-text">{{ $tm['label'] }}</b><small>{{ __('الأكثر سؤالاً') }} · {{ $stats['top']['n'] }}</small></span>
             @else
                 <span class="cx-stat-icon"><i class="ti ti-message-2" aria-hidden="true"></i></span>
-                <span><b>—</b><small>{{ __('الأكثر سؤالاً') }}</small></span>
+                <span><b>{{ __('لا يوجد') }}</b><small>{{ __('الأكثر سؤالاً') }}</small></span>
             @endif
         </div>
     </section>
@@ -276,7 +276,7 @@
                         <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
                             data-bs-toggle="dropdown" aria-expanded="false" aria-label="{{ __('ردود جاهزة') }}"></button>
                         <div class="dropdown-menu dropdown-menu-end cx-reply-menu">
-                            <span class="dropdown-header">{{ __('ردود جاهزة — تُفتح في بريدك للتعديل') }}</span>
+                            <span class="dropdown-header">{{ __('ردود جاهزة، تُفتح في بريدك للتعديل') }}</span>
                             @foreach ($replies as $key => $r)
                                 <a class="dropdown-item" href="{{ $mailto($r['reply']) }}">
                                     <i class="ti {{ $r['icon'] }} me-2" aria-hidden="true"></i>
@@ -362,7 +362,7 @@
                 }
             }
 
-            // ↑ ↓ (أو k j) بين الرسائل — إلا أثناء الكتابة في حقل
+            // ↑ ↓ (أو k j) بين الرسائل، إلا أثناء الكتابة في حقل
             document.addEventListener('keydown', function (e) {
                 if (e.altKey || e.ctrlKey || e.metaKey) return;
                 var t = e.target;

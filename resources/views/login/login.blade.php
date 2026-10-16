@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>{{ __('تسجيل الدخول — تخرُّج') }}</title>
+    <title>{{ __('تسجيل الدخول | تخرُّج') }}</title>
     <link rel="icon" href="{{ asset('assets/img/takharruj-logo.svg') }}">
     {{-- خطوط مستضافة محلياً بدل fonts.googleapis.com --}}
     <link rel="preload" href="{{ asset('assets/fonts/IBMPlexSansArabic-400-arabic.woff2') }}" as="font" type="font/woff2" crossorigin>
@@ -41,7 +41,7 @@
             <h2>{{ __('تسجيل الدخول') }}</h2>
             {{-- السطر يشرح اكتشاف الدور التلقائي في AuthController@login --}}
             <p class="login-lead">
-                {{ __('ادخل بالرقم الجامعي أو بريدك الإلكتروني — وسيوجّهك النظام إلى لوحتك حسب دورك.') }}
+                {{ __('ادخل بالرقم الجامعي أو بريدك الإلكتروني، وسيوجّهك النظام إلى لوحتك حسب دورك.') }}
             </p>
 
             @if (Session::get('fail'))
@@ -92,7 +92,7 @@
             {{-- النسخة التجريبية وحدها: دخول بنقرة بلا تسجيل (DemoController) --}}
             @if (\App\Support\Demo::enabled())
                 <div class="demo-try">
-                    <p class="demo-try-title"><i class="ti ti-sparkles" aria-hidden="true"></i> {{ __('جرّب المنصّة بنقرة — بلا تسجيل') }}</p>
+                    <p class="demo-try-title"><i class="ti ti-sparkles" aria-hidden="true"></i> {{ __('جرّب المنصّة بنقرة، بلا تسجيل') }}</p>
                     <div class="demo-try-roles">
                         @foreach ([
                             ['student', 'ti-school', __('جرّب كطالب'), __('مشروع ومراحل ونقاش ومناقشة')],
@@ -113,7 +113,7 @@
 
             {{-- يجيب السؤال الأكثر وروداً في نموذج التواصل: أين أسجّل؟ --}}
             <p class="auth-note">
-                {{ __('لا يوجد تسجيل ذاتي — الحسابات تُنشئها إدارة القسم. راجعهم إن تعذّر عليك الدخول.') }}
+                {{ __('لا يوجد تسجيل ذاتي، الحسابات تُنشئها إدارة القسم. راجعهم إن تعذّر عليك الدخول.') }}
             </p>
 
             <div class="text-center">
@@ -124,7 +124,7 @@
             </div>
         </div>
 
-        <p class="auth-foot">© {{ date('Y') }} <span>{{ __('تخرُّج — جميع الحقوق محفوظة') }}</span></p>
+        <p class="auth-foot">© {{ date('Y') }} <span>{{ __('تخرُّج، جميع الحقوق محفوظة') }}</span></p>
     </main>
 
     <script>

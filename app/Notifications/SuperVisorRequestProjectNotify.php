@@ -57,7 +57,7 @@ class SuperVisorRequestProjectNotify extends Notification implements ShouldQueue
         $count = count($this->groups);
 
         return (new MailMessage)
-            ->subject('طلب مشروع جديد بانتظار ردّك — تخرُّج')
+            ->subject('طلب مشروع جديد بانتظار ردّك | تخرُّج')
             ->greeting('مرحباً ' . $notifiable->name)
             ->line('وصلك طلب إشراف على مشروع تخرّج جديد:')
             ->line('**' . $this->project->title . '**')

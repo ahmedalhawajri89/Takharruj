@@ -210,7 +210,7 @@ class DefenseController extends Controller
         $project = $defense->project()->with('project_type')->firstOrFail();
 
         if ($defense->members()->whereNotNull('grade')->exists()) {
-            return back()->with('fail', __('بدأت اللجنة رصد الدرجات — لا يُعدَّل موعد مناقشة جرت.'));
+            return back()->with('fail', __('بدأت اللجنة رصد الدرجات، لا يُعدَّل موعد مناقشة جرت.'));
         }
 
         $data = $this->validated($request);
@@ -243,7 +243,7 @@ class DefenseController extends Controller
         }
 
         if ($defense->members()->whereNotNull('grade')->exists()) {
-            return back()->with('fail', __('بدأت اللجنة رصد الدرجات — لا تُلغى مناقشة جرت.'));
+            return back()->with('fail', __('بدأت اللجنة رصد الدرجات، لا تُلغى مناقشة جرت.'));
         }
 
         $defense->update(['status' => Defense::CANCELLED]);
@@ -289,19 +289,19 @@ class DefenseController extends Controller
     public function toggleRoom(DefenseRoom $room)
     {
         if ($room->is_active && $room->defenses()->active()->where('starts_at', '>=', now())->exists()) {
-            return back()->with('fail', __('على القاعة مناقشات قادمة — أعد جدولتها أولاً.'));
+            return back()->with('fail', __('على القاعة مناقشات قادمة، أعد جدولتها أولاً.'));
         }
 
         $room->update(['is_active' => ! $room->is_active]);
 
-        return back()->with('success', $room->is_active ? __('فُعّلت القاعة.') : __('عُطّلت القاعة — لن تظهر في الجدولة.'));
+        return back()->with('success', $room->is_active ? __('فُعّلت القاعة.') : __('عُطّلت القاعة، لن تظهر في الجدولة.'));
     }
 
     /** الحذف لقاعة بلا مناقشات؛ ذات السجلّ تُعطَّل ليبقى تاريخها */
     public function destroyRoom(DefenseRoom $room)
     {
         if ($room->defenses()->exists()) {
-            return back()->with('fail', __('للقاعة مناقشات مسجّلة — عطّلها بدل حذفها.'));
+            return back()->with('fail', __('للقاعة مناقشات مسجّلة، عطّلها بدل حذفها.'));
         }
 
         $room->delete();
@@ -335,7 +335,7 @@ class DefenseController extends Controller
             'examiner_ids.max' => __('اللجنة لا تزيد على :max ممتحنين.', ['max' => $max]),
             'examiner_ids.*.distinct' => __('الممتحن نفسه مكرّر في اللجنة.'),
             'meeting_url.required_if' => __('رابط الاجتماع مطلوب للمناقشة عن بُعد أو المدمجة.'),
-            'meeting_url.url' => __('رابط الاجتماع غير صالح — انسخه كاملاً من Google Meet أو غيره.'),
+            'meeting_url.url' => __('رابط الاجتماع غير صالح، انسخه كاملاً من Google Meet أو غيره.'),
         ], [
             'date' => __('التاريخ'), 'time' => __('الوقت'), 'duration_minutes' => __('المدة'), 'mode' => __('النوع'),
             'room_id' => __('القاعة'), 'meeting_url' => __('رابط الاجتماع'), 'examiner_ids' => __('الممتحنون'), 'examiner_ids.*' => __('الممتحن'), 'notes' => __('الملاحظات'),

@@ -139,7 +139,7 @@ class DashboardController extends Controller
             ->filter(fn ($p) => $p->date_line && $p->date_line->betweenIncluded(today(), $until))
             ->map(fn ($p) => [
                 'date' => $p->date_line,
-                'title' => __('التسليم النهائي — :title', ['title' => $p->title]),
+                'title' => __('التسليم النهائي، :title', ['title' => $p->title]),
                 'kind' => 'deadline',
                 'href' => route('supervisor.projects.show', $p->id),
             ]);
@@ -154,7 +154,7 @@ class DashboardController extends Controller
                 ->get()
                 ->map(fn ($d) => [
                     'date' => $d->starts_at,
-                    'title' => __('مناقشة — :title', ['title' => $d->project->title]),
+                    'title' => __('مناقشة، :title', ['title' => $d->project->title]),
                     'kind' => 'defense',
                     'role' => optional($d->members->firstWhere('supervisor_id', $me))->role_label,
                     'meta' => $d->starts_at->format('H:i') . ' · ' . $d->place_label,
@@ -259,7 +259,7 @@ class DashboardController extends Controller
         // لا قبول بلا مقعد — كان يُقبل فوق الحدّ، والرفض التلقائي يقارن
         // بعدد كل الفصول فلا يعمل
         if ($isAccept && $supervisor->seatsLeft() <= 0) {
-            return redirect()->back()->with('fail', __('اكتمل حدّ مجموعاتك لهذا الفصل — القبول يحتاج رفع الحدّ من الإدارة.'));
+            return redirect()->back()->with('fail', __('اكتمل حدّ مجموعاتك لهذا الفصل، القبول يحتاج رفع الحدّ من الإدارة.'));
         }
 
         // سبب الرفض (اختياري) — يُرسل للطلاب ضمن الإشعار
@@ -281,7 +281,7 @@ class DashboardController extends Controller
                     throw new \DomainException(__('رُدّ على هذا الطلب من قبل.'));
                 }
                 if ($isAccept && $supervisor->seatsLeft() <= 0) {
-                    throw new \DomainException(__('اكتمل حدّ مجموعاتك لهذا الفصل — القبول يحتاج رفع الحدّ من الإدارة.'));
+                    throw new \DomainException(__('اكتمل حدّ مجموعاتك لهذا الفصل، القبول يحتاج رفع الحدّ من الإدارة.'));
                 }
 
                 $to = $isAccept ? 'accept' : 'reject';
@@ -292,7 +292,7 @@ class DashboardController extends Controller
                 if ($isAccept) {
                     StagePlan::applyTo($project);
                 }
-                $outbox[] = [$project, "تم {$msg} فكرة المشروع" . (! $isAccept && $reason !== '' ? ' — السبب: ' . $reason : '')];
+                $outbox[] = [$project, "تم {$msg} فكرة المشروع" . (! $isAccept && $reason !== '' ? '، السبب: ' . $reason : '')];
                 $this->markRequestRead($project->id);
 
                 // آخر مقعد: الطلبات الباقية تُرفض ويُبلَّغ أصحابها
@@ -326,7 +326,7 @@ class DashboardController extends Controller
         }
 
         return redirect()->back()->with('success', ($isAccept ? __('تم قبول المشروع بنجاح') : __('تم رفض المشروع بنجاح'))
-            . ($autoRejected ? ' — ' . __('واكتمل حدّك فرُفض :n طلب معلّق تلقائياً', ['n' => $autoRejected]) : ''));
+            . ($autoRejected ? __('، ') . __('واكتمل حدّك فرُفض :n طلب معلّق تلقائياً', ['n' => $autoRejected]) : ''));
     }
 
     private function notifyTeam(Project $project, string $msg): void
@@ -387,6 +387,6 @@ class DashboardController extends Controller
             \Illuminate\Support\Facades\Log::warning('أُكمل المشروع وتعذّر إشعار الفريق', ['project' => $project->id, 'exception' => $ex]);
         }
 
-        return redirect()->back()->with('success', __('اكتمل المشروع — يمكنك الآن رصد التقييم.'));
+        return redirect()->back()->with('success', __('اكتمل المشروع، يمكنك الآن رصد التقييم.'));
     }
 }

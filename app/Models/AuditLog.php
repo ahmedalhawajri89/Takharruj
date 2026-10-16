@@ -141,7 +141,7 @@ class AuditLog extends Model
 
     public function getRoleLabelAttribute(): string
     {
-        return isset(self::ROLES[$this->actor_role]) ? __(self::ROLES[$this->actor_role]) : '—';
+        return isset(self::ROLES[$this->actor_role]) ? __(self::ROLES[$this->actor_role]) : __('لا يوجد');
     }
 
     /** الأفعال التي تمسّ الدرجة — تُبرَز في العرض */

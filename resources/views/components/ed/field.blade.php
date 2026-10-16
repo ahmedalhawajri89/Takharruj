@@ -9,7 +9,7 @@
     'hint' => null,
     'wide' => false,
     'placeholder' => null,
-    // edit | create — يحدّد بادئة المعرّف، وأيّ الخطأين يُعرض هنا
+    // edit | create، يحدّد بادئة المعرّف، وأيّ الخطأين يُعرض هنا
     'mode' => 'edit',
 ])
 

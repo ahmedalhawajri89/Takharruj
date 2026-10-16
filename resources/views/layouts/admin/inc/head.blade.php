@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>@yield('title') — {{ __('تخرُّج') }}</title>
+<title>@yield('title')، {{ __('تخرُّج') }}</title>
 <link rel="icon" href="{{ asset('assets/img/takharruj-logo.svg') }}">
 {{-- خطوط مستضافة محلياً بدل fonts.googleapis.com --}}
 <link rel="preload" href="{{ asset('assets/fonts/IBMPlexSansArabic-400-arabic.woff2') }}" as="font" type="font/woff2" crossorigin>

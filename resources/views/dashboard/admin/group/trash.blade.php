@@ -9,7 +9,7 @@
 @section('content')
 
     <x-page-header title="{{ __('المجموعات المحذوفة') }}"
-        subtitle="{{ __(':n مشروعاً محذوفاً — الاسترجاع يعيد المراحل والملفات والتعليقات والدرجة.', ['n' => $projects->total()]) }}">
+        subtitle="{{ __(':n مشروعاً محذوفاً، الاسترجاع يعيد المراحل والملفات والتعليقات والدرجة.', ['n' => $projects->total()]) }}">
         <x-slot:actions>
             <a href="{{ route('admin.groups.index') }}" class="btn btn-outline-primary">
                 <i class="ti ti-list me-1" aria-hidden="true"></i>
@@ -37,10 +37,10 @@
                                 <td>
                                     <span class="fw-semibold">{{ $project->title }}</span>
                                     <div class="text-secondary small">
-                                        {{ $project->project_type->name }} · {{ $project->semester->label ?? '—' }}
+                                        {{ $project->project_type->name }} · {{ $project->semester->label ?? __('لا يوجد') }}
                                     </div>
                                 </td>
-                                <td>{{ $project->supervisor->name ?: '—' }}</td>
+                                <td>{{ $project->supervisor->name ?: __('لا يوجد') }}</td>
                                 <td>
                                     {{-- الأدمن يرى ما سيضيع قبل أن يقرر --}}
                                     <div class="loss-list">

@@ -30,7 +30,7 @@
                             <span class="term-switch-label">{{ __('الآن') }}</span>
                             <b>{{ $activeTidy ?? __('لا يوجد') }}</b>
                             @if ($active)
-                                <small>{{ __(':n مشروعاً — ينتقل إلى الأرشيف', ['n' => $active->projects_count]) }}</small>
+                                <small>{{ __(':n مشروعاً، ينتقل إلى الأرشيف', ['n' => $active->projects_count]) }}</small>
                             @endif
                         </div>
                         <i class="ti ti-arrow-left term-switch-arrow" aria-hidden="true"></i>
@@ -88,7 +88,7 @@
             modal.find('#activate-name, #activate-name-confirm').text(button.data('name'));
             modal.find('#activate-projects').text(projects ? @json(__(':n مشروعاً في أرشيفه')).replace(':n', projects) : @json(__('فصل جديد بلا مشاريع')));
 
-            // التأكيد يُعاد في كل فتح — لا يبقى مُعلَّماً من فتح سابق
+            // التأكيد يُعاد في كل فتح، لا يبقى مُعلَّماً من فتح سابق
             modal.find('#activate-confirm').prop('checked', false);
             modal.find('#activate-submit').prop('disabled', true);
 

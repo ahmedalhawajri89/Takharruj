@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="docs/cover.png" alt="تخرُّج — Takharruj" width="900">
+  <img src="docs/cover.png" alt="تخرُّج | Takharruj" width="900">
 </p>
 
 <h1 align="center">تخرُّج · Takharruj</h1>
 
 <p align="center">
   <strong>A platform that runs graduation projects from the first idea to the final grade.</strong><br>
-  Students, supervisors and the department — one place, three dashboards, one trail of record.
+  Students, supervisors and the department, one place, three dashboards, one trail of record.
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@
 
 ## Try it in thirty seconds
 
-The demo needs **no account**. Open it and pick a role — you are signed straight in,
+The demo needs **no account**. Open it and pick a role, you are signed straight in,
 and a bar at the top lets you switch between the three without signing out, so you can
 send a message as the student and read it as the supervisor.
 
@@ -93,15 +93,15 @@ list in one click. Every change lands in an append-only audit log.
 |---|---|
 | Public site | <img src="docs/screens/public-home.png" width="420"> |
 | One-click demo sign-in | <img src="docs/screens/public-login.png" width="420"> |
-| Student — discussion with the supervisor | <img src="docs/screens/student-discussion.png" width="420"> |
-| Student — team and roles | <img src="docs/screens/student-team.png" width="420"> |
-| Student — archive of completed projects | <img src="docs/screens/student-explore.png" width="420"> |
-| Supervisor — dashboard | <img src="docs/screens/supervisor-dashboard.png" width="420"> |
-| Supervisor — milestone plan | <img src="docs/screens/supervisor-plan.png" width="420"> |
-| Supervisor — my committees | <img src="docs/screens/supervisor-defenses.png" width="420"> |
-| Admin — dashboard | <img src="docs/screens/admin-dashboard.png" width="420"> |
-| Admin — groups | <img src="docs/screens/admin-groups.png" width="420"> |
-| Admin — audit log | <img src="docs/screens/admin-audit.png" width="420"> |
+| Student: discussion with the supervisor | <img src="docs/screens/student-discussion.png" width="420"> |
+| Student: team and roles | <img src="docs/screens/student-team.png" width="420"> |
+| Student: archive of completed projects | <img src="docs/screens/student-explore.png" width="420"> |
+| Supervisor: dashboard | <img src="docs/screens/supervisor-dashboard.png" width="420"> |
+| Supervisor: milestone plan | <img src="docs/screens/supervisor-plan.png" width="420"> |
+| Supervisor: my committees | <img src="docs/screens/supervisor-defenses.png" width="420"> |
+| Admin: dashboard | <img src="docs/screens/admin-dashboard.png" width="420"> |
+| Admin: groups | <img src="docs/screens/admin-groups.png" width="420"> |
+| Admin: audit log | <img src="docs/screens/admin-audit.png" width="420"> |
 
 On a phone, every dashboard is the same product, not a cut-down one:
 
@@ -117,7 +117,7 @@ On a phone, every dashboard is the same product, not a cut-down one:
 ## What it does
 
 **Running a semester.** Students, supervisors, specialisations and terms, with bulk
-import from Excel — which matters when a new intake is 300 rows — and export back out.
+import from Excel, which matters when a new intake is 300 rows, and export back out.
 One term is active; the rest become the archive.
 
 **Forming teams.** Groups, roles inside a group, and supervisor assignment. A student
@@ -129,20 +129,20 @@ and reminders by email two days before and on the day. The rest of the noise sta
 the app, where it belongs.
 
 **Files and discussion.** Project files are stored privately and served only through an
-authorised download route — never from a public folder. Threads run between the team and
+authorised download route, never from a public folder. Threads run between the team and
 the supervisor, and separately inside the team, with unread counts and live updates.
 
 **Defenses.** Rooms, committees and a scheduler. A committee is the supervisor plus up to
 three examiners, one of them chair. The planner suggests a slot inside working hours,
 sends the team and the committee a reminder with an `.ics` file, records the minutes, and
-computes the grade as the members' average — with a configurable weight for the supervisor.
+computes the grade as the members' average, with a configurable weight for the supervisor.
 Once the grade is locked it cannot be quietly edited.
 
 **Accountability.** An append-only audit log with its own timeline view, so every status
 change, grade and deletion has a name and a timestamp against it.
 
 **Arabic and English.** The product is Arabic-first and right-to-left, with a full English
-locale — not a machine-translated afterthought.
+locale, not a machine-translated afterthought.
 
 ---
 
@@ -163,17 +163,17 @@ grade locking and demo-mode safety.
 
 **Design system.** The public site, the sign-in page and all three dashboards are driven
 by one documented token layer ([`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md)). Colours, radii,
-shadows and motion are declared once in two stylesheets and never hard-coded in a page —
+shadows and motion are declared once in two stylesheets and never hard-coded in a page,
 rebranding means editing two files, not forty.
 
 ---
 
 ## Built with
 
-**Back end** — Laravel 12 · PHP 8.2 · MySQL · Laravel Sanctum
-**Tables and files** — Yajra DataTables (server-side, so large lists stay fast) · Maatwebsite/Excel
-**Views** — Blade, with a shared component layer (`page-header`, `kpi-card`, `status-badge`, `empty-state`, `attention-card`)
-**Marketing site** — Next.js 14 · React 18 · Tailwind CSS · Framer Motion · Lenis
+**Back end**: Laravel 12 · PHP 8.2 · MySQL · Laravel Sanctum
+**Tables and files**: Yajra DataTables (server-side, so large lists stay fast) · Maatwebsite/Excel
+**Views**: Blade, with a shared component layer (`page-header`, `kpi-card`, `status-badge`, `empty-state`, `attention-card`)
+**Marketing site**: Next.js 14 · React 18 · Tailwind CSS · Framer Motion · Lenis
 
 ---
 
@@ -208,8 +208,8 @@ app/Http/Controllers/Student/      dashboard, team, files, discussion, profile
 app/Console/Commands/              reminders, stats snapshot, demo reset, deploy check
 resources/views/components/        shared Blade UI components
 resources/lang/{ar,en}/            both locales
-public/assets/css/premium.css      design tokens — public site
-public/css/dashboard.css           design tokens — dashboards
+public/assets/css/premium.css      design tokens, public site
+public/css/dashboard.css           design tokens, dashboards
 frontend/                          Next.js marketing site
 tests/                             481 tests
 ```
@@ -218,7 +218,7 @@ tests/                             481 tests
 
 ## Author
 
-**Ahmed Al-Hawajiri** — Full-Stack Developer
+**Ahmed Al-Hawajiri**: Full-Stack Developer
 [GitHub](https://github.com/ahmedalhawajri89) · [LinkedIn](https://www.linkedin.com/in/ahmedalhawajri)
 
 Licensed under the MIT License.

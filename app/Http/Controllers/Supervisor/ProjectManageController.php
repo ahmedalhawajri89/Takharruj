@@ -39,12 +39,12 @@ class ProjectManageController extends Controller
     {
         if (! in_array($project->status, ['accept', 'complete'], true)) {
             // رسالة المشروع الذي لم يُقبل — أو رُفض
-            return __('المشروع لم يُقبل بعد أو رُفض — المراحل والملفات والموعد تُدار بعد قبوله.');
+            return __('المشروع لم يُقبل بعد أو رُفض، المراحل والملفات والموعد تُدار بعد قبوله.');
         }
 
         // رسالة القفل الموحدة بعد التقييم
         return $project->is_locked
-            ? __('المشروع مؤرشف بعد رصد التقييم — لا يمكن تعديل مراحله أو ملفاته أو موعده. النقاش وتعديل الدرجة فقط متاحان.')
+            ? __('المشروع مؤرشف بعد رصد التقييم، لا يمكن تعديل مراحله أو ملفاته أو موعده. النقاش وتعديل الدرجة فقط متاحان.')
             : null;
     }
 
@@ -196,7 +196,7 @@ class ProjectManageController extends Controller
             'decision' => ['required', 'in:approve,revision'],
             'feedback' => ['nullable', 'string', 'max:2000', 'required_if:decision,revision'],
         ], [
-            'feedback.required_if' => __('اكتب ما يجب تعديله — الفريق يحتاج السبب ليعدّل.'),
+            'feedback.required_if' => __('اكتب ما يجب تعديله، الفريق يحتاج السبب ليعدّل.'),
         ], [
             'feedback' => __('ملاحظة التعديل'),
         ]);
@@ -436,7 +436,7 @@ class ProjectManageController extends Controller
         $gradeLabel = \App\Support\Arabic::run(fn () => $project->fresh()->grade_label);
         $this->notifyStudents(
             $project,
-            'تم تقييم مشروعكم — الدرجة: ' . $request->grade . ' (' . $gradeLabel . ') 🎓',
+            'تم تقييم مشروعكم، الدرجة: ' . $request->grade . ' (' . $gradeLabel . ') 🎓',
             'درجة مشروعكم'
         );
 

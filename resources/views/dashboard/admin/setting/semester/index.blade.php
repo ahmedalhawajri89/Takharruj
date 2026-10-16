@@ -65,11 +65,11 @@
                     <span class="tm-kpi-l">{{ __('مشروع مسجَّل') }}</span>
                 </a>
                 <div class="tm-kpi">
-                    <span class="tm-kpi-n">{{ is_null($active->completion) ? '—' : $active->completion . '%' }}</span>
+                    <span class="tm-kpi-n">{{ is_null($active->completion) ? __('لا يوجد') : $active->completion . '%' }}</span>
                     <span class="tm-kpi-l">{{ __('اكتمل من المقبولة') }}</span>
                 </div>
                 <div class="tm-kpi">
-                    <span class="tm-kpi-n">{{ $active->avg_grade ?? '—' }}</span>
+                    <span class="tm-kpi-n">{{ $active->avg_grade ?? __('لا يوجد') }}</span>
                     <span class="tm-kpi-l">{{ __('متوسط الدرجة') }}{{ $active->graded_count ? ' · ' . __(':n مقيَّم', ['n' => $active->graded_count]) : '' }}</span>
                 </div>
                 @php $waiting = (int) ($statusCounts['request'] ?? 0); @endphp
@@ -148,8 +148,8 @@
                             <a href="{{ route('admin.groups.index', ['semester' => $term->id]) }}" class="tm-fact">
                                 <b>{{ $term->projects_count }}</b> {{ __('مشروعاً') }}
                             </a>
-                            <span class="tm-fact"><b>{{ is_null($term->completion) ? '—' : $term->completion . '%' }}</b> {{ __('اكتمل') }}</span>
-                            <span class="tm-fact"><b>{{ $term->avg_grade ?? '—' }}</b> {{ __('متوسط الدرجة') }}</span>
+                            <span class="tm-fact"><b>{{ is_null($term->completion) ? __('لا يوجد') : $term->completion . '%' }}</b> {{ __('اكتمل') }}</span>
+                            <span class="tm-fact"><b>{{ $term->avg_grade ?? __('لا يوجد') }}</b> {{ __('متوسط الدرجة') }}</span>
                         </div>
                         {{-- حجم الفصل مقارنةً بأكبرها — والجزء الداكن ما اكتمل منه --}}
                         <span class="tm-size" aria-hidden="true">
@@ -158,7 +158,7 @@
                             </span>
                         </span>
                     @else
-                        <p class="tm-empty">{{ __('لا مشاريع بعد') }}{{ $isActive ? '' : ' — ' . __('يمكن حذفه') }}</p>
+                        <p class="tm-empty">{{ __('لا مشاريع بعد') }}{{ $isActive ? '' : __('، ') . __('يمكن حذفه') }}</p>
                     @endif
                 </div>
 
@@ -197,8 +197,8 @@
                             @elseif (! $isActive)
                                 <div class="dropdown-divider"></div>
                                 <span class="dropdown-item disabled"
-                                    title="{{ __('يحتوي :n مشروعاً — حذفه يدمر أرشيف النتائج', ['n' => $term->projects_count]) }}">
-                                    <i class="ti ti-lock me-2" aria-hidden="true"></i> {{ __('لا يُحذف — فيه أرشيف') }}
+                                    title="{{ __('يحتوي :n مشروعاً، حذفه يدمر أرشيف النتائج', ['n' => $term->projects_count]) }}">
+                                    <i class="ti ti-lock me-2" aria-hidden="true"></i> {{ __('لا يُحذف، فيه أرشيف') }}
                                 </span>
                             @endif
                         </div>
@@ -221,7 +221,7 @@
 
 @push('js')
     <script>
-        // إعادة فتح النافذة عند فشل التحقّق — كانت ضمن تضمين
+        // إعادة فتح النافذة عند فشل التحقّق، كانت ضمن تضمين
         // \u200Edatatables_style_script\u200E وقد زال مع الجدول
         @if ($errors->any() && old('submit') == 'create')
             new bootstrap.Modal(document.getElementById('createModal')).show();

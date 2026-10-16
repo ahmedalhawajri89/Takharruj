@@ -13,7 +13,7 @@
         :avatar-destroy="route('student.profile.avatar.destroy')"
         :facts="[
             __('الرقم الجامعي') => $student->university_id,
-            __('التخصص') => $student->specialize->name ?: '—',
+            __('التخصص') => $student->specialize->name ?: __('لا يوجد'),
             __('الجنس') => __('site.' . $student->gender),
         ]" />
 

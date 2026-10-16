@@ -66,7 +66,7 @@ class ProjectActivityNotify extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         $mail = (new MailMessage)
-            ->subject($this->mailSubject . ' — تخرُّج')
+            ->subject($this->mailSubject . ' | تخرُّج')
             ->greeting('مرحباً ' . $notifiable->name)
             ->line('**' . ($this->data['project'] ?? 'مشروعك') . '**')
             ->line($this->data['msg'] ?? '')

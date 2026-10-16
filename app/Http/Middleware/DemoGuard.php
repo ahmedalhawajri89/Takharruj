@@ -41,7 +41,7 @@ class DemoGuard
         $route = $request->route()?->getName() ?? '';
 
         if ($route && \Illuminate\Support\Str::is(self::BLOCKED, $route)) {
-            return $this->refuse($request, __('هذا الإجراء معطّل في النسخة التجريبية — جرّب غيره بحرّية.'));
+            return $this->refuse($request, __('هذا الإجراء معطّل في النسخة التجريبية، جرّب غيره بحرّية.'));
         }
 
         // تعديل طالب أو مشرف من الإدارة مسموح — إلا حسابَي الأزرار: بريدهما وكلمة سرّهما مفاتيح الدخول
@@ -49,7 +49,7 @@ class DemoGuard
             $target = $request->route($role);
             $id = is_object($target) ? $target->getKey() : $target;
             if ($route === $name && $id && (int) $id === (int) Demo::account($role)?->getKey()) {
-                return $this->refuse($request, __('حساب التجربة لا يُعدَّل — جرّب على حساب آخر.'));
+                return $this->refuse($request, __('حساب التجربة لا يُعدَّل، جرّب على حساب آخر.'));
             }
         }
 

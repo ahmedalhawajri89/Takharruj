@@ -57,7 +57,7 @@
     <section class="sg-stats" aria-label="{{ __('ملخّص المجموعات') }}">
         <div><b>{{ $summary['groups'] }}</b><small>{{ __('مجموعة هذا الفصل') }}</small></div>
         <div><b>{{ $summary['students'] }}</b><small>{{ __('طالباً') }}</small></div>
-        <div><b>{{ $summary['progress'] === null ? '—' : $summary['progress'] . '%' }}</b><small>{{ __('متوسط الإنجاز') }}</small></div>
+        <div><b>{{ $summary['progress'] === null ? __('لا يوجد') : $summary['progress'] . '%' }}</b><small>{{ __('متوسط الإنجاز') }}</small></div>
         <div class="{{ $summary['issues'] ? 'is-warn' : '' }}"><b>{{ $summary['issues'] }}</b><small>{{ __('تحتاج انتباهاً') }}</small></div>
     </section>
 
@@ -74,7 +74,7 @@
                     <header class="sg-card-head">
                         <div>
                             <a href="{{ route('admin.groups.show', $project->id) }}" class="sg-title">{{ $project->title }}</a>
-                            <span class="sg-type">{{ $project->project_type->name ?? '—' }}</span>
+                            <span class="sg-type">{{ $project->project_type->name ?? __('لا يوجد') }}</span>
                         </div>
                         <x-status-badge :status="$project->status" />
                     </header>
@@ -98,7 +98,7 @@
                             </span>
                         @elseif ($project->stages_total)
                             <i class="ti ti-circle-check" aria-hidden="true"></i>
-                            <span>{{ __('أُنجزت كل المراحل — بانتظار الدرجة') }}</span>
+                            <span>{{ __('أُنجزت كل المراحل، بانتظار الدرجة') }}</span>
                         @else
                             <i class="ti ti-list-details" aria-hidden="true"></i>
                             <span>{{ __('لا مراحل بعد') }}</span>

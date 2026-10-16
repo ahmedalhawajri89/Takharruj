@@ -178,7 +178,7 @@ class SupervisorController extends Controller
                 $n = (int) $row->pending_reviews_count;
 
                 if ($n === 0) {
-                    return '<span class="text-secondary small">—</span>';
+                    return '<span class="text-secondary small">' . e(__('لا يوجد')) . '</span>';
                 }
 
                 $days = $row->oldest_review_at
@@ -280,7 +280,7 @@ class SupervisorController extends Controller
                 ->exists();
             if ($hasActiveProjects) {
                 return redirect()->back()->with('fail',
-                    __('لا يمكن حذف المشرف — لديه مشاريع/مجموعات قائمة. انقل مجموعاته لمشرف آخر من صفحة المجموعات أولاً.'));
+                    __('لا يمكن حذف المشرف، لديه مشاريع/مجموعات قائمة. انقل مجموعاته لمشرف آخر من صفحة المجموعات أولاً.'));
             }
 
             // قبل الحذف: بعده يفقد المشرف اسمه ورقمه الجامعي
@@ -327,7 +327,7 @@ class SupervisorController extends Controller
             ? __('أُضيف :what', ['what' => $count($report['added'], [__('مشرف واحد'), __('مشرفان'), __(':n مشرفين'), __(':n مشرفاً')])])
             : __('لم يُضف أحد');
         if ($skipped) {
-            $message .= ' — ' . __('وتُخطّي :what، التفاصيل أعلى الصفحة.', ['what' => $count($skipped, [__('صفّ واحد'), __('صفّان'), __(':n صفوف'), __(':n صفّاً')])]);
+            $message .= __('، ') . __('وتُخطّي :what، التفاصيل أعلى الصفحة.', ['what' => $count($skipped, [__('صفّ واحد'), __('صفّان'), __(':n صفوف'), __(':n صفّاً')])]);
         }
 
         return redirect()->back()

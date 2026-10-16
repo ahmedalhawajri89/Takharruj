@@ -36,7 +36,7 @@
                             <span class="im-step-n">1</span>
                             <div>
                                 <b>{{ __('نزّل القالب') }}</b>
-                                <span>{{ __('بأعمدته الصحيحة وصفّ مثال — احذف المثال واملأ بياناتك.') }}</span>
+                                <span>{{ __('بأعمدته الصحيحة وصفّ مثال، احذف المثال واملأ بياناتك.') }}</span>
                             </div>
                             <a href="{{ $template }}" class="btn btn-outline-primary btn-sm">
                                 <i class="ti ti-file-download me-1" aria-hidden="true"></i>
@@ -137,7 +137,7 @@
                 return bytes < 1024 * 1024 ? Math.max(1, Math.round(bytes / 1024)) + ' KB' : (bytes / 1024 / 1024).toFixed(1) + ' MB';
             }
 
-            // الملف المختار يحلّ محلّ الدعوة — باسمه وحجمه، ويُرفض الخطأ قبل الرفع
+            // الملف المختار يحلّ محلّ الدعوة، باسمه وحجمه، ويُرفض الخطأ قبل الرفع
             function show() {
                 var file = input.files && input.files[0];
                 var ok = !!file && /\.xlsx?$/i.test(file.name) && file.size <= MAX;

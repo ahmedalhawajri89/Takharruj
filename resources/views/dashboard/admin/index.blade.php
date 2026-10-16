@@ -158,7 +158,7 @@
                         <span class="health-n">{{ $n }}</span>
                     </span>
                     <span class="health-title">{{ $title }}</span>
-                    <span class="health-text">{{ $n > 0 ? $text : __('لا شيء هنا — جيد.') }}</span>
+                    <span class="health-text">{{ $n > 0 ? $text : __('لا شيء هنا، جيد.') }}</span>
                 </a>
             @endforeach
         </div>

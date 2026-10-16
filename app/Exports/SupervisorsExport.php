@@ -66,7 +66,7 @@ class SupervisorsExport implements FromCollection, WithHeadings, WithMapping, Sh
         return [
             $supervisor->university_id,
             $supervisor->name,
-            $supervisor->specialize->name ?: '—',
+            $supervisor->specialize->name ?: '',
             $supervisor->email,
             $supervisor->phone,
             __('site.' . $supervisor->gender),

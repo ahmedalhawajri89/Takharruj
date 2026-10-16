@@ -114,7 +114,7 @@ class SpecializeController extends Controller
 
         Audit::record('specialize.archived', $specialize);
 
-        return redirect()->back()->with('success', __('تم إيقاف «:name» — لن يُسجَّل عليه أحد جديد.', ['name' => $specialize->name]));
+        return redirect()->back()->with('success', __('تم إيقاف «:name»، لن يُسجَّل عليه أحد جديد.', ['name' => $specialize->name]));
     }
 
     /** استئناف تخصص موقوف */
@@ -181,7 +181,7 @@ class SpecializeController extends Controller
                 || \App\Models\Supervisor::where('specialize_id', $specialize->id)->exists();
             if ($hasUsers) {
                 return redirect()->back()->with('fail',
-                    __('لا يمكن حذف التخصص — يوجد طلاب أو مشرفون مسجلون عليه. انقلهم لتخصص آخر أولاً.'));
+                    __('لا يمكن حذف التخصص، يوجد طلاب أو مشرفون مسجلون عليه. انقلهم لتخصص آخر أولاً.'));
             }
 
             $specialize->delete();

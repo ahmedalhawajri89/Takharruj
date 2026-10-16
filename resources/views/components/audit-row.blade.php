@@ -1,6 +1,6 @@
 @props([
     'log',
-    // خارج صفحة السجلّ لا عناوين أيام — فيُكتب التاريخ مع الساعة
+    // خارج صفحة السجلّ لا عناوين أيام، فيُكتب التاريخ مع الساعة
     'dated' => false,
 ])
 
@@ -71,7 +71,7 @@
             <span class="at-role">{{ $log->role_label }}</span>
             <span class="at-sep" aria-hidden="true">·</span>
             <time datetime="{{ $log->created_at?->toIso8601String() }}"
-                title="{{ $log->created_at?->translatedFormat('l j F Y — H:i') }}">
+                title="{{ $log->created_at?->translatedFormat('l j F Y, H:i') }}">
                 {{ $dated ? $log->created_at?->format('Y-m-d H:i') : $log->created_at?->format('H:i') }}
             </time>
         </p>

@@ -8,7 +8,7 @@ Everything an operator needs. The product itself is described in the
 ## Requirements
 
 **Requirements:** PHP 8.2+ with `gd`, `zip`, `xml`, `fileinfo`, `mbstring`, `pdo_mysql` · Composer · MySQL 8+ (or MariaDB 10.2+).
-The front-end assets are static files in `public/` — there is no build step for the Laravel app.
+The front-end assets are static files in `public/`, there is no build step for the Laravel app.
 
 ## Local setup
 
@@ -26,7 +26,7 @@ php artisan serve             # http://localhost:8000
 ```
 
 Outside production, `--seed` loads demo data: one admin (`admin@admin.com`), 300 supervisors
-and 500 students, **all with the password `adminadmin`**. It creates users only — no projects.
+and 500 students, **all with the password `adminadmin`**. It creates users only, no projects.
 Never run the demo seed on a server that real people use (see *Deployment*).
 
 For local mail and queues, `MAIL_MAILER=log` and `QUEUE_CONNECTION=sync` in `.env` avoid needing
@@ -50,7 +50,7 @@ vendor/bin/phpunit
 1. **Environment.** In `.env`: `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://your-domain`
    (password-reset links are built from it), `LOG_LEVEL=warning`, `SESSION_SECURE_COOKIE=true`,
    real SMTP credentials and a real `MAIL_FROM_ADDRESS`.
-2. **Schema and first admin.** `--seed` in production plants only semesters and specializations —
+2. **Schema and first admin.** `--seed` in production plants only semesters and specializations
    no accounts:
    ```bash
    php artisan migrate --force --seed
@@ -59,7 +59,7 @@ vendor/bin/phpunit
    Activate the current semester from *Admin › Semesters* before students log in.
 3. **Scheduler (required).** Mail is queued, teams are reminded of stage deadlines every morning
    (`milestones:remind` at 09:00: two days before and on the day), teams and committees are reminded
-   of their defense (`defenses:remind` at 08:00: the day before and on the day — the email carries
+   of their defense (`defenses:remind` at 08:00: the day before and on the day, the email carries
    an `.ics` calendar file), and a daily stats snapshot feeds the dashboard trend.
    Add one cron entry:
    ```
@@ -70,14 +70,14 @@ vendor/bin/phpunit
    line from `app/Console/Kernel.php`.
 4. **Writable paths:** `storage/`, `bootstrap/cache/` and `public/uploads/` (avatars).
    Project files are stored privately in `storage/app` and served only through an
-   authorized download route — `storage:link` is not needed.
+   authorized download route`storage:link` is not needed.
 5. **PHP upload limits.** Project files accept up to 10 MB, defense presentations up to 20 MB and
    Excel imports up to 5 MB: set `upload_max_filesize = 22M` and `post_max_size = 26M`.
 6. **Caches.** `php artisan config:cache && php artisan route:cache && php artisan view:cache`.
 7. **Defenses.** Add the defense rooms from *Admin › Defenses › Rooms*; the planner suggests a slot,
    room and examiner for each completed project within the working hours in `config/defenses.php`
-   (Sunday–Thursday, 09:00–15:00 by default). Online and hybrid defenses take a meeting link (the
-   dialog has a *Create Google Meet* shortcut) — no Google API credentials are needed. A committee is
+   (Sunday-Thursday, 09:00-15:00 by default). Online and hybrid defenses take a meeting link (the
+   dialog has a *Create Google Meet* shortcut), no Google API credentials are needed. A committee is
    the supervisor plus up to three examiners, one of them its chair. The final grade is the members'
    average; set `DEFENSE_SUPERVISOR_WEIGHT=40` (for example) to give the supervisor 40% and split the
    rest evenly between the examiners.
@@ -101,7 +101,7 @@ unless `DEMO_MODE=true` is set, and nothing below happens without it.
   Uploads are capped at `DEMO_UPLOAD_MB` (2). Mail goes to the log.
 - **Nightly reset.** `php artisan demo:snapshot` saves the current database and uploaded files to
   `database/demo/` (run it once on the curated data and commit it). On the demo server,
-  `php artisan demo:reset` restores it — it refuses to run without `DEMO_MODE` — and shifts every
+  `php artisan demo:reset` restores it, it refuses to run without `DEMO_MODE`, and shifts every
   date by whole weeks since the snapshot, so the showcased defense stays upcoming and on a working
   day. The scheduler runs it daily at `DEMO_RESET_AT` (03:00).
 

@@ -64,7 +64,7 @@
         <div class="stat-cell">
             <span class="stat-label">{{ __('متوسط الإنجاز') }}</span>
             @if (is_null($kpi['avg']))
-                <span class="stat-value is-muted">—</span>
+                <span class="stat-value is-muted">{{ __('لا يوجد') }}</span>
                 <span class="stat-sub">{{ __('لا مراحل بعد') }}</span>
             @else
                 <span class="stat-value">{{ $kpi['avg'] }}%</span>
@@ -87,7 +87,7 @@
         <a href="{{ route('supervisor.discussion') }}" class="stat-cell">
             <span class="stat-label">{{ __('رسائل جديدة') }}</span>
             <span class="stat-value {{ $kpi['unread'] ? 'is-brand' : '' }}">{{ $kpi['unread'] }}</span>
-            <span class="stat-sub">{{ $kpi['unread'] ? __('في النقاش — افتحه') : __('لا جديد في النقاش') }}</span>
+            <span class="stat-sub">{{ $kpi['unread'] ? __('في النقاش، افتحه') : __('لا جديد في النقاش') }}</span>
         </a>
     </div>
 
@@ -139,7 +139,7 @@
                             <span class="dash-step-n">1</span>
                             <div>
                                 <a href="{{ route('supervisor.plan') }}">{{ __('جهّز خطة المراحل') }}</a>
-                                <p>{{ __('مواعيد الفصل وقوالبه مرّة واحدة — تصل كل مجموعة تقبلها.') }}</p>
+                                <p>{{ __('مواعيد الفصل وقوالبه مرّة واحدة، تصل كل مجموعة تقبلها.') }}</p>
                             </div>
                         </li>
                         <li>
@@ -153,7 +153,7 @@
                             <span class="dash-step-n">3</span>
                             <div>
                                 <span>{{ __('تابع مجموعاتك') }}</span>
-                                <p>{{ __('التقدّم والملفات والنقاش والتقييم — كلها من هذه الصفحة.') }}</p>
+                                <p>{{ __('التقدّم والملفات والنقاش والتقييم، كلها من هذه الصفحة.') }}</p>
                             </div>
                         </li>
                     </ol>
@@ -220,7 +220,7 @@
 
 @push('js')
     <script>
-        // تصفية وبحث على البطاقات — كانت على صفوف جدول
+        // تصفية وبحث على البطاقات، كانت على صفوف جدول
         (function () {
             var grid = document.getElementById('groups-grid');
             if (!grid) return;

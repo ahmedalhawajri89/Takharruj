@@ -40,10 +40,10 @@
             <h3>{{ $isTeam ? __('نقاش الفريق فارغ بعد') : __('لا رسائل بعد') }}</h3>
             <p>
                 {{ $isTeam
-                    ? __('مساحة الفريق وحده — نسّقوا المهام، واكتب @ لتنبيه زميل بعينه.')
+                    ? __('مساحة الفريق وحده، نسّقوا المهام، واكتب @ لتنبيه زميل بعينه.')
                     : ($role === 'student'
-                        ? __('اسأل مشرفك هنا — كل ما يُكتب يبقى مرجعاً لك وله.')
-                        : __('ابدأ النقاش مع الفريق — ملاحظة، سؤال، أو توجيه للمرحلة القادمة.')) }}
+                        ? __('اسأل مشرفك هنا، كل ما يُكتب يبقى مرجعاً لك وله.')
+                        : __('ابدأ النقاش مع الفريق، ملاحظة، سؤال، أو توجيه للمرحلة القادمة.')) }}
             </p>
         </div>
     @endif
@@ -137,7 +137,7 @@
             function options() {
                 return Array.prototype.filter.call(menu.querySelectorAll('[data-mate]'), function (o) { return !o.hidden; });
             }
-            // النصّ من آخر @ حتى المؤشّر — والـ@ في أول الكلام أو بعد مسافة، لا وسط كلمة
+            // النصّ من آخر @ حتى المؤشّر، والـ@ في أول الكلام أو بعد مسافة، لا وسط كلمة
             function query() {
                 var upto = body.value.slice(0, body.selectionStart);
                 var at = upto.lastIndexOf('@');
@@ -198,7 +198,7 @@
                 });
                 body.addEventListener('blur', function () { setTimeout(function () { menu.hidden = true; }, 120); });
 
-                // عند الإرسال: المذكور من بقي اسمه في النصّ — حذفُ «@الاسم» يُسقط الذكر
+                // عند الإرسال: المذكور من بقي اسمه في النصّ، حذفُ «@الاسم» يُسقط الذكر
                 form.addEventListener('submit', function () {
                     var box = form.querySelector('[data-mention-inputs]'), html = '';
                     Object.keys(picked).forEach(function (id) {
@@ -222,7 +222,7 @@
                 retry: @json(__('إعادة المحاولة')),
                 newOne: @json(__('رسالة جديدة')),
                 newMany: @json(__(':n رسائل جديدة')),
-                delFailed: @json(__('تعذّر حذف الرسالة — حاول مرة أخرى.')),
+                delFailed: @json(__('تعذّر حذف الرسالة، حاول مرة أخرى.')),
             };
             var url = stream.dataset.liveUrl;
             var lastId = parseInt(stream.dataset.lastId || '0', 10);
@@ -242,7 +242,7 @@
             if (jump) jump.addEventListener('click', function () { unseen = 0; showJump(); toBottom(true); });
             stream.addEventListener('scroll', function () { if (unseen && nearBottom()) { unseen = 0; showJump(); } });
 
-            // إلحاق ما رسمه الخادم — وما هو معروض أصلاً (رسالتي) لا يتكرّر
+            // إلحاق ما رسمه الخادم، وما هو معروض أصلاً (رسالتي) لا يتكرّر
             function append(html, stick) {
                 if (!html) return;
                 var near = stick || nearBottom();

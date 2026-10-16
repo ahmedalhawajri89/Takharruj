@@ -45,7 +45,7 @@ class InstallSafetyTest extends TestCase
             [DB::connection()->getDatabaseName()]
         )->n;
 
-        $this->assertGreaterThan(0, (int) $count, 'قاعدة الاختبار بلا مفاتيح أجنبية — أعد test:prepare --force.');
+        $this->assertGreaterThan(0, (int) $count, 'قاعدة الاختبار بلا مفاتيح أجنبية، أعد test:prepare --force.');
     }
 
     /** في الإنتاج: لا حسابات تجريبية بكلمة سر معروفة، ولا DemoSeeder */

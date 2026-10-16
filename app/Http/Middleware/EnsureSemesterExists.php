@@ -36,11 +36,11 @@ class EnsureSemesterExists
             }
 
             return redirect()->route('admin.semesters.index')
-                ->with('fail', __('لا فصل دراسي بعد — أنشئ الفصل الأول وفعّله قبل أي شيء آخر.'));
+                ->with('fail', __('لا فصل دراسي بعد، أنشئ الفصل الأول وفعّله قبل أي شيء آخر.'));
         }
 
         return response()->view('errors._page', [
-            'code' => '—',
+            'code' => '503',
             'title' => __('لم يُفتح فصل دراسي بعد'),
             'text' => __('تُنشئ إدارة القسم الفصل الدراسي أولاً، ثم تُفتح لوحتك. حاول لاحقاً.'),
             'actionUrl' => null,

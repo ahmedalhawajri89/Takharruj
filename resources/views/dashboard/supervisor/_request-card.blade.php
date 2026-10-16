@@ -26,7 +26,7 @@
         <div class="req-title">
             <b>{{ $project->title }}</b>
             <span>
-                {{ $project->project_type->name ?? '—' }}
+                {{ $project->project_type->name ?? __('لا يوجد') }}
                 · {{ __('قُدّم :when', ['when' => $project->created_at->diffForHumans()]) }}
             </span>
         </div>
@@ -47,7 +47,7 @@
             <span>
                 <b>{{ $similar->count() === 1 ? __('يشبه مشروعاً مكتملاً:') : __('يشبه مشاريع مكتملة:') }}</b>
                 @foreach ($similar as $s)
-                    {{ __('«:title»', ['title' => $s->title]) }}<small> — {{ $s->semester?->label }}@if ($s->supervisor) · {{ $s->supervisor->name }}@endif</small>@if (! $loop->last){{ __('، ') }}@endif
+                    {{ __('«:title»', ['title' => $s->title]) }}<small>، {{ $s->semester?->label }}@if ($s->supervisor) · {{ $s->supervisor->name }}@endif</small>@if (! $loop->last){{ __('، ') }}@endif
                 @endforeach
             </span>
         </div>
@@ -75,7 +75,7 @@
                 <button name="btnAccept" value="accept" class="btn btn-primary"
                     data-confirm-tone="primary" data-confirm-title="{{ __('قبول الإشراف') }}" data-confirm-ok="{{ __('قبول') }}"
                     data-confirm="{{ $lastSeat
-                        ? __('هذا آخر مقعد لك هذا الفصل — قبوله يرفض الطلبات الباقية تلقائياً. متابعة؟')
+                        ? __('هذا آخر مقعد لك هذا الفصل، قبوله يرفض الطلبات الباقية تلقائياً. متابعة؟')
                         : __('قبول «:title»؟ سيُبلَّغ الفريق.', ['title' => $project->title]) }}">
                     <i class="ti ti-check me-1" aria-hidden="true"></i>
                     {{ __('قبول الإشراف') }}
@@ -84,7 +84,7 @@
         @else
             <span class="req-full">
                 <i class="ti ti-lock" aria-hidden="true"></i>
-                {{ __('اكتمل حدّك — القبول يحتاج رفع الحدّ من الإدارة') }}
+                {{ __('اكتمل حدّك، القبول يحتاج رفع الحدّ من الإدارة') }}
             </span>
         @endif
 
@@ -97,7 +97,7 @@
             <form action="{{ $replyUrl }}" method="POST" class="req-reject-form">
                 @csrf
                 <label class="form-label" for="reason-{{ $project->id }}">
-                    {{ __('سبب الرفض') }} <small>{{ $leader?->student?->name ? __('(اختياري — يصل إلى :name وفريقه)', ['name' => $leader->student->name]) : __('(اختياري — يصل إلى الفريق وفريقه)') }}</small>
+                    {{ __('سبب الرفض') }} <small>{{ $leader?->student?->name ? __('(اختياري، يصل إلى :name وفريقه)', ['name' => $leader->student->name]) : __('(اختياري، يصل إلى الفريق وفريقه)') }}</small>
                 </label>
                 <textarea id="reason-{{ $project->id }}" name="reason" rows="2" maxlength="500" class="form-control"
                     placeholder="{{ __('مثال: الفكرة منفّذة سابقاً، أو نطاقها أوسع من فصل واحد..') }}"></textarea>

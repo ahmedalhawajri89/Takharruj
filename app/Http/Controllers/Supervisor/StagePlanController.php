@@ -74,7 +74,7 @@ class StagePlanController extends Controller
         });
 
         $this->notifyGroups($result['created'], 'مرحلة جديدة: ' . $stage->title
-            . ($stage->due_date ? ' — حتى ' . $stage->due_date->format('Y-m-d') : '')
+            . ($stage->due_date ? '، حتى ' . $stage->due_date->format('Y-m-d') : '')
             . ($stage->hasTemplate() ? ' (مع قالب من المشرف)' : ''));
 
         $n = count($result['created']);
@@ -83,7 +83,7 @@ class StagePlanController extends Controller
             ? ($n === 1
                 ? __('أُضيفت المرحلة إلى :n مجموعة.', ['n' => $n])
                 : __('أُضيفت المرحلة إلى :n مجموعات.', ['n' => $n]))
-            : __('أُضيفت المرحلة — وتصل كل مجموعة تقبلها لاحقاً.'));
+            : __('أُضيفت المرحلة، وتصل كل مجموعة تقبلها لاحقاً.'));
     }
 
     public function update(Request $request, SupervisorStage $stage)
@@ -137,9 +137,9 @@ class StagePlanController extends Controller
 
         return redirect()->route('supervisor.plan')
             ->with('success', match (true) {
-                ! $removed => __('حُذفت المرحلة — وما أُنجز منها بقي.'),
-                $removed === 1 => __('حُذفت المرحلة من :n مجموعة — وما أُنجز منها بقي.', ['n' => $removed]),
-                default => __('حُذفت المرحلة من :n مجموعات — وما أُنجز منها بقي.', ['n' => $removed]),
+                ! $removed => __('حُذفت المرحلة، وما أُنجز منها بقي.'),
+                $removed === 1 => __('حُذفت المرحلة من :n مجموعة، وما أُنجز منها بقي.', ['n' => $removed]),
+                default => __('حُذفت المرحلة من :n مجموعات، وما أُنجز منها بقي.', ['n' => $removed]),
             });
     }
 

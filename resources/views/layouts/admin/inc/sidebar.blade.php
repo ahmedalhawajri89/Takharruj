@@ -21,7 +21,7 @@
 
         {{-- الشعار --}}
         <h1 class="navbar-brand sidebar-brand">
-            <a href="{{ url('/') }}" class="brand-link text-decoration-none" aria-label="{{ __('تخرُّج — الرئيسية') }}">
+            <a href="{{ url('/') }}" class="brand-link text-decoration-none" aria-label="{{ __('تخرُّج، الرئيسية') }}">
                 {{-- علامة الموقع نفسها — عقد على مسار، آخرها التخرّج. مضمّنة لا <img>:
                      المسار يُرسم عند التحميل والعقد تضيء تباعاً، والأخيرة تمتلئ عند المرور --}}
                 <span class="brand-mark" aria-hidden="true">

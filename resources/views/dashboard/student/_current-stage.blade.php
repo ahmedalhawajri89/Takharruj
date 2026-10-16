@@ -56,7 +56,7 @@
                 <h2>{{ __('اكتمل المشروع') }}</h2>
                 <p>
                     {{ __('أنجزتم :done من :total مراحل.', ['done' => $milestones->where('is_done', true)->count(), 'total' => $milestones->count()]) }}
-                    {{ __('لا تسليمات بعد الاكتمال — التالي المناقشة ثم درجة اللجنة.') }}
+                    {{ __('لا تسليمات بعد الاكتمال، التالي المناقشة ثم درجة اللجنة.') }}
                 </p>
             @else
                 <h2>{{ __('أنجزتم المراحل كلّها') }}</h2>
@@ -101,7 +101,7 @@
                 </div>
             @elseif ($current->isSubmitted())
                 <p class="spotlight-note">
-                    {{ __('سلّمها :name :when — سيصلكم إشعار حين يعتمدها المشرف أو يطلب تعديلاً.', ['name' => $latest?->student?->name, 'when' => $latest?->created_at?->diffForHumans()]) }}
+                    {{ __('سلّمها :name :when، سيصلكم إشعار حين يعتمدها المشرف أو يطلب تعديلاً.', ['name' => $latest?->student?->name, 'when' => $latest?->created_at?->diffForHumans()]) }}
                 </p>
             @elseif ($current->stage?->instructions)
                 <p class="spotlight-note">{{ \Illuminate\Support\Str::limit($current->stage->instructions, 220) }}</p>
@@ -132,7 +132,7 @@
 
 @push('js')
     <script>
-        // زرّ التسليم في البطاقة يفتح نموذج مرحلته في القائمة — ومثله رابط بعلامة المرحلة
+        // زرّ التسليم في البطاقة يفتح نموذج مرحلته في القائمة، ومثله رابط بعلامة المرحلة
         (function () {
             function openSubmit(id) {
                 var row = document.getElementById('milestone-' + id);

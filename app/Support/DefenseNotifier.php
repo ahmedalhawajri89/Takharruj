@@ -25,7 +25,7 @@ class DefenseNotifier
 
     public static function range(Defense $d): string
     {
-        return "\u{2066}" . $d->starts_at->format('H:i') . '–' . $d->endsAt()->format('H:i') . "\u{2069}";
+        return "\u{2066}" . $d->starts_at->format('H:i') . '-' . $d->endsAt()->format('H:i') . "\u{2069}";
     }
 
     public static function scheduled(Defense $d): void
@@ -40,12 +40,12 @@ class DefenseNotifier
 
     public static function cancelled(Defense $d, ?string $reason): void
     {
-        self::send($d, 'أُلغيت المناقشة', 'أُلغي موعد المناقشة (' . self::when($d) . ')' . ($reason ? ' — ' . $reason : '') . '. سيُحدَّد موعد جديد.', 'إلغاء موعد المناقشة');
+        self::send($d, 'أُلغيت المناقشة', 'أُلغي موعد المناقشة (' . self::when($d) . ')' . ($reason ? '، ' . $reason : '') . '. سيُحدَّد موعد جديد.', 'إلغاء موعد المناقشة');
     }
 
     public static function reminder(Defense $d, bool $today): void
     {
-        $lead = $today ? 'مناقشتكم اليوم: ' : 'تذكير — مناقشتكم غداً: ';
+        $lead = $today ? 'مناقشتكم اليوم: ' : 'تذكير، مناقشتكم غداً: ';
         self::send($d, $today ? 'المناقشة اليوم' : 'المناقشة غداً', $lead . self::when($d) . self::link($d), $today ? 'المناقشة اليوم' : 'تذكير بموعد المناقشة');
     }
 
@@ -77,7 +77,7 @@ class DefenseNotifier
             Notification::send($d->project->students(), new ProjectActivityNotify([
                 'project' => $d->project->title,
                 'supervisor_name' => 'الإدارة',
-                'msg' => 'لم يُرفع العرض التقديمي بعد — ارفعوه من بطاقة «مناقشتك» لتطّلع عليه اللجنة قبل الموعد.',
+                'msg' => 'لم يُرفع العرض التقديمي بعد، ارفعوه من بطاقة «مناقشتك» لتطّلع عليه اللجنة قبل الموعد.',
                 'kind' => 'defense',
                 'title' => 'العرض التقديمي',
                 'defense_id' => $d->id,
@@ -89,7 +89,7 @@ class DefenseNotifier
 
     private static function link(Defense $d): string
     {
-        return $d->needsLink() && $d->meeting_url ? ' — رابط الاجتماع: ' . $d->meeting_url : '';
+        return $d->needsLink() && $d->meeting_url ? '، رابط الاجتماع: ' . $d->meeting_url : '';
     }
 
     /** الفريق إلى لوحته، واللجنة إلى لوحتها — لكلٍّ إشعار ببريد، وفشل واحد لا يوقف البقية */

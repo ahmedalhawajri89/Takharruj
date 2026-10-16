@@ -35,7 +35,7 @@ class DefenseGrading
     {
         return match (true) {
             $defense->status === Defense::CANCELLED => __('المناقشة ملغاة.'),
-            $defense->project?->isGradeLocked() => __('اعتُمدت الدرجة النهائية — لا تعديل بعد الاعتماد.'),
+            $defense->project?->isGradeLocked() => __('اعتُمدت الدرجة النهائية، لا تعديل بعد الاعتماد.'),
             $defense->starts_at->isFuture() => __('يُفتح رصد الدرجة عند بدء المناقشة (:time).', ['time' => $defense->starts_at->format('Y-m-d H:i')]),
             default => null,
         };
@@ -148,7 +148,7 @@ class DefenseGrading
             Notification::send($others, new ProjectActivityNotify([
                 'project' => $defense->project->title,
                 'supervisor_name' => $by->supervisor->name,
-                'msg' => 'رصد ' . $role . ' درجته لمناقشة «' . $defense->project->title . '» — بقيت درجتك لتكتمل درجة المشروع.',
+                'msg' => 'رصد ' . $role . ' درجته لمناقشة «' . $defense->project->title . '»، بقيت درجتك لتكتمل درجة المشروع.',
                 'kind' => 'defense',
                 'title' => 'بقيت درجتك',
             ]));

@@ -117,7 +117,7 @@ class SpecializeProjectController extends Controller
             $inUse = $specialize->projects()->count();
             if ($inUse > 0) {
                 return redirect()->back()->with('fail',
-                    __('لا يمكن حذف «:name» — يستعمله :n مشروعاً. المشاريع القائمة ستفقد نوعها وحدود فريقها.', ['name' => $specialize->name, 'n' => $inUse]));
+                    __('لا يمكن حذف «:name»، يستعمله :n مشروعاً. المشاريع القائمة ستفقد نوعها وحدود فريقها.', ['name' => $specialize->name, 'n' => $inUse]));
             }
 
             $specialize->delete();

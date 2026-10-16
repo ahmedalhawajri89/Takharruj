@@ -165,7 +165,7 @@ class StudentsExportTest extends TestCase
         $row = $export->map($orphan);
 
         $this->assertCount(count($export->headings()), $row);
-        $this->assertSame('—', $row[2], 'التخصص المفقود يجب أن يظهر شرطة لا فراغاً.');
+        $this->assertSame('', $row[2], 'التخصص المفقود يبقى خلية فارغة في Excel.');
         $this->assertSame('بلا فريق', $row[6]);
     }
 }

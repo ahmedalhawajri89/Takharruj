@@ -18,7 +18,7 @@
         $unreadGroups = count($unread);
     @endphp
 
-    <x-page-header title="{{ __('النقاش') }}" subtitle="{{ __('رسائل مجموعاتك — ما لم يُقرأ أولاً') }}" />
+    <x-page-header title="{{ __('النقاش') }}" subtitle="{{ __('رسائل مجموعاتك، ما لم يُقرأ أولاً') }}" />
 
     @if ($projects->isEmpty() && ! $project)
         <div class="dist-panel">
@@ -79,7 +79,7 @@
                                         @elseif ($p->status === 'request')
                                             <span class="chat-item-flag">{{ __('طلب إشراف معلّق') }}</span>
                                         @else
-                                            {{ __('لا رسائل بعد — ابدأ النقاش') }}
+                                            {{ __('لا رسائل بعد، ابدأ النقاش') }}
                                         @endif
                                     </span>
                                     <span class="sidebar-count" data-chat-unread-project="{{ $p->id }}" @unless ($n) hidden @endunless>{{ $n }}</span>
@@ -134,9 +134,9 @@
                         <p>
                             @if ($unreadTotal)
                                 {{ $unreadTotal === 1 ? __(':n رسالة غير مقروءة', ['n' => 1]) : __(':n رسائل غير مقروءة', ['n' => $unreadTotal]) }}
-                                {{ $unreadGroups === 1 ? __('في مجموعة واحدة') : __('في :n مجموعات', ['n' => $unreadGroups]) }} — {{ __('في أعلى القائمة.') }}
+                                {{ $unreadGroups === 1 ? __('في مجموعة واحدة') : __('في :n مجموعات', ['n' => $unreadGroups]) }}، {{ __('في أعلى القائمة.') }}
                             @else
-                                {{ __('لا رسائل غير مقروءة — كل شيء مقروء.') }}
+                                {{ __('لا رسائل غير مقروءة، كل شيء مقروء.') }}
                             @endif
                         </p>
                         @if ($unreadTotal)

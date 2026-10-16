@@ -208,14 +208,14 @@ class DashboardController extends Controller
     {
         $semester = Semester::current();
         if (! $semester) {
-            return redirect()->back()->with('fail', __('لا يوجد فصل دراسي نشط — راجع إدارة القسم.'));
+            return redirect()->back()->with('fail', __('لا يوجد فصل دراسي نشط، راجع إدارة القسم.'));
         }
 
         $student = $this->getInfo($semester->id);
         $specialize = $student->specialize;
 
         if (! $specialize || ! $specialize->id) {
-            return redirect()->back()->with('fail', __('لم يُحدَّد تخصصك بعد — راجع إدارة القسم.'));
+            return redirect()->back()->with('fail', __('لم يُحدَّد تخصصك بعد، راجع إدارة القسم.'));
         }
 
         $project_type = $specialize->projects->firstWhere('id', (int) $request->specialize_project_id);
@@ -228,7 +228,7 @@ class DashboardController extends Controller
             return redirect()->back()->withInput()->with('fail', __('المشرف غير متاح في تخصصك.'));
         }
         if ($supervisor->seatsLeft() <= 0) {
-            return redirect()->back()->withInput()->with('fail', __('اكتملت مجموعات هذا المشرف — اختر مشرفاً آخر.'));
+            return redirect()->back()->withInput()->with('fail', __('اكتملت مجموعات هذا المشرف، اختر مشرفاً آخر.'));
         }
 
         // الأعضاء بعد حذف الفارغ والمكرّر — كانت القيم الفارغة تُعدّ في الحدّ الأدنى
@@ -239,7 +239,7 @@ class DashboardController extends Controller
             ->values();
 
         if (! $ids->contains((string) $student->university_id)) {
-            return redirect()->back()->withInput()->with('fail', __('يجب أن تكون ضمن فريقك — أنت قائده.'));
+            return redirect()->back()->withInput()->with('fail', __('يجب أن تكون ضمن فريقك، أنت قائده.'));
         }
         if ($ids->count() < $project_type->min || $ids->count() > $project_type->max) {
             return redirect()->back()->withInput()->with('fail',
@@ -302,7 +302,7 @@ class DashboardController extends Controller
             \Illuminate\Support\Facades\Log::warning('سُجِّل المشروع وتعذّر إشعار المشرف', ['project' => $project->id, 'exception' => $ex]);
         }
 
-        return redirect()->back()->with('success', __('أُرسل مقترحك إلى المشرف — ستصلك موافقته أو ملاحظاته هنا.'));
+        return redirect()->back()->with('success', __('أُرسل مقترحك إلى المشرف، ستصلك موافقته أو ملاحظاته هنا.'));
     }
 
     /**
@@ -362,14 +362,14 @@ class DashboardController extends Controller
             Notification::send($members->where('id', '!=', $student->id), new ProjectActivityNotify([
                 'project' => $project->title,
                 'supervisor_name' => $student->name,
-                'msg' => 'سحب قائد الفريق طلب المشروع — يمكنكم التقديم من جديد.',
+                'msg' => 'سحب قائد الفريق طلب المشروع، يمكنكم التقديم من جديد.',
             ]));
         } catch (\Exception $ex) {
             \Illuminate\Support\Facades\Log::warning('سُحب الطلب وتعذّر إشعار الفريق', ['exception' => $ex]);
         }
 
         return redirect()->route('student.dashboard')
-            ->with('success', __('سُحب الطلب وتحرّر الفريق — يمكنك تقديم مقترح جديد أو اختيار مشرف آخر.'))
+            ->with('success', __('سُحب الطلب وتحرّر الفريق، يمكنك تقديم مقترح جديد أو اختيار مشرف آخر.'))
 ;
     }
 

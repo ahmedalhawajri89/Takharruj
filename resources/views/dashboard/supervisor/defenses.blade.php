@@ -10,11 +10,11 @@
 
     @php
         $dayLabel = fn ($date) => $date->isToday() ? __('اليوم') : ($date->isTomorrow() ? __('غداً') : $date->translatedFormat('l j F'));
-        $fmt = fn ($g) => is_null($g) ? '—' : rtrim(rtrim(number_format((float) $g, 2, '.', ''), '0'), '.');
+        $fmt = fn ($g) => is_null($g) ? __('لا يوجد') : rtrim(rtrim(number_format((float) $g, 2, '.', ''), '0'), '.');
     @endphp
 
     <x-page-header title="{{ __('مناقشاتي') }}"
-        subtitle="{{ __('اللجان التي أنت عضو فيها — مشرفاً لمشروعك أو ممتحناً لغيره') }}" />
+        subtitle="{{ __('اللجان التي أنت عضو فيها، مشرفاً لمشروعك أو ممتحناً لغيره') }}" />
 
     {{-- ═══ ينتظر درجتك ═══ --}}
     @if ($toGrade->count())
@@ -76,7 +76,7 @@
         @empty
             <div class="dist-panel">
                 <x-empty-state icon="ti-calendar" title="{{ __('لا مناقشات قادمة') }}"
-                    text="{{ __('حين تُجدولك الإدارة في لجنة مناقشة — لمشروعك أو ممتحناً لغيره — تظهر هنا، ويصلك إشعار وبريد.') }}" class="py-5" />
+                    text="{{ __('حين تُجدولك الإدارة في لجنة مناقشة، لمشروعك أو ممتحناً لغيره، تظهر هنا، ويصلك إشعار وبريد.') }}" class="py-5" />
             </div>
         @endforelse
     </section>

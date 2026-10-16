@@ -27,7 +27,7 @@
                 @if ($supervisor->max_group > $supervisor->projects_accept_count)
                     <option @if (old('supervisor_id') == $supervisor->id) selected @endif value="{{ $supervisor->id }}">
                         {{ $supervisor->name }}
-                        — {{ __('متبقي :left من :max مجموعات', ['left' => $supervisor->max_group - $supervisor->projects_accept_count, 'max' => $supervisor->max_group]) }}
+{{ __('متبقي :left من :max مجموعات', ['left' => $supervisor->max_group - $supervisor->projects_accept_count, 'max' => $supervisor->max_group]) }}
                     </option>
                 @endif
             @endforeach
@@ -48,7 +48,7 @@
         <div class="hint-bar similar-hint mt-2 d-none" id="similar-hint" role="status" aria-live="polite">
             <i class="ti ti-bulb" aria-hidden="true"></i>
             <div>
-                <b>{{ __('مشاريع منجزة مشابهة') }}</b> — {{ __('راجعها لتميّز فكرتك عنها:') }}
+                <b>{{ __('مشاريع منجزة مشابهة') }}</b>: {{ __('راجعها لتميّز فكرتك عنها:') }}
                 <ul id="similar-list"></ul>
             </div>
         </div>
@@ -78,7 +78,7 @@
                     update();
                 }
 
-                // مشاريع منجزة مشابهة للعنوان — بتأخير حتى يتوقّف عن الكتابة
+                // مشاريع منجزة مشابهة للعنوان، بتأخير حتى يتوقّف عن الكتابة
                 var title = document.getElementById('title');
                 var hint = document.getElementById('similar-hint');
                 var list = document.getElementById('similar-list');
@@ -107,7 +107,7 @@
                                 a.textContent = p.title;
                                 li.appendChild(a);
                                 li.appendChild(document.createTextNode(
-                                    ' — ' + (p.supervisor || '') + (p.semester ? @json(__('، ')) + p.semester : '')
+                                    ' · ' + (p.supervisor || '') + (p.semester ? @json(__('، ')) + p.semester : '')
                                 ));
                                 list.appendChild(li);
                             });
@@ -136,7 +136,7 @@
             <input type="text" class="form-control" name="student_ids[]" value="{{ $student->university_id }}"
                 readonly autocomplete="off" aria-label="{{ __('الرقم الجامعي لقائد المجموعة') }}">
         </div>
-        <div class="form-hint">{{ $student->name }} — {{ __('أنت قائد هذا الفريق.') }}</div>
+        <div class="form-hint">{{ $student->name }}، {{ __('أنت قائد هذا الفريق.') }}</div>
     </div>
 
     @include('dashboard.student.group')

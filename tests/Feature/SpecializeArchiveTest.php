@@ -89,7 +89,7 @@ class SpecializeArchiveTest extends TestCase
             );
             $this->assertNotNull(
                 $forFilter->firstWhere('id', $specialize->id),
-                'تخصص موقوف اختفى من التصفية — فاختفى طلابه معه.'
+                'تخصص موقوف اختفى من التصفية، فاختفى طلابه معه.'
             );
         });
     }
@@ -184,7 +184,7 @@ class SpecializeArchiveTest extends TestCase
             if ($existing) {
                 $this->assertFalse(
                     $this->studentValidationFails($specialize->id, $existing->id),
-                    'تعذّر حفظ طالب قائم في تخصص أُوقف — وهو ليس خطأه.'
+                    'تعذّر حفظ طالب قائم في تخصص أُوقف، وهو ليس خطأه.'
                 );
             }
         });

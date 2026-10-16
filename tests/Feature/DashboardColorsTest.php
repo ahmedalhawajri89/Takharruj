@@ -75,7 +75,7 @@ class DashboardColorsTest extends TestCase
     {
         $semester = new Semester(['name' => 'الفصل الدراسي الأول 2022\\2023']);
 
-        $this->assertSame("الفصل الأول · \u{2066}2022–23\u{2069}", $semester->label);
+        $this->assertSame("الفصل الأول · \u{2066}2022-23\u{2069}", $semester->label);
         $this->assertSame('فصل صيفي', (new Semester(['name' => 'فصل صيفي']))->label);
     }
 

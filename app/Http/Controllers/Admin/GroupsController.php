@@ -121,7 +121,7 @@ class GroupsController extends Controller
             ->addColumn('leader', function ($project) {
                 $leader = $project->group->firstWhere('type', 'leader')?->student;
 
-                return e($leader?->name ?? '—');
+                return e($leader?->name ?? __('لا يوجد'));
             })
 
             ->addColumn('team', function ($project) {
@@ -135,7 +135,7 @@ class GroupsController extends Controller
                 return '<span class="team-size' . $over . '"' . $title . '>' . e($size) . $limit . '</span>';
             })
 
-            ->addColumn('supervisor_name', fn ($project) => e($project->supervisor->name ?: '—'))
+            ->addColumn('supervisor_name', fn ($project) => e($project->supervisor->name ?: __('لا يوجد')))
 
             // نفس ترميز \u200E<x-status-badge>\u200E ومن نفس \u200Econfig/statuses.php\u200E،
             // فلا تنشأ شارة ثانية تختلف عن شارة بقية الصفحات
@@ -150,7 +150,7 @@ class GroupsController extends Controller
 
             ->editColumn('grade', function ($project) {
                 if (is_null($project->grade)) {
-                    return '<span class="text-secondary small">—</span>';
+                    return '<span class="text-secondary small">' . e(__('لا يوجد')) . '</span>';
                 }
 
                 $value = rtrim(rtrim(number_format($project->grade, 2), '0'), '.');
@@ -322,7 +322,7 @@ class GroupsController extends Controller
                     Audit::record('project.supervisorChanged', $project, [
                         'supervisor' => [
                             'from' => $oldSupervisor?->name,
-                            'to' => Supervisor::find($request->supervisor_id)?->name ?? '—',
+                            'to' => Supervisor::find($request->supervisor_id)?->name ?? __('لا يوجد'),
                         ],
                     ]);
                 }
@@ -409,7 +409,7 @@ class GroupsController extends Controller
 
             Audit::record('project.deleted', $project);
 
-            return redirect()->back()->with('success', __('نُقلت المجموعة إلى المحذوفات — يمكن استرجاعها.'));
+            return redirect()->back()->with('success', __('نُقلت المجموعة إلى المحذوفات، يمكن استرجاعها.'));
 
         } catch (\Exception $ex) {
             report($ex);
@@ -499,7 +499,7 @@ class GroupsController extends Controller
         // مشروع بلا أعضاء يتيم: لا يظهر لأحد ولا يملك من يعمل عليه
         if ($project->group->count() <= 1) {
             return redirect()->back()->with('fail',
-                __('لا يمكن إزالة آخر عضو — المشروع يبقى بلا فريق. احذف المشروع نفسه إن كان هذا المقصود.'));
+                __('لا يمكن إزالة آخر عضو، المشروع يبقى بلا فريق. احذف المشروع نفسه إن كان هذا المقصود.'));
         }
 
         // القائد يُنقل قبل أن يُزال: فريق بلا قائد لا مُخاطَب له
@@ -544,7 +544,7 @@ class GroupsController extends Controller
         });
 
         Audit::record('project.leaderChanged', $project, [
-            'member' => ['from' => $previous ?? '—', 'to' => $member->student?->name ?? '—'],
+            'member' => ['from' => $previous ?? __('لا يوجد'), 'to' => $member->student?->name ?? __('لا يوجد')],
         ]);
 
         return redirect()->back()->with('success', __('تم تعيين قائد الفريق.'));
@@ -571,8 +571,8 @@ class GroupsController extends Controller
         $request->validate([
             'reason' => ['required', 'string', 'min:10', 'max:500'],
         ], [
-            'reason.required' => __('اكتب سبب فكّ الاعتماد — يُحفظ في سجلّ التدقيق.'),
-            'reason.min' => __('السبب قصير جداً — اشرحه في جملة مفهومة.'),
+            'reason.required' => __('اكتب سبب فكّ الاعتماد، يُحفظ في سجلّ التدقيق.'),
+            'reason.min' => __('السبب قصير جداً، اشرحه في جملة مفهومة.'),
         ], ['reason' => __('السبب')]);
 
         $project->update(['grade_locked_at' => null]);
@@ -582,7 +582,7 @@ class GroupsController extends Controller
             'reason' => $request->reason,
         ]);
 
-        return redirect()->back()->with('success', __('فُكّ الاعتماد — يستطيع المشرف تعديل الدرجة الآن.'));
+        return redirect()->back()->with('success', __('فُكّ الاعتماد، يستطيع المشرف تعديل الدرجة الآن.'));
     }
 
     /** المشاريع المحذوفة — قابلة للاسترجاع أو للحذف النهائي */

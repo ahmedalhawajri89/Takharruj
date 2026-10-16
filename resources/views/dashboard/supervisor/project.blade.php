@@ -35,8 +35,8 @@
             $todos[] = $committee
                 ? ['icon' => 'ti-presentation', 'tone' => 'is-warn', 'n' => null,
                     'label' => $committee->starts_at->isFuture()
-                        ? __('المناقشة :day · :time — الدرجة من اللجنة', ['day' => $committee->starts_at->translatedFormat('l j F'), 'time' => $committee->starts_at->format('H:i')])
-                        : __('نوقش المشروع — ارصد درجتك في اللجنة'),
+                        ? __('المناقشة :day · :time، الدرجة من اللجنة', ['day' => $committee->starts_at->translatedFormat('l j F'), 'time' => $committee->starts_at->format('H:i')])
+                        : __('نوقش المشروع، ارصد درجتك في اللجنة'),
                     'href' => route('supervisor.defenses.show', $committee->id) . '#grade']
                 : ['icon' => 'ti-award', 'tone' => 'is-warn', 'n' => null,
                     'label' => __('المشروع مكتمل ولم تُرصد درجته'), 'href' => '#grade'];
@@ -51,7 +51,7 @@
         if ($project->status === 'accept') {
             if ($project->milestones->isEmpty()) {
                 $todos[] = ['icon' => 'ti-list-details', 'tone' => '', 'n' => null,
-                    'label' => __('لا مراحل بعد — الفريق لا يعرف ما التالي'), 'href' => '#milestones'];
+                    'label' => __('لا مراحل بعد، الفريق لا يعرف ما التالي'), 'href' => '#milestones'];
             }
 
             if (is_null($project->date_line)) {
@@ -94,7 +94,7 @@
         <p class="hint-bar mb-4" role="status">
             <i class="ti ti-archive" aria-hidden="true"></i>
             <span>
-                <b>{{ __('مشروع مؤرشف — رُصدت درجته.') }}</b>
+                <b>{{ __('مشروع مؤرشف، رُصدت درجته.') }}</b>
                 {{ __('المراحل والملفات والموعد النهائي للعرض فقط حفاظاً على سلامة السجلّ.') }}
                 {{ __('النقاش يبقى مفتوحاً.') }}
             </span>
@@ -119,7 +119,7 @@
         @empty
             <p class="todo-clear">
                 <i class="ti ti-circle-check" aria-hidden="true"></i>
-                {{ __('لا شيء ينتظرك هنا — المشروع يسير كما ينبغي.') }}
+                {{ __('لا شيء ينتظرك هنا، المشروع يسير كما ينبغي.') }}
             </p>
         @endforelse
     </section>
@@ -133,7 +133,7 @@
             <div class="dist-head">
                 <span>{{ __('التقييم النهائي') }}</span>
                 @if (! is_null($project->grade) && ! $project->isGradeLocked())
-                    <span class="dist-head-note">{{ __('مسوّدة — لم تُعتمد بعد') }}</span>
+                    <span class="dist-head-note">{{ __('مسوّدة، لم تُعتمد بعد') }}</span>
                 @endif
             </div>
 
@@ -156,7 +156,7 @@
                         @endif
                         <p class="grade-final-note">
                             {{ __('اعتُمدت بتاريخ :date.', ['date' => $project->grade_locked_at?->format('Y-m-d')]) }}
-                            {{ __('لم يعد بالإمكان تعديلها — راجع مسؤول النظام إن كان فيها خطأ.') }}
+                            {{ __('لم يعد بالإمكان تعديلها، راجع مسؤول النظام إن كان فيها خطأ.') }}
                         </p>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                     <div class="dsv-committee-note">
                         <i class="ti ti-presentation" aria-hidden="true"></i>
                         <span>
-                            {{ __('تُرصد الدرجة من لجنة المناقشة — متوسط درجتك ودرجة الممتحن.') }}
+                            {{ __('تُرصد الدرجة من لجنة المناقشة، متوسط درجتك ودرجة الممتحن.') }}
                             @if (! is_null($project->grade))
                                 {!! __('الحالية :grade (:label).', ['grade' => '<b>' . e($fmtGrade($project->grade)) . '</b>', 'label' => e($project->grade_label)]) !!}
                             @endif
@@ -203,8 +203,8 @@
                 @if ($project->canLockGrade())
                     <div class="grade-lock-bar m-3">
                         <div>
-                            <b>{{ __('انتهيت من التقييم؟ (:grade — :label)', ['grade' => $fmtGrade($project->grade), 'label' => $project->grade_label]) }}</b>
-                            <span>{{ __('اعتماد الدرجة يقفلها — بعده لا تستطيع تعديلها، ويلزم مسؤول النظام لفكّها.') }}</span>
+                            <b>{{ __('انتهيت من التقييم؟ (:grade، :label)', ['grade' => $fmtGrade($project->grade), 'label' => $project->grade_label]) }}</b>
+                            <span>{{ __('اعتماد الدرجة يقفلها، بعده لا تستطيع تعديلها، ويلزم مسؤول النظام لفكّها.') }}</span>
                         </div>
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                             data-bs-target="#lockGradeModal">
@@ -285,7 +285,7 @@
                 @if ($project->description)
                     @include('dashboard.project._clamp', ['text' => $project->description])
                 @else
-                    <p class="proj-desc text-secondary">{{ __('قُدّم :date — بلا وصف.', ['date' => $project->created_at->format('Y-m-d')]) }}</p>
+                    <p class="proj-desc text-secondary">{{ __('قُدّم :date، بلا وصف.', ['date' => $project->created_at->format('Y-m-d')]) }}</p>
                 @endif
 
                 @unless ($locked)

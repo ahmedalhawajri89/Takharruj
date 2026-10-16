@@ -63,7 +63,7 @@ class StudentsExport implements FromCollection, WithHeadings, WithMapping, Shoul
         return [
             $student->university_id,
             $student->name,
-            $student->specialize->name ?? '—',
+            $student->specialize->name ?? '',
             $student->email,
             $student->phone,
             __('site.' . $student->gender),

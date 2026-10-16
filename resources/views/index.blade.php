@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <title>تخرُّج | منصة متابعة مشاريع التخرج</title>
-    <meta name="description" content="تخرُّج (Takharruj) — منصة لتتبع مشاريع التخرج وإدارة الفرق والمشرفين ومتابعة مراحل المشروع من الفكرة إلى المناقشة." />
+    <meta name="description" content="تخرُّج (Takharruj)، منصة لتتبع مشاريع التخرج وإدارة الفرق والمشرفين ومتابعة مراحل المشروع من الفكرة إلى المناقشة." />
     <link rel="icon" href="{{ asset('assets/img/takharruj-logo.svg') }}" />
 
     {{-- خطوط مستضافة محلياً: لا اعتماد على طرف ثالث ولا تأخّر في ظهور النص --}}
@@ -148,7 +148,7 @@
             </h1>
 
             <p class="hero-sub stagger d3" data-i18n="hero.sub">
-                فريقك ومشرفك ومراحل مشروعك ودرجتك — تتابعها كلها من لوحة واحدة، ويتابعها مشرفك معك.
+                فريقك ومشرفك ومراحل مشروعك ودرجتك، تتابعها كلها من لوحة واحدة، ويتابعها مشرفك معك.
             </p>
 
             <div class="hero-ctas stagger d4">
@@ -282,7 +282,7 @@
                     <div class="about-copy">
                         <h2 class="reveal" data-i18n="about.title">من تكوين الفريق حتى الدرجة</h2>
                         <p class="reveal d1" data-i18n="about.text">
-                            تخرُّج منصة مستقلة لإدارة مشاريع التخرج من أول تكوين الفريق واختيار المشرف، مروراً باعتماد الفكرة ومتابعة المراحل، وصولاً إلى المناقشة والتقييم النهائي — بمسار واضح لكل طرف.
+                            تخرُّج منصة مستقلة لإدارة مشاريع التخرج من أول تكوين الفريق واختيار المشرف، مروراً باعتماد الفكرة ومتابعة المراحل، وصولاً إلى المناقشة والتقييم النهائي، بمسار واضح لكل طرف.
                         </p>
 
                         <div class="pillars reveal d2">
@@ -391,7 +391,7 @@
                     <div class="section-head-grid">
                         <h2 class="reveal" data-i18n="services.title">كل ما يحتاجه مشروعك في مكان واحد</h2>
                         <p class="reveal d1" data-i18n="services.text">
-                            من تكوين الفريق إلى الدرجة المعتمدة — أدوات تغنيك عن مجموعات واتساب والبريد والملفات المبعثرة.
+                            من تكوين الفريق إلى الدرجة المعتمدة، أدوات تغنيك عن مجموعات واتساب والبريد والملفات المبعثرة.
                         </p>
                     </div>
                 </div>
@@ -406,7 +406,7 @@
                             ['team', 'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75', 'فريقك ومشرفك في دقائق', 'زملاء من تخصصك، ومشرف بمقاعد متاحة، وتنبيه إن نُفّذت فكرتك.'],
                             ['review', 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12', 'سلّم، واستلم ملاحظة', 'كل مرحلة بملف، والمشرف يعتمدها أو يطلب تعديلاً بسببه.'],
                             ['plan', 'M9 6h11M9 12h11M9 18h11M3 6l1 1 2-2M3 12l1 1 2-2M3 18l1 1 2-2', 'خطة مراحل جاهزة', 'يضعها المشرف مرّة بمواعيدها وقوالبها، فتصل كل مجموعاته.'],
-                            ['chat', 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z', 'نقاش حيّ', 'قناة خاصة بالفريق، وأخرى مع المشرف — والرسائل تصل فوراً.'],
+                            ['chat', 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z', 'نقاش حيّ', 'قناة خاصة بالفريق، وأخرى مع المشرف، والرسائل تصل فوراً.'],
                             ['defense', 'M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM8.5 14.5 7 22l5-3 5 3-1.5-7.5', 'مناقشة ودرجة معتمدة', 'لجنة وموعد وقاعة، ودرجة تُرصد ثم تُقفل.'],
                             ['explore', 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM21 21l-4.3-4.3', 'استلهم من مشاريع سابقة', 'تصفّح مشاريع الدفعات السابقة بأنواعها ومشرفيها.'],
                         ] as $k => [$key, $icon, $title, $line])
@@ -446,7 +446,7 @@
                                 </div>
                                 <div class="sx-card sx-alert sx-in" style="--d: 2s">
                                     <span class="sx-alert-ico">!</span>
-                                    <span data-i18n="svx.s1.alert">فكرة مشابهة نُفّذت في 2023 — راجعها قبل التقديم</span>
+                                    <span data-i18n="svx.s1.alert">فكرة مشابهة نُفّذت في 2023، راجعها قبل التقديم</span>
                                 </div>
                             </div>
 
@@ -589,7 +589,7 @@
                             <div class="fh-view" data-fh-view="1">
                                 <div class="fx-proof fx-log">
                                     <span class="fx-log-row"><i class="fx-dot-amber"></i><b data-i18n="features.p3.l1">اعتماد درجة</b><small dir="ltr">14:32</small></span>
-                                    <span class="fx-log-row"><i class="fx-dot-rose"></i><b data-i18n="features.p3.l2">فكّ اعتماد — بسبب مكتوب</b><small dir="ltr">09:05</small></span>
+                                    <span class="fx-log-row"><i class="fx-dot-rose"></i><b data-i18n="features.p3.l2">فكّ اعتماد، بسبب مكتوب</b><small dir="ltr">09:05</small></span>
                                     <span class="fx-seen"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n="features.p3.lock">لا تعديل ولا حذف</span></span>
                                 </div>
                             </div>
@@ -641,7 +641,7 @@
                     <div class="section-head-grid">
                         <h2 class="reveal" data-i18n="how.title">أربع خطوات من الفكرة إلى الدرجة</h2>
                         <p class="reveal d1" data-i18n="how.text">
-                            حسابك يُنشأ من إدارة القسم — لا تسجيل ولا انتظار، سجّل دخولك وابدأ.
+                            حسابك يُنشأ من إدارة القسم، لا تسجيل ولا انتظار، سجّل دخولك وابدأ.
                         </p>
                     </div>
                 </div>
@@ -652,7 +652,7 @@
                 <div class="st reveal" data-stairs>
                     <ol class="st-steps">
                         @foreach ([
-                            ['how.1.title', 'ادخل إلى المنصة', 'st.1', 'ببريدك أو رقمك الجامعي — حسابك جاهز.'],
+                            ['how.1.title', 'ادخل إلى المنصة', 'st.1', 'ببريدك أو رقمك الجامعي، حسابك جاهز.'],
                             ['how.2.title', 'كوّن فريقك وقدّم فكرتك', 'st.2', 'زملاء ومشرف بمقاعد، وفكرة لم تُنفَّذ.'],
                             ['how.3.title', 'سلّم مراحلك', 'st.3', 'تسليم، فاعتماد أو تعديل بملاحظة.'],
                             ['how.4.title', 'ناقش واستلم درجتك', 'st.4', 'لجنة ودرجة معتمدة لا تتغيّر.'],
@@ -686,7 +686,7 @@
                     <div class="section-head-grid">
                         <h2 class="reveal" data-i18n="roles.title">لكل دور مساحته الخاصة</h2>
                         <p class="reveal d1" data-i18n="roles.text">
-                            ثلاثة أدوار، لكلٍّ لوحته وصلاحياته — ويتسلّم كلٌّ من الآخر في الوقت المناسب. اختر دوراً لترى مساحته.
+                            ثلاثة أدوار، لكلٍّ لوحته وصلاحياته، ويتسلّم كلٌّ من الآخر في الوقت المناسب. اختر دوراً لترى مساحته.
                         </p>
                     </div>
                 </div>
@@ -726,8 +726,8 @@
                     ];
                     $rxPrivate = [
                         'student' => 'نقاش الفريق الخاص لا يصل المشرف ولا الإدارة',
-                        'supervisor' => 'يرى مجموعاته وحدها — ونقاش الفريق الخاص يبقى للفريق',
-                        'admin' => 'ترى كل شيء إلا نقاش الفرق الخاص — وكل قرار لها في السجلّ',
+                        'supervisor' => 'يرى مجموعاته وحدها، ونقاش الفريق الخاص يبقى للفريق',
+                        'admin' => 'ترى كل شيء إلا نقاش الفرق الخاص، وكل قرار لها في السجلّ',
                     ];
                 @endphp
                 <div class="rx reveal" data-role-explorer>
@@ -758,7 +758,7 @@
                                                 <div class="rx-task">
                                                     <span class="rx-task-dot is-warn" aria-hidden="true"></span>
                                                     <span>
-                                                        <b data-i18n="roles.scene.s.stage">الفصل الثالث — التحليل</b>
+                                                        <b data-i18n="roles.scene.s.stage">الفصل الثالث، التحليل</b>
                                                         <small data-i18n="roles.scene.s.due">آخر موعد بعد يومين</small>
                                                     </span>
                                                     <span class="rx-btn is-primary" data-i18n="roles.scene.s.submit">تسليم المرحلة</span>
@@ -854,7 +854,7 @@
              المشروع على المنصة (مراحله ومدّتها) — بلا أسماء طلاب ولا درجة فريق بعينه --}}
         @php
             $showcase = \Illuminate\Support\Facades\Cache::remember('site_showcase_v5', 3600, function () {
-                $bare = fn ($title) => trim(preg_replace('/\s*—\s*نسخة\s*\d+\s*$/u', '', $title));
+                $bare = fn ($title) => trim(preg_replace('/\s*[—،,]\s*نسخة\s*\d+\s*$/u', '', $title));
                 $done = fn ($q) => $q->where('status', 'complete')->whereNotNull('grade');
 
                 $projects = \App\Models\Project::query()->tap($done)
@@ -897,7 +897,7 @@
                         <div class="section-head-grid">
                             <h2 class="reveal" data-i18n="show.title">مشاريع أُنجزت على تخرُّج</h2>
                             <p class="reveal d1" data-i18n="show.text">
-                                ليست أمثلة مصنوعة — مشاريع أكملتها فرق فعلاً على المنصة، مرحلةً بعد مرحلة.
+                                ليست أمثلة مصنوعة، مشاريع أكملتها فرق فعلاً على المنصة، مرحلةً بعد مرحلة.
                             </p>
                         </div>
                     </div>
@@ -1054,7 +1054,7 @@
                     <aside class="fq-side">
                         <h2 class="reveal" data-i18n="faq.title">كل ما يسأله الطلاب قبل البدء</h2>
                         <p class="fq-lead reveal d1" data-i18n="faq.text">
-                            إجابات مباشرة من واقع النظام — ولأي سؤال آخر تواصل معنا من قسم الاتصال بالأسفل.
+                            إجابات مباشرة من واقع النظام، ولأي سؤال آخر تواصل معنا من قسم الاتصال بالأسفل.
                         </p>
                         <div class="fq-filters reveal d1" role="group" aria-label="تصفية الأسئلة" data-i18n-aria="faq.filters" hidden data-fq-filters>
                             <button type="button" class="fq-filter" data-fq-filter="all" aria-pressed="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span data-i18n="faq.cat.all">الكل</span></button>
@@ -1078,13 +1078,13 @@
 
                     <div class="fq-list reveal">
                         @foreach ([
-                            ['cat' => 'team', 'q' => 'كم عضواً يتكون منه الفريق؟', 'a' => 'حسب نوع المشروع الذي يحدده قسمك — كل نوع له حد أدنى وأقصى يظهران أمامك في نموذج التقديم، والنظام لا يقبل فريقاً خارج الحدود.'],
+                            ['cat' => 'team', 'q' => 'كم عضواً يتكون منه الفريق؟', 'a' => 'حسب نوع المشروع الذي يحدده قسمك، كل نوع له حد أدنى وأقصى يظهران أمامك في نموذج التقديم، والنظام لا يقبل فريقاً خارج الحدود.'],
                             ['cat' => 'apply', 'q' => 'كيف أقدم طلب مشروع؟', 'a' => 'أربع خطوات من لوحتك، ويصل طلبك للمشرف فوراً:'],
-                            ['cat' => 'apply', 'q' => 'كيف أعرف ردّ المشرف، وماذا لو رُفض طلبي؟', 'a' => 'يصلك إشعار فور القبول أو الرفض، ومعه ملاحظة المشرف إن كتبها. وإن رُفض طلبك يُفتح لك نموذج تقديم جديد مباشرة — عدّل فكرتك أو اختر مشرفاً آخر.'],
-                            ['cat' => 'track', 'q' => 'ماذا يعني «مطلوب تعديل» على مرحلة سلّمتها؟', 'a' => 'أن مشرفك راجعها وكتب ما ينقصها — لا أنها رُفضت. عدّل ملفك وأعد التسليم من الصفحة نفسها، وتبقى كل جولة وملاحظتها محفوظة.'],
-                            ['cat' => 'team', 'q' => 'من يوزّع الأدوار في الفريق؟', 'a' => 'قائد الفريق: يسند لكل عضو دوره ومسؤولياته، فيراها الفريق كله ويراها المشرف — واضح من على ماذا قبل المناقشة.'],
+                            ['cat' => 'apply', 'q' => 'كيف أعرف ردّ المشرف، وماذا لو رُفض طلبي؟', 'a' => 'يصلك إشعار فور القبول أو الرفض، ومعه ملاحظة المشرف إن كتبها. وإن رُفض طلبك يُفتح لك نموذج تقديم جديد مباشرة، عدّل فكرتك أو اختر مشرفاً آخر.'],
+                            ['cat' => 'track', 'q' => 'ماذا يعني «مطلوب تعديل» على مرحلة سلّمتها؟', 'a' => 'أن مشرفك راجعها وكتب ما ينقصها، لا أنها رُفضت. عدّل ملفك وأعد التسليم من الصفحة نفسها، وتبقى كل جولة وملاحظتها محفوظة.'],
+                            ['cat' => 'team', 'q' => 'من يوزّع الأدوار في الفريق؟', 'a' => 'قائد الفريق: يسند لكل عضو دوره ومسؤولياته، فيراها الفريق كله ويراها المشرف، واضح من على ماذا قبل المناقشة.'],
                             ['cat' => 'team', 'q' => 'هل يرى المشرف نقاش الفريق؟', 'a' => 'لا. للفريق قناة خاصة لا يراها المشرف ولا الإدارة، وقناة ثانية مشتركة مع المشرف للأسئلة والملاحظات.'],
-                            ['cat' => 'track', 'q' => 'كيف يُقيَّم مشروعي النهائي؟', 'a' => 'بعد اكتمال المشروع يرصد مشرفك الدرجة من 100 مع ملاحظاته، ويُحسب التقدير منها تلقائياً، ويصل الإشعار للفريق كله. وبعد اعتمادها تُقفل — لا يفتحها إلا الإدارة بسبب مكتوب، ويُسجَّل ذلك.'],
+                            ['cat' => 'track', 'q' => 'كيف يُقيَّم مشروعي النهائي؟', 'a' => 'بعد اكتمال المشروع يرصد مشرفك الدرجة من 100 مع ملاحظاته، ويُحسب التقدير منها تلقائياً، ويصل الإشعار للفريق كله. وبعد اعتمادها تُقفل، لا يفتحها إلا الإدارة بسبب مكتوب، ويُسجَّل ذلك.'],
                         ] as $i => $item)
                             <details class="fq-item" name="faq" id="faq-{{ $i + 1 }}" data-cat="{{ $item['cat'] }}" {{ $i === 0 ? 'open' : '' }}>
                                 <summary>
@@ -1131,7 +1131,7 @@
                     <div class="dx-file reveal d2" aria-hidden="true">
                         <div class="dx-file-top">
                             <span class="dx-file-name"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span data-i18n="dept.file.name">ملف الفصل</span></span>
-                            <span class="dx-chip is-open"><i></i><span data-i18n="dept.file.term">الفصل الأول</span> <bdi dir="ltr">&#x2066;2022–23&#x2069;</bdi></span>
+                            <span class="dx-chip is-open"><i></i><span data-i18n="dept.file.term">الفصل الأول</span> <bdi dir="ltr">&#x2066;2022-23&#x2069;</bdi></span>
                         </div>
                         <div class="dx-row">
                             <span class="dx-q" data-i18n="dept.file.q1">من قدّم؟</span>
@@ -1353,7 +1353,7 @@
             <div>
                 <h2 data-i18n="cta.title">جاهز تبدأ مشروع تخرجك؟</h2>
                 <p data-i18n="cta.text">
-                    حسابك جاهز مسبقاً من إدارة المنصة — سجّل دخولك برقمك الجامعي، كوّن فريقك،
+                    حسابك جاهز مسبقاً من إدارة المنصة، سجّل دخولك برقمك الجامعي، كوّن فريقك،
                     واختر مشرفك. بقية الطريق تتابعها من لوحتك.
                 </p>
                 <ol class="cta-steps">
@@ -1440,7 +1440,7 @@
             </div>
 
             <div class="footer-bar">
-                <span data-i18n="footer.rights">جميع الحقوق محفوظة — تخرُّج ©</span>
+                <span data-i18n="footer.rights">جميع الحقوق محفوظة | تخرُّج ©</span>
                 <div class="footer-meta">
                     <a href="#hero" class="footer-up">
                         <span data-i18n="footer.top">العودة للأعلى</span>

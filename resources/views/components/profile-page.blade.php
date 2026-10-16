@@ -375,7 +375,7 @@
 
         (function () {
             // إظهار/إخفاء كلمة السر يتكفّل به مُلتقِط عام في القالب
-            // (layouts/admin/admin.blade.php) — وربطٌ ثانٍ هنا كان
+            // (layouts/admin/admin.blade.php)، وربطٌ ثانٍ هنا كان
             // سيقلب الحقل مرتين فلا يتغيّر شيء.
 
             var pw = document.getElementById('p-new');
@@ -385,8 +385,8 @@
             var match = document.getElementById('pw-match');
             if (!pw || !fill) return;
 
-            // مقياس تقريبي: الطول والتنوّع. ليس تحقّقاً — الخادم هو
-            // من يقرّر — بل تغذية راجعة أثناء الكتابة.
+            // مقياس تقريبي: الطول والتنوّع. ليس تحقّقاً، الخادم هو
+            // من يقرّر، بل تغذية راجعة أثناء الكتابة.
             function score(v) {
                 if (!v) return 0;
                 var s = 0;
@@ -417,7 +417,7 @@
                 var lvl = levels[score(pw.value)];
                 fill.style.width = lvl.w;
                 fill.className = lvl.c;
-                label.textContent = pw.value && pw.value.length < 8 ? @json(__('قصيرة — 8 أحرف على الأقل')) : lvl.t;
+                label.textContent = pw.value && pw.value.length < 8 ? @json(__('قصيرة، 8 أحرف على الأقل')) : lvl.t;
                 checkMatch();
             }
 

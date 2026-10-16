@@ -32,7 +32,7 @@ class ProjectFileController extends Controller
 
         // بعد رصد التقييم يصبح المشروع أرشيفياً
         if ($project->is_locked) {
-            return redirect()->back()->with('fail', __('المشروع مؤرشف بعد التقييم — لا يمكن رفع ملفات جديدة'));
+            return redirect()->back()->with('fail', __('المشروع مؤرشف بعد التقييم، لا يمكن رفع ملفات جديدة'));
         }
 
         $request->validate([
@@ -76,7 +76,7 @@ class ProjectFileController extends Controller
         );
 
         if ($file->project->is_locked) {
-            return redirect()->back()->with('fail', __('المشروع مؤرشف بعد التقييم — لا يمكن حذف ملفاته'));
+            return redirect()->back()->with('fail', __('المشروع مؤرشف بعد التقييم، لا يمكن حذف ملفاته'));
         }
 
         // حذف من القرص الخاص، مع دعم الملفات القديمة على العام

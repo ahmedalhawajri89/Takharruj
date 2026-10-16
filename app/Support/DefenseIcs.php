@@ -29,7 +29,7 @@ class DefenseIcs
 
         $location = match (true) {
             $d->mode === 'online' => (string) $d->meeting_url,
-            default => trim($d->place_label . ($d->room?->location ? ' — ' . $d->room->location : '')),
+            default => trim($d->place_label . ($d->room?->location ? ' · ' . $d->room->location : '')),
         };
 
         $lines = [

@@ -33,7 +33,7 @@ class MilestoneSubmissionController extends Controller
 
         // بعد الاكتمال لا تُطلب مراحل: التالي المناقشة والدرجة
         if ($project->status === 'complete') {
-            return back()->with('fail', __('اكتمل المشروع — لا تسليمات بعده. التالي المناقشة.'));
+            return back()->with('fail', __('اكتمل المشروع، لا تسليمات بعده. التالي المناقشة.'));
         }
 
         if ($project->status !== 'accept') {
@@ -41,7 +41,7 @@ class MilestoneSubmissionController extends Controller
         }
 
         if ($project->is_locked) {
-            return back()->with('fail', __('المشروع مؤرشف بعد التقييم — لا تسليمات جديدة.'));
+            return back()->with('fail', __('المشروع مؤرشف بعد التقييم، لا تسليمات جديدة.'));
         }
 
         $data = $request->validate([
@@ -49,7 +49,7 @@ class MilestoneSubmissionController extends Controller
             'note' => ['nullable', 'string', 'max:2000', 'required_without:file'],
             'file' => ['nullable', 'file', 'max:10240', 'mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,zip,rar,png,jpg,jpeg'],
         ], [
-            'note.required_without' => __('اكتب ملاحظة أو أرفق ملفاً — تسليم فارغ لا يُراجَع.'),
+            'note.required_without' => __('اكتب ملاحظة أو أرفق ملفاً، تسليم فارغ لا يُراجَع.'),
         ], [
             'note' => __('الملاحظة'),
             'file' => __('الملف'),
@@ -96,7 +96,7 @@ class MilestoneSubmissionController extends Controller
 
             return back()->with('fail', $milestone->fresh()->isSubmitted()
                 ? __('سُلّمت هذه المرحلة وتنتظر مراجعة المشرف.')
-                : __('اعتُمدت هذه المرحلة — لا تسليم جديد لها.'));
+                : __('اعتُمدت هذه المرحلة، لا تسليم جديد لها.'));
         }
 
         Audit::record('milestone.submitted', $project, ['milestone' => ['to' => $milestone->title], 'round' => ['to' => $submission->round]]);
@@ -106,7 +106,7 @@ class MilestoneSubmissionController extends Controller
                 $project->supervisor->notify(new ProjectActivityNotify([
                     'project' => $project->title,
                     'supervisor_name' => $student->name,
-                    'msg' => ($submission->round > 1 ? 'أعاد تسليم' : 'سلّم') . ' مرحلة «' . $milestone->title . '» — بانتظار مراجعتك',
+                    'msg' => ($submission->round > 1 ? 'أعاد تسليم' : 'سلّم') . ' مرحلة «' . $milestone->title . '»، بانتظار مراجعتك',
                 ]));
             } catch (\Exception $ex) {
                 Log::warning('تعذّر إشعار المشرف بتسليم مرحلة', ['milestone' => $milestone->id, 'exception' => $ex]);
@@ -115,7 +115,7 @@ class MilestoneSubmissionController extends Controller
 
         return redirect()->to(url()->previous() . '#milestone-' . $milestone->id)
             ->with('success', $submission->round > 1
-                ? __('أُعيد تسليم المرحلة — الجولة :round بانتظار المشرف.', ['round' => $submission->round])
-                : __('سُلّمت المرحلة — بانتظار مراجعة المشرف.'));
+                ? __('أُعيد تسليم المرحلة، الجولة :round بانتظار المشرف.', ['round' => $submission->round])
+                : __('سُلّمت المرحلة، بانتظار مراجعة المشرف.'));
     }
 }
